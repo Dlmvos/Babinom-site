@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join your partner | Babinom</title>
+    <meta name="description" content="Join your partner's Babinom room and start matching on baby names together." />
+    <meta name="robots" content="noindex" />
+    <style>
+      :root {
+        --blush: #fff0f5;
+        --pink: #ff5fa2;
+        --pink-dark: #e23e86;
+        --ink: #2b2330;
+        --muted: #6b6472;
+        --card: #ffffff;
+        --border: #f3d9e6;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, var(--blush) 0%, #ffffff 60%);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+      .wrap { max-width: 560px; margin: 0 auto; padding: 32px 20px 64px; }
+      header.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; }
+      header.brand .dot { font-size: 1.4rem; }
+      h1 { font-size: 1.7rem; line-height: 1.25; margin: 28px 0 10px; }
+      .lead { color: var(--muted); font-size: 1.05rem; margin: 0 0 28px; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 8px 30px rgba(226, 62, 134, 0.08);
+      }
+      .code {
+        font-size: 2.6rem; font-weight: 800; letter-spacing: 0.32em;
+        text-align: center; margin: 6px 0 16px; color: var(--pink-dark);
+      }
+      .btn {
+        display: inline-block; cursor: pointer; border: 0;
+        background: var(--pink); color: #fff; font-weight: 700; font-size: 1rem;
+        padding: 13px 26px; border-radius: 999px; text-decoration: none;
+        transition: transform 0.08s ease, background 0.15s ease;
+      }
+      .btn:hover { background: var(--pink-dark); }
+      .btn:active { transform: scale(0.97); }
+      .btn.secondary { background: #fff; color: var(--pink-dark); border: 1.5px solid var(--pink); }
+      .center { text-align: center; }
+      ol { margin: 18px 0 0; padding-left: 20px; }
+      ol li { margin-bottom: 10px; }
+      .stores { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+      .note { color: var(--muted); font-size: 0.9rem; text-align: center; margin-top: 12px; }
+      .help { display: grid; gap: 14px; margin-top: 28px; }
+      .help .card h3 { margin: 0 0 6px; font-size: 1rem; }
+      .help .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+      a { color: var(--pink-dark); }
+      footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="brand"><span class="dot">💑</span><span>Babinom</span></header>
+
+      <h1 id="headline">Your partner wants to choose a baby name with you.</h1>
+      <p class="lead">
+        Babinom lets the two of you swipe on names privately — when you both like the same one,
+        it's a match. Here's how to join their room.
+      </p>
+
+      <!-- Valid code -->
+      <div class="card" id="code-block" hidden>
+        <p style="margin:0 0 4px; font-weight:600;">Your room code</p>
+        <p class="code" id="room-code">······</p>
+        <p class="center"><button class="btn" id="copy-btn" type="button">Copy code</button></p>
+        <ol>
+          <li>Open the <strong>Babinom</strong> app (install it first if you haven't).</li>
+          <li>Tap <strong>Connect with partner</strong> → <strong>Join</strong>.</li>
+          <li>Enter the code above and tap join. That's it. 🎉</li>
+        </ol>
+        <p class="note">Tip: if you opened this on the phone with Babinom installed, the app may open to this room automatically.</p>
+      </div>
+
+      <!-- Missing/invalid code -->
+      <div class="card" id="no-code-block" hidden>
+        <p style="margin:0 0 6px; font-weight:700;">This invite link looks incomplete</p>
+        <p style="margin:0; color:var(--muted);">
+          We couldn't find a valid room code in this link. Ask your partner to open
+          <strong>Connect with partner</strong> in Babinom and share a fresh invite, or have them
+          read you the 6-character code so you can enter it manually.
+        </p>
+      </div>
+
+      <!--
+        TODO: replace these store links once Babinom is live.
+        Apple: https://apps.apple.com/app/idXXXXXXXXXX
+        Google Play: https://play.google.com/store/apps/details?id=com.daanvos.namenest
+      -->
+      <div class="stores">
+        <a class="btn" href="https://babinom.com/support/">Download on the App Store</a>
+        <a class="btn secondary" href="https://babinom.com/support/">Get it on Google Play</a>
+      </div>
+      <p class="note">Free • Takes less than 30 seconds</p>
+
+      <div class="help">
+        <div class="card">
+          <h3>Why a code?</h3>
+          <p>Your room is private. The code pairs just the two of you — nothing is shared publicly.</p>
+        </div>
+        <div class="card">
+          <h3>Code not working?</h3>
+          <p>Codes can change if a new invite was created. Ask your partner for a fresh one, or email <a href="mailto:support@babinom.com">support@babinom.com</a>.</p>
+        </div>
+      </div>
+
+      <footer>© 2026 Babinom · <a href="https://babinom.com/privacy/">Privacy</a> · <a href="https://babinom.com/support/">Support</a></footer>
+    </div>
+
+    <script>
+      // Room codes: six chars from [A-HJ-NP-Z2-9] (no I, O; digits 2-9).
+      // Kept in sync with src/lib/roomJoinPayload.ts (ROOM_CODE_RE).
+      (function () {
+        var ROOM_CODE_RE = /^[A-HJ-NP-Z2-9]{6}$/;
+        var raw = (new URLSearchParams(window.location.search).get('code') || '')
+          .trim().toUpperCase().replace(/\s+/g, '');
+
+        if (ROOM_CODE_RE.test(raw)) {
+          document.getElementById('room-code').textContent = raw;
+          document.getElementById('code-block').hidden = false;
+
+          var copyBtn = document.getElementById('copy-btn');
+          copyBtn.addEventListener('click', function () {
+            var done = function () {
+              var original = copyBtn.textContent;
+              copyBtn.textContent = 'Copied ✓';
+              setTimeout(function () { copyBtn.textContent = original; }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(raw).then(done).catch(done);
+            } else {
+              var ta = document.createElement('textarea');
+              ta.value = raw; document.body.appendChild(ta); ta.select();
+              try { document.execCommand('copy'); } catch (e) {}
+              document.body.removeChild(ta); done();
+            }
+          });
+        } else {
+          document.getElementById('no-code-block').hidden = false;
+        }
+      })();
+    </script>
+  </body>
+</html>
