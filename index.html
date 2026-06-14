@@ -9,81 +9,87 @@
       content="Babinom helps couples find baby names together, privately and without arguments."
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/assets/cookie-banner.js"></script>
   </head>
   <body>
     <header class="site-header">
-      <div class="container header-inner">
+      <div class="container header">
         <a class="brand" href="/">
-          <span class="brand-mark">B</span>
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
           <span>Babinom</span>
         </a>
         <nav class="nav" aria-label="Main navigation">
-          <a href="/privacy/">Privacy Policy</a>
-          <a href="/support/">Help &amp; Support</a>
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero section-pad">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">Baby name app for couples</span>
-            <h1>Find your baby name together — without arguments.</h1>
-            <p class="lead">
-              Swipe privately, match only on names you both love, and discover meanings that feel right
-              for your family.
-            </p>
-            <div class="actions" aria-label="Primary actions">
-              <a class="button" href="/support/">Start swiping together</a>
-              <a class="button secondary" href="/support/">Download on the App Store</a>
-            </div>
-            <p class="cta-note">Free • Takes less than 30 seconds</p>
-          </div>
-
-          <aside class="app-preview" aria-label="Babinom app preview">
-            <div class="phone-shell">
-              <div class="phone-top">
-                <span>Babinom</span>
-                <span>12 names left</span>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow">Baby name app for couples</span>
+              <h1>Find your baby name together — without arguments.</h1>
+              <p class="lead">
+                Swipe privately, match only on names you both love, and discover meanings that feel right
+                for your family.
+              </p>
+              <div class="actions" aria-label="Primary actions">
+                <a class="button" href="/support/">Start swiping together</a>
+                <a class="button secondary" href="/support/">Download on the App Store</a>
               </div>
-              <article class="swipe-preview-card active">
-                <div>
-                  <span class="name-origin">Spain</span>
-                  <h2>Sofia</h2>
-                  <p>Wisdom</p>
-                </div>
-                <div class="badge-row">
-                  <span>Girl</span>
-                  <span>Popular</span>
-                  <span>Spain</span>
-                </div>
-              </article>
-              <article class="swipe-preview-card">
-                <div>
-                  <span class="name-origin">Hebrew</span>
-                  <h2>Noah</h2>
-                  <p>Rest; comfort</p>
-                </div>
-                <div class="badge-row">
-                  <span>Boy</span>
-                  <span>Classic</span>
-                  <span>International</span>
-                </div>
-              </article>
+              <p class="cta-note">Free • Takes less than 30 seconds</p>
             </div>
-          </aside>
+
+            <aside class="app-preview app-preview--stack" aria-label="Babinom swipe preview">
+              <div class="card-stack" aria-label="Example name cards">
+                <article class="card">
+                  <p class="card-label">Private swipe</p>
+                  <h2>Sofia</h2>
+                  <p class="card-meta">Spain · Wisdom</p>
+                  <div class="card-tags">
+                    <span class="tag">Girl</span>
+                    <span class="tag">Popular</span>
+                    <span class="tag">Spain</span>
+                  </div>
+                </article>
+                <article class="card">
+                  <p class="card-label">Shared match</p>
+                  <h2>Noah</h2>
+                  <p class="card-meta">Hebrew · Rest; comfort</p>
+                  <div class="card-tags">
+                    <span class="tag">Boy</span>
+                    <span class="tag">Classic</span>
+                    <span class="tag">International</span>
+                  </div>
+                </article>
+                <article class="card">
+                  <p class="card-label">Meaning insight</p>
+                  <h2>Mateo</h2>
+                  <p class="card-meta">Spanish · Gift of God</p>
+                  <div class="card-tags">
+                    <span class="tag">Boy</span>
+                    <span class="tag">Warm</span>
+                    <span class="tag">Modern classic</span>
+                  </div>
+                </article>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
-      <section class="emotional-section">
+      <section class="site-section site-section--tight emotional-band" aria-label="Babinom emotional promise">
         <div class="container">
           <h2>No more endless debates.</h2>
           <p>Only see names you BOTH love.</p>
         </div>
       </section>
 
-      <section class="section section-pad" aria-labelledby="how-it-works">
+      <section class="site-section" aria-labelledby="how-it-works">
         <div class="container">
           <div class="section-header">
             <span class="eyebrow">How it works</span>
@@ -109,31 +115,19 @@
         </div>
       </section>
 
-      <section class="section section-pad" aria-labelledby="try-feeling">
-        <div class="container feel-grid">
-          <div class="section-header">
-            <span class="eyebrow">Swipe feel</span>
-            <h2 id="try-feeling">Try the feeling</h2>
-            <p>See how Babinom keeps the decision private first, then shared only when it matters.</p>
-          </div>
-          <div class="card-stack" aria-label="Babinom swipe flow">
-            <div class="stack-card stack-card-one">
-              <span>Private swipe</span>
-              <strong>Sofia</strong>
-            </div>
-            <div class="stack-card stack-card-two">
-              <span>Shared match</span>
-              <strong>Emma</strong>
-            </div>
-            <div class="stack-card stack-card-three">
-              <span>Meaning insight</span>
-              <strong>Noah</strong>
+      <section class="site-section" aria-labelledby="try-feeling">
+        <div class="container">
+          <div class="feel-intro">
+            <div class="section-header">
+              <span class="eyebrow">Swipe feel</span>
+              <h2 id="try-feeling">Try the feeling</h2>
+              <p>See how Babinom keeps the decision private first, then shared only when it matters.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-pad social-proof" aria-labelledby="social-proof-title">
+      <section class="site-section social-proof" aria-labelledby="social-proof-title">
         <div class="container">
           <div class="section-header">
             <span class="eyebrow">Name matches</span>
@@ -147,7 +141,7 @@
         </div>
       </section>
 
-      <section class="section section-pad premium-section" aria-labelledby="premium-title">
+      <section class="site-section premium-section" aria-labelledby="premium-title">
         <div class="container">
           <div class="premium-card">
             <div>
@@ -171,20 +165,22 @@
         </div>
       </section>
 
-      <section class="section section-pad waitlist-section" aria-labelledby="waitlist-title">
-        <div class="container waitlist-card">
-          <div>
-            <span class="eyebrow">Coming next</span>
-            <h2 id="waitlist-title">Want Android or web checkout first?</h2>
-            <p>Leave your email and we’ll let you know when Babinom expands.</p>
+      <section class="site-section waitlist-section" aria-labelledby="waitlist-title">
+        <div class="container">
+          <div class="waitlist-card">
+            <div>
+              <span class="eyebrow">Coming next</span>
+              <h2 id="waitlist-title">Want Android or web checkout first?</h2>
+              <p>Leave your email and we’ll let you know when Babinom expands.</p>
+            </div>
+            <a class="button secondary" href="mailto:support@babinom.com?subject=Babinom%20waitlist">
+              Join the waitlist
+            </a>
           </div>
-          <a class="button secondary" href="mailto:support@babinom.com?subject=Babinom%20waitlist">
-            Join the waitlist
-          </a>
         </div>
       </section>
 
-      <section class="section section-pad faq-section" aria-labelledby="faq-title">
+      <section class="site-section faq-section" aria-labelledby="faq-title">
         <div class="container">
           <div class="section-header">
             <span class="eyebrow">FAQ</span>
@@ -211,7 +207,7 @@
         </div>
       </section>
 
-      <section class="trust-band section-pad" aria-label="Privacy promise">
+      <section class="site-section trust-band" aria-label="Privacy promise">
         <div class="container">
           <h2>No ads. No tracking. Private by design.</h2>
         </div>
@@ -226,6 +222,7 @@
           <a href="#">Instagram</a>
           <a href="/privacy/">Privacy Policy</a>
           <a href="/support/">Help &amp; Support</a>
+          <a href="#cookie-preferences">Cookie Preferences</a>
           <a href="mailto:support@babinom.com">support@babinom.com</a>
         </nav>
       </div>
