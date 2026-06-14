@@ -76,13 +76,18 @@
       <div class="card" id="code-block" hidden>
         <p style="margin:0 0 4px; font-weight:600;">Your room code</p>
         <p class="code" id="room-code">······</p>
-        <p class="center"><button class="btn" id="copy-btn" type="button">Copy code</button></p>
+        <p class="center" style="margin:0 0 10px;">
+          <a class="btn" id="open-app-btn" href="#">Open in Babinom</a>
+        </p>
+        <p class="center" style="margin:0 0 18px;">
+          <button class="btn secondary" id="copy-btn" type="button">Copy code</button>
+        </p>
         <ol>
-          <li>Open the <strong>Babinom</strong> app (install it first if you haven't).</li>
-          <li>Tap <strong>Connect with partner</strong> → <strong>Join</strong>.</li>
+          <li>If <strong>Babinom</strong> didn't open automatically, install it first, then return to this page.</li>
+          <li>In the app, tap <strong>Connect with partner</strong> → <strong>Join</strong>.</li>
           <li>Enter the code above and tap join. That's it. 🎉</li>
         </ol>
-        <p class="note">Tip: if you opened this on the phone with Babinom installed, the app may open to this room automatically.</p>
+        <p class="note">Tip: on the phone with Babinom installed, tapping the link or the button above opens the app straight into this room.</p>
       </div>
 
       <!-- Missing/invalid code -->
@@ -131,6 +136,14 @@
         if (ROOM_CODE_RE.test(raw)) {
           document.getElementById('room-code').textContent = raw;
           document.getElementById('code-block').hidden = false;
+
+          // Wire the "Open in Babinom" button to the custom URL scheme.
+          // iOS Universal Links should auto-open the app from most contexts
+          // (Messages, WhatsApp). This button is a recovery affordance for
+          // contexts where the user lands on the web page instead (Safari
+          // address bar, in-app browser fallthrough).
+          var openAppBtn = document.getElementById('open-app-btn');
+          openAppBtn.href = 'babinom://join?code=' + raw;
 
           var copyBtn = document.getElementById('copy-btn');
           copyBtn.addEventListener('click', function () {
