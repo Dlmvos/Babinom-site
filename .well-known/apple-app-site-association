@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8M8FD3KA57.com.daanvos.namenest",
+        "paths": ["/join", "/join/*"]
+      }
+    ]
+  }
+}
