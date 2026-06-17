@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Email confirmed | Babinom</title>
+    <meta name="description" content="Your Babinom email has been confirmed. Open the app to continue." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
+          <span>Babinom</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+            <p class="eyebrow" style="margin: 0 auto 20px; display:inline-block;">Email confirmed</p>
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">You&rsquo;re all set 💜</h1>
+            <p class="lead">
+              Your Babinom email address has been confirmed. Open the app and you&rsquo;re ready to start swiping names with your partner.
+            </p>
+            <div class="actions" aria-label="Continue" style="justify-content:center; margin-top: 20px;">
+              <a class="button" href="babinom://">Open Babinom</a>
+            </div>
+            <p class="cta-note" style="margin-top: 16px;">
+              The app should open automatically. If it didn&rsquo;t, tap the button above.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Babinom</span>
+        <nav class="nav" aria-label="Footer navigation">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/ai-disclaimer/">AI Disclaimer</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/support/">Help &amp; Support</a>
+          <a href="mailto:support@babinom.com">support@babinom.com</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // Best-effort auto-redirect to the app on iOS — only kicks in
+      // if the user agent is mobile and the app is likely installed.
+      // No-op on desktop / when the scheme isn't registered.
+      (function () {
+        if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+        // Universal Link should have already opened the app; this is a
+        // last-ditch attempt for cases where the universal link broke
+        // (Safari fall-through, in-app browser, etc.).
+        var deepLink = 'babinom://email-confirmed';
+        setTimeout(function () { window.location.href = deepLink; }, 600);
+      })();
+    </script>
+  </body>
+</html>
