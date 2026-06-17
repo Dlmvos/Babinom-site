@@ -26,6 +26,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Explicit `main { display: block; }` defends against an older Safari
+ * quirk where <main> can render as inline-block-ish under certain
+ * nested layouts, causing the centered .container child to lose its
+ * `margin: 0 auto` resolution and flush-left against the viewport.
+ * Daan reported the symptom in Safari desktop 2026-06-16.
+ */
+main {
+  display: block;
+  width: 100%;
+}
+
 body {
   min-width: 0;
   margin: 0;
@@ -131,6 +143,21 @@ a {
 .premium-card > *,
 .waitlist-card > *,
 .faq-list > * {
+  min-width: 0;
+}
+
+/*
+ * Children of .hero-copy were the only grid-nested elements not
+ * covered by the min-width:0 chain — and the giant <h1>
+ * (clamp(3rem, 8vw, 5.8rem)) was wide enough in Safari that its
+ * intrinsic content size pushed the column track outwards, which in
+ * turn deformed the .container width and broke `margin: 0 auto`
+ * centering. Locking the children to min-width:0 keeps the column
+ * track from expanding past its share of the grid.
+ */
+.hero-copy > *,
+.section-header > *,
+.page-header > * {
   min-width: 0;
 }
 
