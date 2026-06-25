@@ -4,7 +4,14 @@
     "details": [
       {
         "appID": "8M8FD3KA57.com.daanvos.namenest",
-        "paths": ["/join", "/join/*"]
+        "paths": [
+          "/join",
+          "/join/*",
+          "/confirmed",
+          "/confirmed/*",
+          "/reset-password",
+          "/reset-password/*"
+        ]
       }
     ]
   }
