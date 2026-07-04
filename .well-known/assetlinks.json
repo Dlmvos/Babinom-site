@@ -4,7 +4,9 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.daanvos.namenest",
-      "sha256_cert_fingerprints": ["REPLACE_WITH_YOUR_APP_SIGNING_SHA256_FINGERPRINT"]
+      "sha256_cert_fingerprints": [
+        "CF:0D:27:86:D2:BD:5A:31:71:AD:4F:40:6F:1F:0D:19:0C:04:0F:A9:15:86:E7:84:EB:07:F5:94:E6:6E:64:9E"
+      ]
     }
   }
 ]
