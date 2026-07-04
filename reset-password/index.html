@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reset password | Babinom</title>
+    <meta name="description" content="Open the Babinom app to set a new password." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
+          <span>Babinom</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+            <p class="eyebrow" style="margin: 0 auto 20px; display:inline-block;">Reset password</p>
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Opening Babinom&hellip;</h1>
+            <p class="lead" id="lead">
+              We&rsquo;re sending you to the Babinom app to set a new password. If nothing happens in a couple of seconds, tap the button below.
+            </p>
+            <div class="actions" aria-label="Continue" style="justify-content:center; margin-top: 20px;">
+              <a class="button" id="open-app" href="babinom://reset-password">Open Babinom</a>
+            </div>
+            <p class="cta-note" id="cta-note" style="margin-top: 16px;">
+              Don&rsquo;t have the app? <a href="/">Download Babinom</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Babinom</span>
+        <nav class="nav" aria-label="Footer navigation">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/ai-disclaimer/">AI Disclaimer</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/support/">Help &amp; Support</a>
+          <a href="mailto:support@babinom.com">support@babinom.com</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // Reset-password bridge.
+      //
+      // Supabase's /auth/v1/verify endpoint 302-redirects here with the
+      // recovery session tokens in the URL fragment:
+      //
+      //   https://babinom.com/reset-password/#access_token=…&refresh_token=…&type=recovery
+      //
+      // iOS Universal Links DO trigger on same-domain 302 redirects when
+      // the destination path is in AASA (we have /reset-password in there),
+      // so most iPhone users open the app directly and never see this page.
+      //
+      // Fallback path (in-app browser, Android with unregistered scheme,
+      // old iOS, desktop with the app installed via TestFlight, etc.):
+      // forward the fragment to the babinom:// custom scheme, which
+      // registers in the app's Info.plist regardless of AASA. Preserve
+      // the ENTIRE fragment so useDeepLinkAuth's URLSearchParams parser
+      // in the app sees the same tokens Supabase minted.
+      (function () {
+        var hash = window.location.hash || '';
+        var target = 'babinom://reset-password' + hash;
+
+        // Also update the manual button so users tapping "Open Babinom"
+        // still send the tokens along (not just a bare scheme with no
+        // fragment, which would show "Reset link invalid" in-app).
+        var btn = document.getElementById('open-app');
+        if (btn) btn.setAttribute('href', target);
+
+        // Auto-bounce on mobile only. On desktop we prefer the page to
+        // render — the user tapped a link from an inbox we can't attribute
+        // to a real device install.
+        if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+
+        // Small delay so an iOS Universal Link would have already taken
+        // over. If it hasn't after ~450ms, we're the fallback path.
+        setTimeout(function () {
+          window.location.href = target;
+        }, 450);
+      })();
+    </script>
+  </body>
+</html>
