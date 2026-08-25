@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Reset password | Babinom</title>
     <meta name="description" content="Open the Babinom app to set a new password." />
     <meta name="robots" content="noindex" />
@@ -28,10 +30,11 @@
         <div class="container">
           <div class="container-inner--narrow page-stack" style="text-align:center;">
             <p class="eyebrow" style="margin: 0 auto 20px; display:inline-block;">Reset password</p>
-            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Opening Babinom&hellip;</h1>
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Set a new password</h1>
             <p class="lead" id="lead">
-              We&rsquo;re sending you to the Babinom app to set a new password. If nothing happens in a couple of seconds, tap the button below.
+              Tap below to open Babinom and set a new password. Use the same device you requested the reset from.
             </p>
+            <p class="lead" id="bridge-note" style="font-size: 1rem;"></p>
             <div class="actions" aria-label="Continue" style="justify-content:center; margin-top: 20px;">
               <a class="button" id="open-app" href="babinom://reset-password">Open Babinom</a>
             </div>
@@ -58,43 +61,59 @@
     </footer>
 
     <script>
-      // Reset-password bridge.
+      // Reset-password bridge — PKCE only (Babinom audit 08-25 H3).
       //
-      // Supabase's /auth/v1/verify endpoint 302-redirects here with the
-      // recovery session tokens in the URL fragment:
+      // WHAT THIS PAGE USED TO DO, AND WHY IT WAS DANGEROUS:
+      // it read `window.location.hash` and forwarded it verbatim into
+      // `babinom://reset-password` + auto-navigated on mobile after 450ms.
+      // Under Supabase's old implicit flow that fragment held
+      // `access_token`/`refresh_token`, so ANY link of the form
       //
-      //   https://babinom.com/reset-password/#access_token=…&refresh_token=…&type=recovery
+      //   https://babinom.com/reset-password/#access_token=<attacker>&...
       //
-      // iOS Universal Links DO trigger on same-domain 302 redirects when
-      // the destination path is in AASA (we have /reset-password in there),
-      // so most iPhone users open the app directly and never see this page.
+      // was a one-click account takeover delivered over a genuine, first-party
+      // HTTPS URL: the victim's app adopted the attacker's session, and the
+      // password the victim then set changed the ATTACKER's account. The page
+      // never inspected the fragment — not for shape, not for type, not at all.
       //
-      // Fallback path (in-app browser, Android with unregistered scheme,
-      // old iOS, desktop with the app installed via TestFlight, etc.):
-      // forward the fragment to the babinom:// custom scheme, which
-      // registers in the app's Info.plist regardless of AASA. Preserve
-      // the ENTIRE fragment so useDeepLinkAuth's URLSearchParams parser
-      // in the app sees the same tokens Supabase minted.
+      // The app now uses the PKCE flow: the recovery credential is a single-use
+      // `?code=` in the QUERY STRING, and it only mints a session when paired
+      // with a code_verifier stored on the device that requested the reset.
+      //
+      // So this page now:
+      //   1. forwards ONLY a well-formed `code` query param, nothing else;
+      //   2. never forwards the fragment (a legitimate PKCE link has none);
+      //   3. never auto-navigates — the user taps deliberately.
       (function () {
-        var hash = window.location.hash || '';
-        var target = 'babinom://reset-password' + hash;
-
-        // Also update the manual button so users tapping "Open Babinom"
-        // still send the tokens along (not just a bare scheme with no
-        // fragment, which would show "Reset link invalid" in-app).
         var btn = document.getElementById('open-app');
-        if (btn) btn.setAttribute('href', target);
 
-        // Auto-bounce on mobile only. On desktop we prefer the page to
-        // render — the user tapped a link from an inbox we can't attribute
-        // to a real device install.
-        if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+        var code = null;
+        try {
+          var raw = new URLSearchParams(window.location.search).get('code');
+          // Supabase auth codes are URL-safe base64/uuid-ish. Whitelist that
+          // shape so nothing else can ride along into the app's URL handler.
+          if (raw && /^[A-Za-z0-9._~-]{8,512}$/.test(raw)) code = raw;
+        } catch (e) {
+          code = null;
+        }
 
-        // Small delay so an iOS Universal Link would have already taken
-        // over. If it hasn't after ~450ms, we're the fallback path.
-        setTimeout(function () {
-          window.location.href = target;
-        }, 450);
+        var note = document.getElementById('bridge-note');
+
+        if (!code) {
+          // No usable code: either the link was already consumed, or it is an
+          // old token-bearing link, or someone hand-crafted it. The app would
+          // refuse it anyway; say so here rather than bouncing into a dead end.
+          if (btn) btn.setAttribute('href', 'babinom://reset-password');
+          if (note) {
+            note.textContent =
+              'This reset link is not usable. Open Babinom and tap "Forgot password?" to request a fresh one on the device you want to reset from.';
+          }
+          return;
+        }
+
+        if (btn) {
+          btn.setAttribute('href', 'babinom://reset-password?code=' + encodeURIComponent(code));
+        }
       })();
     </script>
   </body>
