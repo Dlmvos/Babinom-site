@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.daanvos.namenest",
       "sha256_cert_fingerprints": [
-        "2C:D4:AD:5A:AF:10:D5:1D:B1:38:D2:0E:28:59:9D:20:C9:EF:6C:60:C2:A2:54:2D:D2:F2:1D:86:7E:1A:0B:21"
+        "2C:D4:AD:5A:AF:10:D5:1D:B1:38:D2:0E:28:59:9D:20:C9:EF:6C:60:C2:A2:54:2D:D2:F2:1D:86:7E:1A:0B:21",
+        "F6:EA:95:F8:7D:55:11:DA:12:63:92:40:E4:47:42:A6:95:B8:50:DB:F6:D0:AA:56:80:23:D1:4B:CE:04:42:61"
       ]
     }
   }
