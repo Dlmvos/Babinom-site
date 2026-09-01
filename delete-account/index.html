@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Delete your account | Babinom</title>
+    <meta name="description" content="How to delete your Babinom account and the data attached to it, in the app or by request." />
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/assets/cookie-banner.js"></script>
+    <style>
+      /*
+        Scoped to this page so it cannot affect the rest of the site.
+
+        Mobile Safari specifics, since this page is mostly a numbered list and a
+        long email address — the two things iOS gets wrong most often:
+
+        - `-webkit-text-size-adjust: 100%` stops Safari inflating body text when
+          the phone is rotated to landscape. Without it the steps reflow and the
+          card grows past the viewport.
+        - A default `<ol>` indents 40px. Inside a card already padded by
+          `clamp(20px, 4vw, 28px)`, that leaves very little room on a 320px
+          screen (iPhone SE), so the indent is reduced and the marker is pulled
+          inside the padding box.
+        - `overflow-wrap: anywhere` on the contact line: an email address is one
+          unbreakable token, and iOS Safari will widen the whole document rather
+          than break it — which is what produces the sideways scroll on an
+          otherwise fine page.
+        - No `100vh` anywhere. Safari's dynamic toolbar makes it taller than the
+          visible area; the rest of the site already avoids it.
+      */
+      .delete-page {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      .delete-page .steps {
+        margin: 12px 0 0;
+        padding-inline-start: 1.25em;
+      }
+      .delete-page .steps > li {
+        margin-bottom: 10px;
+        padding-inline-start: 4px;
+      }
+      .delete-page .steps > li:last-child {
+        margin-bottom: 0;
+      }
+      .delete-page .data-list {
+        margin: 10px 0 0;
+        padding-inline-start: 1.15em;
+      }
+      .delete-page .data-list > li {
+        margin-bottom: 8px;
+      }
+      .delete-page .contact-line {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      /* Long email links must not force the page sideways on a narrow screen. */
+      .delete-page a[href^='mailto:'] {
+        overflow-wrap: anywhere;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
+          <span>Babinom</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="delete-page">
+      <section class="site-section">
+        <div class="container">
+          <div class="container-inner--narrow page-stack">
+            <header class="page-header">
+              <span class="eyebrow">Account</span>
+              <h1>Delete your account</h1>
+              <p class="lead">
+                You can delete your Babinom account and its data at any time, from inside the app.
+                If you can’t sign in, you can ask us to delete it for you.
+              </p>
+            </header>
+
+            <div class="policy-block">
+              <h2>Delete it yourself, in the app</h2>
+              <ol class="steps">
+                <li>Open Babinom and go to <strong>Settings</strong>.</li>
+                <li>Scroll to the bottom and tap <strong>Delete account</strong>.</li>
+                <li>Confirm when asked.</li>
+              </ol>
+              <p style="margin-top: 14px;">
+                Deletion happens straight away and cannot be undone. You do not need to contact us first.
+              </p>
+            </div>
+
+            <div class="policy-block">
+              <h2>What gets deleted</h2>
+              <p>Deleting your account removes:</p>
+              <ul class="data-list">
+                <li>your account and sign-in details, including your email address and display name;</li>
+                <li>your name preferences and settings;</li>
+                <li>your full swipe history;</li>
+                <li>the matches you were part of;</li>
+                <li>your push notification token and notification preferences;</li>
+                <li>your analytics profile with our analytics provider;</li>
+                <li>your customer record with our purchase provider.</li>
+              </ul>
+            </div>
+
+            <div class="policy-block">
+              <h2>If you share a room with a partner</h2>
+              <p>
+                Babinom rooms are shared between two people, so what happens to the room depends on who created it.
+              </p>
+              <ul class="data-list">
+                <li>
+                  <strong>If you created the room</strong>, the room is deleted along with your account. Your
+                  partner will no longer have access to it or to the matches in it.
+                </li>
+                <li>
+                  <strong>If you joined a partner’s room</strong>, the room stays with them, but your swipes and
+                  the matches you were part of are removed from it.
+                </li>
+              </ul>
+              <p style="margin-top: 14px;">
+                If you only want to leave a room rather than delete your account, contact us and we can help.
+              </p>
+            </div>
+
+            <div class="policy-block">
+              <h2>What we may keep, and why</h2>
+              <ul class="data-list">
+                <li>
+                  Records of purchases, which we and the app stores are required to keep for tax, accounting
+                  and dispute-resolution purposes. These are billing records and are no longer linked to your
+                  Babinom profile.
+                </li>
+                <li>
+                  Aggregated statistics that cannot identify you, such as how often a name is liked overall.
+                </li>
+                <li>
+                  Copies inside routine encrypted backups, which are overwritten on their normal retention
+                  cycle.
+                </li>
+              </ul>
+              <p style="margin-top: 14px;">
+                Purchases are handled by Apple and Google. Deleting your Babinom account does not cancel a
+                subscription — manage that in your App Store or Google Play account settings.
+              </p>
+            </div>
+
+            <div class="policy-block support-highlight">
+              <h2>Can’t sign in? Ask us to delete it</h2>
+              <p class="contact-line">
+                Email
+                <a href="mailto:support@babinom.com?subject=Account%20deletion%20request">support@babinom.com</a>
+                from the email address you signed up with, with the subject
+                <strong>Account deletion request</strong>.
+              </p>
+              <p>
+                We will confirm the request and delete the account within 30 days. We may need to verify that the
+                address belongs to you before we act on it, so that nobody else can delete your account.
+              </p>
+              <p>
+                For anything else about your data, see the
+                <a href="/privacy/">Privacy Policy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Babinom</span>
+        <nav class="nav" aria-label="Footer navigation">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/delete-account/">Delete account</a>
+          <a href="/ai-disclaimer/">AI Disclaimer</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/support/">Help &amp; Support</a>
+          <a href="mailto:support@babinom.com">support@babinom.com</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
