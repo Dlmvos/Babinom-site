@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>TikTok authorization | Babinom</title>
+    <meta name="description" content="Internal TikTok Marketing API authorization callback." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
+          <span>Babinom</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack">
+            <p class="eyebrow" style="display:inline-block; margin-bottom:20px;">Internal</p>
+            <h1 style="font-size: clamp(1.7rem, 5vw, 2.6rem);">TikTok authorization</h1>
+
+            <div id="ok" hidden>
+              <p class="lead">Authorization succeeded. Copy the code below and exchange it from your terminal.</p>
+              <p style="margin:0 0 8px; font-weight:600;">Authorization code</p>
+              <code id="code" style="display:block; padding:14px 16px; border-radius:10px; background:#f3f3f3; word-break:break-all; font-size:0.95rem; line-height:1.5;"></code>
+              <div class="actions" style="margin-top:16px;">
+                <button class="button" type="button" id="copy">Copy code</button>
+              </div>
+              <p id="state" class="cta-note" style="margin-top:16px;" hidden></p>
+              <p class="cta-note" style="margin-top:20px;">
+                This code is single-use and short-lived. Do not paste it into a chat,
+                an email, or anywhere it would be stored. It is exchanged once for an
+                access token and then it is spent.
+              </p>
+            </div>
+
+            <div id="none" hidden>
+              <p class="lead">
+                Nothing to show. This page is the callback for Babinom&rsquo;s own TikTok
+                Marketing API authorization, and it only has something to display when
+                TikTok sends you here with a code.
+              </p>
+            </div>
+
+            <div id="err" hidden>
+              <p class="lead">TikTok returned an error instead of a code.</p>
+              <code id="errdetail" style="display:block; padding:14px 16px; border-radius:10px; background:#f3f3f3; word-break:break-all; font-size:0.95rem;"></code>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Babinom</span>
+        <nav class="nav" aria-label="Footer navigation">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Help &amp; Support</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var q = new URLSearchParams(window.location.search);
+        var code = q.get('auth_code') || q.get('code');
+        var state = q.get('state');
+        var error = q.get('error') || q.get('error_description');
+
+        function show(id) { document.getElementById(id).hidden = false; }
+
+        if (error) {
+          document.getElementById('errdetail').textContent = error;
+          show('err');
+          return;
+        }
+
+        if (!code) { show('none'); return; }
+
+        document.getElementById('code').textContent = code;
+        if (state) {
+          var s = document.getElementById('state');
+          s.textContent = 'state: ' + state;
+          s.hidden = false;
+        }
+        show('ok');
+
+        document.getElementById('copy').addEventListener('click', function () {
+          var btn = this;
+          function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy code'; }, 2000); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(function () { done('Copied'); }, function () { done('Select it manually'); });
+          } else {
+            done('Select it manually');
+          }
+        });
+
+        // Keep the code out of history and out of any later referer.
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      })();
+    </script>
+  </body>
+</html>
