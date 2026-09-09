@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Get Babinom</title>
+    <meta name="description" content="Download Babinom and find your baby name together." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/assets/icon.png" alt="" width="32" height="32" decoding="async" />
+          <span>Babinom</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+            <p class="eyebrow" style="margin: 0 auto 20px; display:inline-block;">Babinom</p>
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Find your baby name together 💜</h1>
+            <p class="lead">
+              You and your partner swipe names on your own phones. A name only shows up as a match when you both liked it.
+            </p>
+            <div class="actions" aria-label="Download" style="justify-content:center; margin-top: 20px;">
+              <a class="button" id="ios" href="https://apps.apple.com/app/id6764676399">Download on the App Store</a>
+            </div>
+            <p class="cta-note" id="note" style="margin-top: 16px;">
+              On an iPhone this opens the App Store automatically.
+            </p>
+            <p class="cta-note" id="android" hidden style="margin-top: 16px;">
+              Android is still in testing &mdash; <a href="/support/">let us know</a> and we&rsquo;ll tell you when it lands.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Babinom</span>
+      </div>
+    </footer>
+
+    <script>
+      // Short, tappable destination for social bios: babinom.com/get
+      //
+      // TikTok bio TEXT is not a link - only the profile Website field is
+      // tappable - so a URL typed into the bio spends characters and does
+      // nothing. This page is what the Website field should point at.
+      //
+      // Only iOS auto-redirects. Android is deliberately NOT sent to Play:
+      // Babinom has only ever released to the internal track, so a Play link
+      // is a dead end for the public. Desktop stays here too, because the
+      // App Store web page is a poor landing for someone on a laptop.
+      (function () {
+        var APP_STORE = "https://apps.apple.com/app/id6764676399";
+        var ua = navigator.userAgent || "";
+        var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                    // iPadOS 13+ reports itself as a Mac; touch points give it away
+                    (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/.test(ua);
+
+        // Pass an App Store campaign token straight through, so /get?ct=tiktok
+        // can be told apart from other traffic in App Analytics. Apple also
+        // needs your Provider Token (pt) before ct is reported - add it here
+        // once you have it from App Store Connect.
+        var ct = new URLSearchParams(location.search).get("ct");
+        var dest = ct ? APP_STORE + "?ct=" + encodeURIComponent(ct.slice(0, 40)) : APP_STORE;
+        document.getElementById("ios").href = dest;
+
+        if (isAndroid) {
+          document.getElementById("note").hidden = true;
+          document.getElementById("android").hidden = false;
+          return;
+        }
+        if (isIOS) location.replace(dest);
+      })();
+    </script>
+  </body>
+</html>
