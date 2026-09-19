@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Babinom</title>
+    <meta name="description" content="Find your baby name together." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Find your baby name together 💜</h1>
+            <p class="lead">
+              You and your partner swipe names on your own phones. A name only shows up as a
+              match when you both liked it.
+            </p>
+            <div class="actions" style="justify-content:center; margin-top: 20px;">
+              <a class="button" id="go" href="https://babinom.onelink.me/cjbH?pid=verloscast&c=verloscast_default">Get Babinom</a>
+            </div>
+            <p class="cta-note" style="margin-top: 16px;">Thanks for coming from Verloscast.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      // Redirect immediately; the button above is the no-JS path.
+      // replace(), not assign(): the partner's listener pressing Back should go
+      // where they came from, not bounce off this page forever.
+      (function () { location.replace("https://babinom.onelink.me/cjbH?pid=verloscast&c=verloscast_default"); })();
+    </script>
+  </body>
+</html>
