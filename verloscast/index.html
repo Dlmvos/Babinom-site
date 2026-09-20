@@ -21,18 +21,39 @@
               match when you both liked it.
             </p>
             <div class="actions" style="justify-content:center; margin-top: 20px;">
-              <a class="button" id="go" href="https://babinom.onelink.me/cjbH?pid=verloscast&c=verloscast_default">Get Babinom</a>
+              <a class="button" id="go" href="https://babinom.onelink.me/cjbH?pid=verloscast&c=verloscast_default">Get Babinom — free</a>
             </div>
+            <div class="actions" style="justify-content:center; margin-top: 12px;">
+              <a class="button button--ghost" id="buy" href="https://buy.stripe.com/test_8x2eVc0ZY4QD7iQ4lfeUU00?client_reference_id=verloscast">Unlock Premium for both of you</a>
+            </div>
+            <p class="cta-note" style="margin-top: 12px; font-size: 0.85rem;">
+              One payment, shared with your partner. No subscription.
+            </p>
             <p class="cta-note" style="margin-top: 16px;">Thanks for coming from Verloscast.</p>
           </div>
         </div>
       </section>
     </main>
     <script>
-      // Redirect immediately; the button above is the no-JS path.
-      // replace(), not assign(): the partner's listener pressing Back should go
-      // where they came from, not bounce off this page forever.
-      (function () { location.replace("https://babinom.onelink.me/cjbH?pid=verloscast&c=verloscast_default"); })();
+      // NO auto-redirect on a page that has something to sell — bouncing
+      // straight to the app store would mean nobody ever sees the purchase
+      // option, which is the entire point of the web route.
+      //
+      // Dutch for Dutch browsers. The first partner is a Dutch midwifery
+      // podcast and this is static hosting, so the browser's own preference
+      // is the only language signal available.
+      (function () {
+        if ((navigator.language || 'en').toLowerCase().indexOf('nl') !== 0) return;
+        document.documentElement.lang = 'nl';
+        document.querySelector('h1').textContent = 'Kies samen jullie babynaam 💜';
+        document.querySelector('.lead').textContent =
+          'Jij en je partner swipen namen op je eigen telefoon. Een naam wordt pas een match als jullie hem allebei leuk vinden.';
+        document.getElementById('go').textContent = 'Download Babinom — gratis';
+        document.getElementById('buy').textContent = 'Premium voor jullie samen';
+        var notes = document.querySelectorAll('.cta-note');
+        notes[0].textContent = 'Eén betaling, gedeeld met je partner. Geen abonnement.';
+        notes[1].textContent = 'Bedankt dat je via Verloscast komt.';
+      })();
     </script>
   </body>
 </html>
