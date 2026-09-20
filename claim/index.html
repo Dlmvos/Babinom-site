@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Open in Babinom</title>
+    <meta name="description" content="Open your Babinom Premium purchase in the app." />
+    <!--
+      noindex is not cosmetic here. This URL carries a purchase claim token in
+      its query string, and an indexed page would put those tokens into a
+      search index. Do not remove.
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+
+            <div id="ok-block" hidden>
+              <h1 style="font-size: clamp(1.8rem, 5vw, 2.8rem);">Je Premium staat klaar 💜</h1>
+              <p class="lead" id="lead-ok">
+                Tik op de knop om Babinom te openen. Log in of maak een account met hetzelfde
+                e-mailadres — je Premium wordt dan automatisch toegevoegd.
+              </p>
+              <div class="actions" style="justify-content:center; margin-top: 20px;">
+                <a class="button" id="open-app-btn" href="#">Openen in Babinom</a>
+              </div>
+              <p class="cta-note" style="margin-top: 16px;" id="note-ok">
+                Nog geen app? Installeer Babinom en kom daarna terug naar deze e-mail.
+              </p>
+              <div class="actions" style="justify-content:center; margin-top: 12px;">
+                <a class="button button--ghost" id="store-btn" href="/get/">App downloaden</a>
+              </div>
+              <p class="cta-note" style="margin-top: 24px; font-size: 0.85rem;" id="keep-ok">
+                Bewaar deze e-mail — de link verloopt niet.
+              </p>
+            </div>
+
+            <div id="no-token-block" hidden>
+              <h1 style="font-size: clamp(1.8rem, 5vw, 2.8rem);">Link niet compleet</h1>
+              <p class="lead">
+                Deze link mist zijn code. Open hem opnieuw vanuit je aankoop-e-mail, of neem
+                contact op via <a href="/support/">support</a> — we sturen hem opnieuw.
+              </p>
+              <p class="cta-note" style="margin-top: 16px;">
+                This link is missing its code. Please reopen it from your purchase email, or
+                contact <a href="/support/">support</a> and we will resend it.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Claim tokens are uuids, minted by record_web_purchase_claim().
+      // Kept in sync with src/lib/useDeepLinkClaim.ts (UUID) and
+      // supabase/functions/redeem-web-purchase/index.ts (UUID).
+      //
+      // WHY THE SHAPE IS CHECKED HERE TOO. It costs nothing and it stops this
+      // page handing an arbitrary query string to the app's URL scheme. The
+      // app re-validates as well — neither side trusts the other.
+      (function () {
+        var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        var token = (new URLSearchParams(window.location.search).get('token') || '').trim();
+
+        if (!UUID_RE.test(token)) {
+          document.getElementById('no-token-block').hidden = false;
+          return;
+        }
+
+        var deepLink = 'babinom://claim?token=' + encodeURIComponent(token);
+        document.getElementById('open-app-btn').href = deepLink;
+        document.getElementById('ok-block').hidden = false;
+
+        // Dutch is the default because the first partner is a Dutch midwifery
+        // podcast. English for everyone else. The buyer's chosen language is
+        // not available here — the page is opened from an email and this is
+        // static hosting, so there is no Accept-Language to read — which
+        // leaves the browser's own preference as the only signal.
+        var lang = (navigator.language || 'en').toLowerCase();
+        if (lang.indexOf('nl') !== 0) {
+          document.documentElement.lang = 'en';
+          document.querySelector('#ok-block h1').textContent = 'Your Premium is ready 💜';
+          document.getElementById('lead-ok').textContent =
+            'Tap the button to open Babinom. Sign in or create an account with the same email address and your Premium is added automatically.';
+          document.getElementById('open-app-btn').textContent = 'Open in Babinom';
+          document.getElementById('note-ok').textContent =
+            'Do not have the app yet? Install Babinom, then come back to this email.';
+          document.getElementById('store-btn').textContent = 'Download the app';
+          document.getElementById('keep-ok').textContent =
+            'Keep this email — the link never expires.';
+        }
+
+        // Try the app automatically. If it is installed this replaces the page
+        // immediately; if it is not, nothing visible happens and the buttons
+        // above are the fallback.
+        //
+        // DELIBERATELY NOT a redirect to the store on a timer. That pattern
+        // misfires constantly — a slow app launch, an iOS "Open in?" prompt
+        // left unanswered, or a backgrounded tab all look identical to "not
+        // installed", and it would yank someone out of the app they just
+        // successfully opened.
+        window.location.href = deepLink;
+      })();
+    </script>
+  </body>
+</html>
