@@ -36,7 +36,9 @@
       .stage{position:relative;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;
              padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom)}
       .top{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 4px 0;position:relative;z-index:3}
-      .wordmark{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;text-decoration:none}
+      .wordmark{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;
+                text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+      .wordmark img{width:26px;height:26px;border-radius:7px;display:block}
       .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-align:end;max-width:9rem;line-height:1.5}
       .bottom{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;padding:0 0 24px;position:relative;z-index:3}
       .bottom a{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
@@ -89,7 +91,9 @@
            border-radius:999px;font-weight:600;font-size:.95rem}
       .btn--ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
       .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-      .again{display:block;margin:22px auto 0;background:none;border:0;color:var(--gray);font-size:.8rem;
+      .more{margin:20px 0 0}
+      .more a{font-size:.85rem;color:var(--gray)}
+      .again{display:block;margin:12px auto 0;background:none;border:0;color:var(--gray);font-size:.8rem;
              cursor:pointer;text-decoration:underline;font-family:inherit}
       @media (prefers-reduced-motion: reduce){.heart,.heart svg{animation:none;opacity:.12}.ctl{transition:none}}
     </style>
@@ -98,7 +102,7 @@
     <div class="stage">
       <div class="hearts" id="hearts" aria-hidden="true"></div>
       <div class="top">
-        <a class="wordmark" href="/es/">Babinom</a>
+        <a class="wordmark" href="/es/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
         <div class="tag">Baby names<br />for couples</div>
       </div>
       <div class="deck-wrap"><div>
@@ -119,6 +123,7 @@
           <a class="btn" id="cta-free" href="/get/">Get Babinom — free</a>
           <a class="btn btn--ghost" id="cta-prem" href="/get/">Unlock Premium</a>
         </div>
+        <p class="more"><a href="/es/how-it-works/">See how it works</a></p>
         <button class="again" id="again">Try three more names</button>
       </div></div>
     </div>

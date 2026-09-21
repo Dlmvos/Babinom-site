@@ -15,7 +15,6 @@
       .get-card>p{margin:0 0 18px;color:#64748B;font-size:.95rem;line-height:1.55}
       .get-grid{display:grid;gap:16px;margin-top:28px;text-align:left}
       @media(min-width:720px){.get-grid{grid-template-columns:1fr 1fr}}
-      .get-price{font-size:1.6rem;color:#1E293B;font-weight:600;margin:0 0 2px!important}
       .get-sub{font-size:.8rem;color:#64748B;margin:0 0 16px!important}
       .get-list{list-style:none;padding:0;margin:0 0 18px;font-size:.9rem;color:#2F3A44}
       .get-list li{padding:3px 0 3px 20px;position:relative}
@@ -62,8 +61,16 @@
 
               <div class="get-card" id="premium-card">
                 <h2>Unlock Premium</h2>
-                <p class="get-price">&euro;14.99</p>
-                <p class="get-sub">One payment, shared with your partner. No subscription.</p>
+                <!--
+                  NO PRICE HERE, DELIBERATELY. A hardcoded "€14.99" is right in
+                  exactly one currency and wrong everywhere else — a US visitor
+                  was shown euros. Same rule CLAUDE.md already enforces in the
+                  app: a price a user sees can only come from the store that
+                  will charge them. Stripe Checkout knows the visitor's
+                  currency and the applicable tax. This page does not, and
+                  cannot — it is static hosting with no request context.
+                -->
+                <p class="get-sub">One payment, shared with your partner. No subscription &mdash; you&rsquo;ll see the price in your own currency at checkout.</p>
                 <ul class="get-list">
                   <li>Unlimited swipes for both of you</li>
                   <li>Every filter unlocked</li>
