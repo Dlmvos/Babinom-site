@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Babinom — try it</title>
+    <meta name="description" content="Swipe three names and see how Babinom works." />
+    <meta name="robots" content="noindex" />
+    <style>
+      /* Babinom's own palette, from src/theme/colors.ts and sampled off the
+         app's match screen. Cream + navy + coral is the APP; the deep purple
+         #33204F belongs to the ICON and is a different world. Don't mix them. */
+      :root{
+        --cream:#FFF7E8; --card:#FFFFFF; --navy:#1E293B; --body:#2F3A44;
+        --muted:#64748B; --coral:#EE8877; --line:#F0E6D2; --sky:#8FB8D9;
+      }
+      *{box-sizing:border-box}
+      html,body{margin:0;height:100%}
+      body{
+        background:var(--cream); color:var(--navy);
+        font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+        overflow:hidden;
+      }
+      .stage{position:relative;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;
+             padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom)}
+
+      /* Chrome pushed to the corners — the whole screen is the card. */
+      .top{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 4px 0;
+           position:relative;z-index:3}
+      .wordmark{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;
+                color:var(--navy);text-decoration:none}
+      .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+           text-align:right;max-width:9rem;line-height:1.5}
+      .bottom{display:flex;gap:22px;justify-content:center;align-items:center;flex-wrap:wrap;
+              padding:0 0 26px;position:relative;z-index:3}
+      .bottom a{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+                text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+      .bottom a:hover{color:var(--navy);border-bottom-color:var(--coral)}
+
+      /* Ambient hearts. Pure CSS transforms and opacity: no canvas, no library,
+         nothing on the main thread beyond compositing. */
+      .hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+      .heart{position:absolute;bottom:-60px;color:var(--coral);opacity:0;
+             animation:rise var(--dur) linear var(--delay) infinite}
+      .heart svg{display:block;animation:beat 1.6s ease-in-out infinite}
+      @keyframes rise{
+        0%{transform:translate3d(0,0,0) scale(var(--s));opacity:0}
+        12%{opacity:var(--o)}
+        88%{opacity:var(--o)}
+        100%{transform:translate3d(var(--drift),calc(-100dvh - 120px),0) scale(var(--s));opacity:0}
+      }
+      @keyframes beat{0%,100%{transform:scale(1)}45%{transform:scale(1.18)}}
+
+      /* The deck */
+      .deck-wrap{position:relative;display:grid;place-items:center;z-index:2}
+      .deck{position:relative;width:min(84vw,320px);height:min(58dvh,420px)}
+      .name-card{
+        position:absolute;inset:0;background:var(--card);border:1px solid var(--line);
+        border-radius:28px;display:flex;flex-direction:column;align-items:center;
+        justify-content:center;text-align:center;padding:28px 24px;
+        box-shadow:0 18px 40px rgba(30,41,59,.09);
+        touch-action:pan-y;cursor:grab;will-change:transform;
+      }
+      .name-card:active{cursor:grabbing}
+      .name-card .origin{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+                         color:var(--muted);margin-bottom:14px}
+      .name-card .name{font-size:clamp(2.4rem,11vw,3.4rem);font-weight:700;line-height:1.05;
+                       margin:0 0 12px;color:var(--navy)}
+      .name-card .meaning{font-size:.95rem;color:var(--body);font-style:italic;margin:0}
+      .name-card .gender{margin-top:18px;font-size:.72rem;letter-spacing:.1em;
+                         text-transform:uppercase;color:var(--sky)}
+      .stamp{position:absolute;top:26px;font-size:.78rem;font-weight:700;letter-spacing:.16em;
+             text-transform:uppercase;padding:7px 14px;border-radius:999px;opacity:0;
+             border:2px solid currentColor}
+      .stamp--like{right:22px;color:var(--coral)}
+      .stamp--pass{left:22px;color:var(--muted)}
+
+      .controls{display:flex;gap:18px;justify-content:center;margin-top:26px;position:relative;z-index:3}
+      .ctl{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);
+           background:var(--card);display:grid;place-items:center;cursor:pointer;
+           box-shadow:0 6px 16px rgba(30,41,59,.07);transition:transform .12s ease}
+      .ctl:hover{transform:translateY(-2px)}
+      .ctl:active{transform:scale(.94)}
+      .hint{text-align:center;font-size:.78rem;color:var(--muted);margin:16px 0 0;position:relative;z-index:3}
+
+      /* End state */
+      .result{position:absolute;inset:0;display:none;place-items:center;z-index:4;
+              background:var(--cream);padding:24px}
+      .result.show{display:grid}
+      .result-inner{text-align:center;max-width:26rem}
+      .result h1{font-size:clamp(1.5rem,6vw,2.1rem);margin:0 0 10px;line-height:1.25}
+      .result p{color:var(--muted);font-size:.95rem;line-height:1.6;margin:0 0 26px}
+      .btn{display:inline-block;background:var(--navy);color:var(--cream);text-decoration:none;
+           padding:15px 28px;border-radius:999px;font-weight:600;font-size:.95rem}
+      .btn--ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+      .result .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+      .again{display:block;margin:22px auto 0;background:none;border:0;color:var(--muted);
+             font-size:.8rem;cursor:pointer;text-decoration:underline;font-family:inherit}
+
+      @media (prefers-reduced-motion: reduce){
+        .heart,.heart svg{animation:none;opacity:.14}
+        .ctl{transition:none}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+      <div class="top">
+        <a class="wordmark" href="/">Babinom</a>
+        <div class="tag">Baby names<br />for couples</div>
+      </div>
+
+      <div class="deck-wrap">
+        <div>
+          <div class="deck" id="deck"></div>
+          <div class="controls">
+            <button class="ctl" id="pass" aria-label="Pass on this name">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <button class="ctl" id="like" aria-label="Like this name">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#EE8877" aria-hidden="true"><path d="M12 21s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 12 8.2 4.5 4.5 0 0 1 19.5 11c0 5.4-7.5 10-7.5 10z"/></svg>
+            </button>
+          </div>
+          <p class="hint">Swipe or tap — nobody sees your choices</p>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <a href="/get/">Get the app</a>
+        <a href="/">How it works</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+      </div>
+
+      <div class="result" id="result">
+        <div class="result-inner">
+          <h1 id="result-title">You liked <span id="liked-names"></span></h1>
+          <p id="result-body"></p>
+          <div class="row">
+            <a class="btn" id="cta-primary" href="/get/">Get Babinom — free</a>
+            <a class="btn btn--ghost" id="cta-secondary" href="/get/">Unlock Premium</a>
+          </div>
+          <button class="again" id="again">Try three more names</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // Real names with real meanings, taken from the app's own deck rather
+        // than invented — a demo showing names the app does not have is a
+        // promise the product breaks on first launch.
+        var NAMES = [
+          { name: "Aurelia", origin: "Latin",   meaning: "“The golden one”",        gender: "Girl" },
+          { name: "Liam",    origin: "Irish",   meaning: "“Strong-willed warrior”", gender: "Boy"  },
+          { name: "Sofia",   origin: "Greek",   meaning: "“Wisdom”",                gender: "Girl" },
+          { name: "Mateo",   origin: "Spanish", meaning: "“Gift of God”",           gender: "Boy"  },
+          { name: "Nora",    origin: "Irish",   meaning: "“Light, honour”",         gender: "Girl" },
+          { name: "Julian",  origin: "Latin",   meaning: "“Youthful, downy”",       gender: "Boy"  }
+        ];
+
+        var ROUND = 3;
+        var deck = document.getElementById("deck");
+        var result = document.getElementById("result");
+        var liked = [];
+        var queue = [];
+        var busy = false;
+
+        // ---- Ambient hearts -------------------------------------------
+        // Built in JS so each one gets its own drift, duration and delay. In
+        // CSS alone they would all move identically, which reads as a looping
+        // GIF rather than as atmosphere.
+        (function hearts() {
+          var box = document.getElementById("hearts");
+          var svg = '<svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">'
+                  + '<path d="M12 21s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 12 8.2 4.5 4.5 0 0 1 19.5 11c0 5.4-7.5 10-7.5 10z"/></svg>';
+          var html = "";
+          for (var i = 0; i < 14; i++) {
+            var size = 10 + Math.random() * 26;
+            html += '<span class="heart" style="'
+                 + "left:" + (Math.random() * 100).toFixed(2) + "%;"
+                 + "width:" + size.toFixed(0) + "px;height:" + size.toFixed(0) + "px;"
+                 + "--dur:" + (14 + Math.random() * 16).toFixed(1) + "s;"
+                 + "--delay:-" + (Math.random() * 24).toFixed(1) + "s;"
+                 + "--drift:" + (Math.random() * 120 - 60).toFixed(0) + "px;"
+                 + "--s:" + (0.7 + Math.random() * 0.6).toFixed(2) + ";"
+                 + "--o:" + (0.10 + Math.random() * 0.16).toFixed(2) + ";"
+                 + '">' + svg + "</span>";
+          }
+          box.innerHTML = html;
+        })();
+
+        // ---- Where the end-of-demo CTA sends people -------------------
+        // A visitor who arrived from a partner page keeps that attribution, so
+        // the partner is paid for a sale that finishes here. Same ref handling
+        // as /get; sessionStorage as well as the query string because the hop
+        // can lose a param to a share sheet or an in-app browser.
+        var AFFILIATE_BUY = {
+          verloscast: "https://buy.stripe.com/test_8x2eVc0ZY4QD7iQ4lfeUU00"
+        };
+        var GENERIC_BUY = "https://buy.stripe.com/test_00w5kC4ca2Iv8mU8BveUU01";
+
+        var qs = new URLSearchParams(location.search);
+        var ref = (qs.get("ref") || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
+        try {
+          if (ref) sessionStorage.setItem("babinom_ref", ref);
+          else ref = sessionStorage.getItem("babinom_ref") || "";
+        } catch (e) { /* private mode: the query string alone still works */ }
+
+        var buyUrl = AFFILIATE_BUY[ref] || GENERIC_BUY;
+        if (ref) buyUrl += (buyUrl.indexOf("?") < 0 ? "?" : "&")
+                        + "client_reference_id=" + encodeURIComponent(ref);
+        document.getElementById("cta-secondary").href = buyUrl;
+        document.getElementById("cta-primary").href =
+          ref ? "/get/?ref=" + encodeURIComponent(ref) : "/get/";
+
+        // ---- Deck -----------------------------------------------------
+        function shuffled() {
+          var a = NAMES.slice();
+          for (var i = a.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = a[i]; a[i] = a[j]; a[j] = t;
+          }
+          return a.slice(0, ROUND);
+        }
+
+        function render() {
+          deck.innerHTML = "";
+          // Back to front, so the next card to be swiped is LAST in the DOM
+          // and therefore on top without z-index bookkeeping.
+          for (var i = queue.length - 1; i >= 0; i--) {
+            var n = queue[i];
+            var el = document.createElement("article");
+            el.className = "name-card";
+            el.style.transform = "translateY(" + (i * 10) + "px) scale(" + (1 - i * 0.04) + ")";
+            el.innerHTML =
+              '<span class="stamp stamp--like">Liked</span>' +
+              '<span class="stamp stamp--pass">Pass</span>' +
+              '<span class="origin">' + n.origin + "</span>" +
+              '<h2 class="name">' + n.name + "</h2>" +
+              '<p class="meaning">' + n.meaning + "</p>" +
+              '<span class="gender">' + n.gender + "</span>";
+            if (i === 0) attachDrag(el);
+            deck.appendChild(el);
+          }
+        }
+
+        function topCard() { return deck.querySelector(".name-card:last-child"); }
+
+        function decide(isLike) {
+          if (busy || !queue.length) return;
+          busy = true;
+          var card = topCard();
+          var n = queue.shift();
+          if (isLike) liked.push(n.name);
+          var dir = isLike ? 1 : -1;
+          card.style.transition = "transform .42s cubic-bezier(.22,.61,.36,1), opacity .42s ease";
+          card.style.transform = "translate(" + (dir * 520) + "px," + (dir * -40)
+                               + "px) rotate(" + (dir * 22) + "deg)";
+          card.style.opacity = "0";
+          setTimeout(function () {
+            busy = false;
+            if (queue.length) render();
+            else finish();
+          }, 380);
+        }
+
+        function attachDrag(el) {
+          var startX = 0, dx = 0, dy = 0, dragging = false;
+          var like = el.querySelector(".stamp--like");
+          var pass = el.querySelector(".stamp--pass");
+
+          el.addEventListener("pointerdown", function (e) {
+            if (busy) return;
+            dragging = true; startX = e.clientX;
+            el.setPointerCapture(e.pointerId);
+            el.style.transition = "none";
+          });
+
+          el.addEventListener("pointermove", function (e) {
+            if (!dragging) return;
+            dx = e.clientX - startX;
+            el.style.transform = "translate(" + dx + "px," + (Math.abs(dx) * -0.06)
+                               + "px) rotate(" + (dx / 18) + "deg)";
+            var t = Math.min(Math.abs(dx) / 110, 1);
+            like.style.opacity = dx > 0 ? t : 0;
+            pass.style.opacity = dx < 0 ? t : 0;
+          });
+
+          function release() {
+            if (!dragging) return;
+            dragging = false;
+            like.style.opacity = 0; pass.style.opacity = 0;
+            if (Math.abs(dx) > 95) { decide(dx > 0); }
+            else {
+              el.style.transition = "transform .3s cubic-bezier(.22,.61,.36,1)";
+              el.style.transform = "translateY(0) scale(1)";
+            }
+            dx = 0; dy = 0;
+          }
+          el.addEventListener("pointerup", release);
+          el.addEventListener("pointercancel", release);
+        }
+
+        function finish() {
+          var span = document.getElementById("liked-names");
+          var title = document.getElementById("result-title");
+          var body = document.getElementById("result-body");
+
+          if (liked.length === 0) {
+            title.textContent = "Not one of them?";
+            body.textContent = "That happens — there are hundreds of thousands more in the app, "
+                             + "filtered by origin, style and country.";
+          } else {
+            span.textContent = liked.length === 1
+              ? liked[0]
+              : liked.slice(0, -1).join(", ") + " and " + liked[liked.length - 1];
+            body.textContent = "That is the whole idea. You swipe privately, your partner swipes "
+                             + "privately, and a name only surfaces when you both said yes.";
+          }
+          result.classList.add("show");
+        }
+
+        document.getElementById("like").addEventListener("click", function () { decide(true); });
+        document.getElementById("pass").addEventListener("click", function () { decide(false); });
+        document.getElementById("again").addEventListener("click", function () {
+          liked = []; queue = shuffled(); result.classList.remove("show"); render();
+        });
+
+        queue = shuffled();
+        render();
+      })();
+    </script>
+  </body>
+</html>
