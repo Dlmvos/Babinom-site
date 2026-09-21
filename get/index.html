@@ -51,10 +51,11 @@
               <div class="get-card">
                 <h2>Get the app</h2>
                 <p>Free. Start swiping in under a minute.</p>
-                <div class="actions" style="margin-top:auto;">
+                <div class="actions" style="margin-top:auto;flex-direction:column;align-items:stretch;gap:10px;">
                   <a class="button" id="ios" href="https://apps.apple.com/app/id6764676399">Download on the App&nbsp;Store</a>
+                  <a class="button button--ghost" id="play" href="#" hidden>Get it on Google&nbsp;Play</a>
                 </div>
-                <p class="cta-note" id="android" hidden style="margin-top:14px;">
+                <p class="cta-note" id="android-soon" style="margin-top:14px;">
                   Android is still in testing &mdash; <a href="/support/">let us know</a> and we&rsquo;ll tell you when it lands.
                 </p>
               </div>
@@ -137,10 +138,26 @@
             APP_STORE + "?ct=" + encodeURIComponent(ct.slice(0, 40));
         }
 
-        // Android is deliberately not linked to Play: Babinom has only ever
-        // released to the internal track, so a Play link is a dead end.
-        if (/Android/.test(navigator.userAgent || "")) {
-          document.getElementById("android").hidden = false;
+        // ---- Google Play -------------------------------------------------
+        // ONE BOOLEAN, and it is false on purpose. Babinom has only ever
+        // released to Play's INTERNAL track, and a store URL for an
+        // internal-only app answers "item not found" to everyone who is not an
+        // opted-in tester. A visible Play button today would therefore send
+        // every Android visitor to a dead end, which is worse than the honest
+        // note below.
+        //
+        // Flip this to true the moment a closed, open or production track is
+        // live — the button is already wired and needs no other change. See
+        // CLAUDE.md "Internal testing does NOT count toward production access":
+        // production needs 12 testers opted in for 14 continuous days.
+        var PLAY_LIVE = false;
+        var PLAY_URL = "https://play.google.com/store/apps/details?id=com.daanvos.namenest";
+
+        if (PLAY_LIVE) {
+          var playBtn = document.getElementById("play");
+          playBtn.href = PLAY_URL;
+          playBtn.hidden = false;
+          document.getElementById("android-soon").hidden = true;
         }
       })();
     </script>
