@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Babinom — baby names for couples</title>
-    <meta name="description" content="Swipe baby names privately. A name becomes a match only when you both like it." />
+    <title>Babinom — nombres de bebé para parejas</title>
+    <meta name="description" content="Desliza nombres de bebé en privado. Un nombre solo es match cuando os gusta a los dos." />
     <link rel="canonical" href="https://babinom.com/es/" />
     <link rel="alternate" hreflang="en" href="https://babinom.com/" />
     <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/" />
@@ -103,33 +103,33 @@
       <div class="hearts" id="hearts" aria-hidden="true"></div>
       <div class="top">
         <a class="wordmark" href="/es/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
-        <div class="tag">Baby names<br />for couples</div>
+        <div class="tag">Nombres de bebé<br />para parejas</div>
       </div>
       <div class="deck-wrap"><div>
         <div class="deck" id="deck"></div>
-        <p class="hint">Swipe or tap — nobody sees your choices</p>
+        <p class="hint">Desliza o toca — nadie ve tus elecciones</p>
       </div></div>
       <div class="bottom">
-        <a href="/get/">Get the app</a>
-        <a href="/es/how-it-works/">How it works</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/support/">Support</a>
-        <label class="lang"><span class="sr-only">Language</span><select id="lang-select" aria-label="Language"><option value="/" data-lang="en">English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es" selected>Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
+        <a href="/get/">Descargar la app</a>
+        <a href="/es/how-it-works/">Cómo funciona</a>
+        <a href="/privacy/">Privacidad</a>
+        <a href="/support/">Ayuda</a>
+        <label class="lang"><span class="sr-only">Idioma</span><select id="lang-select" aria-label="Idioma"><option value="/" data-lang="en">English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es" selected>Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
       </div>
       <div class="result" id="result"><div class="r-in">
-        <h1 id="r-title">You liked <span id="r-names"></span></h1>
+        <h1 id="r-title">Te gustó <span id="r-names"></span></h1>
         <p id="r-body"></p>
         <div class="row">
-          <a class="btn" id="cta-free" href="/get/">Get Babinom — free</a>
-          <a class="btn btn--ghost" id="cta-prem" href="/get/">Unlock Premium</a>
+          <a class="btn" id="cta-free" href="/get/">Descargar Babinom — gratis</a>
+          <a class="btn btn--ghost" id="cta-prem" href="/get/">Desbloquear Premium</a>
         </div>
-        <p class="more"><a href="/es/how-it-works/">See how it works</a></p>
-        <button class="again" id="again">Try three more names</button>
+        <p class="more"><a href="/es/how-it-works/">Cómo funciona</a></p>
+        <button class="again" id="again">Tres nombres más</button>
       </div></div>
     </div>
     <script>
-      var T={"meaning":"Meaning","liked":"Liked","passed":"Pass","swipe":"&larr; swipe &rarr;","rTitle":"You liked","rBody":"That is the whole idea. You swipe privately, your partner swipes privately, and a name only surfaces when you both said yes.","nTitle":"Not one of them?","nBody":"That happens — there are hundreds of thousands more in the app, filtered by origin, style and country."};
-      var NAMES=[{"name":"Nora","gender":"Girl","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"Boy","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"Girl","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"Boy","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"Boy","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
+      var T={"meaning":"Significado","liked":"Me gusta","passed":"No","swipe":"&larr; desliza &rarr;","rTitle":"Te gustó","rBody":"De eso se trata. Tú deslizas en privado, tu pareja desliza en privado, y un nombre solo aparece cuando los dos habéis dicho que sí.","nTitle":"¿Ninguno de estos?","nBody":"Pasa — en la app hay cientos de miles más, filtrables por origen, estilo y país."};
+      var NAMES=[{"name":"Nora","gender":"Niña","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"Niño","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"Niña","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"Niño","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"Niño","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
       var AFF={"verloscast":"https://buy.stripe.com/test_8x2eVc0ZY4QD7iQ4lfeUU00"},GEN="https://buy.stripe.com/test_00w5kC4ca2Iv8mU8BveUU01";
 
       // LANGUAGE — two rules, and the second matters more than the first.
