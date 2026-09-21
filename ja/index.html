@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -7,7 +7,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Babinom — baby names for couples</title>
     <meta name="description" content="Swipe baby names privately. A name becomes a match only when you both like it." />
-    <link rel="canonical" href="https://babinom.com/" />
+    <link rel="canonical" href="https://babinom.com/ja/" />
     <link rel="alternate" hreflang="en" href="https://babinom.com/" />
     <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/" />
     <link rel="alternate" hreflang="de" href="https://babinom.com/de/" />
@@ -98,7 +98,7 @@
     <div class="stage">
       <div class="hearts" id="hearts" aria-hidden="true"></div>
       <div class="top">
-        <a class="wordmark" href="/">Babinom</a>
+        <a class="wordmark" href="/ja/">Babinom</a>
         <div class="tag">Baby names<br />for couples</div>
       </div>
       <div class="deck-wrap"><div>
@@ -107,10 +107,10 @@
       </div></div>
       <div class="bottom">
         <a href="/get/">Get the app</a>
-        <a href="/how-it-works/">How it works</a>
+        <a href="/ja/how-it-works/">How it works</a>
         <a href="/privacy/">Privacy</a>
         <a href="/support/">Support</a>
-        <label class="lang"><span class="sr-only">Language</span><select id="lang-select" aria-label="Language"><option value="/" data-lang="en" selected>English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es">Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
+        <label class="lang"><span class="sr-only">Language</span><select id="lang-select" aria-label="Language"><option value="/" data-lang="en">English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es">Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja" selected>日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
       </div>
       <div class="result" id="result"><div class="r-in">
         <h1 id="r-title">You liked <span id="r-names"></span></h1>
@@ -146,7 +146,7 @@
           store(o.getAttribute("data-lang"));   // remember the LANGUAGE, not the URL
           location.href=o.value;
         });}
-        if("en"!=="en") return;
+        if("ja"!=="en") return;
         if(location.search.indexOf("nolang")>=0) return;
         if(stored()) return;
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;

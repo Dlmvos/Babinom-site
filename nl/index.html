@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Babinom — baby names for couples</title>
-    <meta name="description" content="Swipe baby names privately. A name becomes a match only when you both like it." />
-    <link rel="canonical" href="https://babinom.com/" />
+    <title>Babinom — babynamen voor stellen</title>
+    <meta name="description" content="Swipe babynamen privé. Een naam wordt pas een match als jullie hem allebei leuk vinden." />
+    <link rel="canonical" href="https://babinom.com/nl/" />
     <link rel="alternate" hreflang="en" href="https://babinom.com/" />
     <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/" />
     <link rel="alternate" hreflang="de" href="https://babinom.com/de/" />
@@ -98,33 +98,33 @@
     <div class="stage">
       <div class="hearts" id="hearts" aria-hidden="true"></div>
       <div class="top">
-        <a class="wordmark" href="/">Babinom</a>
-        <div class="tag">Baby names<br />for couples</div>
+        <a class="wordmark" href="/nl/">Babinom</a>
+        <div class="tag">Babynamen<br />voor stellen</div>
       </div>
       <div class="deck-wrap"><div>
         <div class="deck" id="deck"></div>
-        <p class="hint">Swipe or tap — nobody sees your choices</p>
+        <p class="hint">Swipe of tik — niemand ziet jouw keuzes</p>
       </div></div>
       <div class="bottom">
-        <a href="/get/">Get the app</a>
-        <a href="/how-it-works/">How it works</a>
+        <a href="/get/">Download de app</a>
+        <a href="/nl/how-it-works/">Hoe het werkt</a>
         <a href="/privacy/">Privacy</a>
         <a href="/support/">Support</a>
-        <label class="lang"><span class="sr-only">Language</span><select id="lang-select" aria-label="Language"><option value="/" data-lang="en" selected>English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es">Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
+        <label class="lang"><span class="sr-only">Taal</span><select id="lang-select" aria-label="Taal"><option value="/" data-lang="en">English</option><option value="/nl/" data-lang="nl" selected>Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es">Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko">한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
       </div>
       <div class="result" id="result"><div class="r-in">
-        <h1 id="r-title">You liked <span id="r-names"></span></h1>
+        <h1 id="r-title">Je koos <span id="r-names"></span></h1>
         <p id="r-body"></p>
         <div class="row">
-          <a class="btn" id="cta-free" href="/get/">Get Babinom — free</a>
-          <a class="btn btn--ghost" id="cta-prem" href="/get/">Unlock Premium</a>
+          <a class="btn" id="cta-free" href="/get/">Download Babinom — gratis</a>
+          <a class="btn btn--ghost" id="cta-prem" href="/get/">Premium ontgrendelen</a>
         </div>
-        <button class="again" id="again">Try three more names</button>
+        <button class="again" id="again">Nog drie namen</button>
       </div></div>
     </div>
     <script>
-      var T={"meaning":"Meaning","liked":"Liked","passed":"Pass","swipe":"&larr; swipe &rarr;","rTitle":"You liked","rBody":"That is the whole idea. You swipe privately, your partner swipes privately, and a name only surfaces when you both said yes.","nTitle":"Not one of them?","nBody":"That happens — there are hundreds of thousands more in the app, filtered by origin, style and country."};
-      var NAMES=[{"name":"Nora","gender":"Girl","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"Boy","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"Girl","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"Boy","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"Boy","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
+      var T={"meaning":"Betekenis","liked":"Leuk","passed":"Nee","swipe":"&larr; swipe &rarr;","rTitle":"Je koos","rBody":"Dat is precies het idee. Jij swipet privé, je partner swipet privé, en een naam verschijnt pas als jullie allebei ja zeiden.","nTitle":"Geen van deze?","nBody":"Dat gebeurt — er staan er nog honderdduizenden in de app, te filteren op herkomst, stijl en land."};
+      var NAMES=[{"name":"Nora","gender":"Meisje","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"Jongen","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"Meisje","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"Jongen","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"Jongen","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
       var AFF={"verloscast":"https://buy.stripe.com/test_8x2eVc0ZY4QD7iQ4lfeUU00"},GEN="https://buy.stripe.com/test_00w5kC4ca2Iv8mU8BveUU01";
 
       // LANGUAGE — two rules, and the second matters more than the first.
@@ -146,7 +146,7 @@
           store(o.getAttribute("data-lang"));   // remember the LANGUAGE, not the URL
           location.href=o.value;
         });}
-        if("en"!=="en") return;
+        if("nl"!=="en") return;
         if(location.search.indexOf("nolang")>=0) return;
         if(stored()) return;
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;

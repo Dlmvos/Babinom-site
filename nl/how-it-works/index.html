@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Babinom — babynamen voor stellen</title>
+    <meta name="description" content="Swipe babynamen privé. Een naam wordt pas een match als jullie hem allebei leuk vinden." />
+    <link rel="canonical" href="https://babinom.com/nl/how-it-works/" />
+    <link rel="alternate" hreflang="en" href="https://babinom.com/how-it-works/" />
+    <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/how-it-works/" />
+    <link rel="alternate" hreflang="de" href="https://babinom.com/de/how-it-works/" />
+    <link rel="alternate" hreflang="fr" href="https://babinom.com/fr/how-it-works/" />
+    <link rel="alternate" hreflang="es" href="https://babinom.com/es/how-it-works/" />
+    <link rel="alternate" hreflang="it" href="https://babinom.com/it/how-it-works/" />
+    <link rel="alternate" hreflang="pt" href="https://babinom.com/pt/how-it-works/" />
+    <link rel="alternate" hreflang="zh" href="https://babinom.com/zh/how-it-works/" />
+    <link rel="alternate" hreflang="ja" href="https://babinom.com/ja/how-it-works/" />
+    <link rel="alternate" hreflang="ko" href="https://babinom.com/ko/how-it-works/" />
+    <link rel="alternate" hreflang="ar" href="https://babinom.com/ar/how-it-works/" />
+    <link rel="alternate" hreflang="x-default" href="https://babinom.com/how-it-works/" />
+    <style>
+      :root{--bg-top:#FFF1F5;--bg-bot:#FFF8F5;--card:#FCFCFD;--navy:#1F2937;
+            --body:#2F3A44;--gray:#8C94A0;--lgry:#B0B6C2;--line:#EEF0F3;
+            --chip:#F6F7F9;--pnk:#E53B7C;--grn:#38D39F;--red:#FF6B6B}
+      *{box-sizing:border-box}
+      html,body{margin:0}
+      body{background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-top) 38%,var(--bg-bot) 100%);
+           color:var(--navy);font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+      .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+      a{color:inherit}
+      .lang select{font:inherit;font-size:.76rem;color:var(--gray);background:transparent;border:0;cursor:pointer}
+
+      .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+      .bar{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+      .bar a.brand{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;text-decoration:none}
+      .bar nav{display:flex;gap:18px;align-items:center}
+      .bar nav a{font-size:.8rem;color:var(--gray);text-decoration:none}
+      .bar nav a:hover{color:var(--navy)}
+      .hero{padding:48px 0 12px;max-width:44rem}
+      .hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+      .hero p{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--body);line-height:1.55;margin:0 0 28px}
+      .cta{display:flex;gap:12px;flex-wrap:wrap}
+      .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:15px 28px;
+           border-radius:999px;font-weight:600;font-size:.95rem}
+      .btn--ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+      /* The pull-quote is the one moment with no card around it. Uniform boxes
+         all the way down is what made the old page read as assembled rather
+         than designed. */
+      .pull{padding:72px 0;max-width:34rem}
+      .pull p{font-size:clamp(1.5rem,4.5vw,2.2rem);line-height:1.3;margin:0;color:var(--navy);letter-spacing:-.01em}
+      .pull span{color:var(--pnk)}
+      .steps{display:grid;gap:56px;padding:24px 0 72px}
+      @media(min-width:860px){.steps{gap:96px}}
+      .step{display:grid;gap:28px;align-items:center}
+      @media(min-width:860px){
+        .step{grid-template-columns:1fr 1fr}
+        .step:nth-child(even) .shot{order:2}
+      }
+      .step .n{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pnk);margin:0 0 10px}
+      .step h2{font-size:clamp(1.35rem,3.2vw,1.9rem);margin:0 0 12px;line-height:1.2}
+      .step p{color:var(--body);line-height:1.65;margin:0;font-size:1rem}
+      .shot img{display:block;width:100%;max-width:300px;margin:0 auto;border-radius:26px;
+                box-shadow:0 24px 60px rgba(30,41,59,.14)}
+      .band{background:var(--card);border-radius:36px;padding:clamp(32px,6vw,64px);margin:0 0 72px}
+      .band h2{font-size:clamp(1.5rem,4vw,2.2rem);margin:0 0 14px;line-height:1.2}
+      .band p{color:var(--body);line-height:1.65;margin:0 0 26px;max-width:38rem;font-size:1rem}
+      .band .note{color:var(--gray);font-size:.85rem;margin:14px 0 0}
+      .faq{padding:0 0 72px}
+      .faq h2{font-size:clamp(1.4rem,3.4vw,2rem);margin:0 0 26px}
+      .faq details{border-top:1px solid var(--line);padding:18px 0}
+      .faq summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none}
+      .faq summary::-webkit-details-marker{display:none}
+      .faq summary::after{content:"+";float:inline-end;color:var(--gray);font-weight:400}
+      .faq details[open] summary::after{content:"\2013"}
+      .faq p{color:var(--body);line-height:1.65;margin:12px 0 0;font-size:.98rem}
+      .foot{border-top:1px solid var(--line);padding:36px 0 48px;text-align:center}
+      .foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+      .foot-links a{font-size:.8rem;color:var(--gray);text-decoration:none}
+      .foot-links a:hover{color:var(--navy)}
+      .promise{color:var(--navy);font-size:.88rem;margin:0 0 6px}
+      .copy{color:var(--lgry);font-size:.78rem;margin:0}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="bar">
+        <a class="brand" href="/nl/">Babinom</a>
+        <nav>
+          <a href="/nl/">Probeer het</a>
+          <a href="/get/">Download de app</a>
+          <label class="lang"><span class="sr-only">Taal</span><select id="lang-select" aria-label="Taal"><option value="/how-it-works/" data-lang="en">English</option><option value="/nl/how-it-works/" data-lang="nl" selected>Nederlands</option><option value="/de/how-it-works/" data-lang="de">Deutsch</option><option value="/fr/how-it-works/" data-lang="fr">Français</option><option value="/es/how-it-works/" data-lang="es">Español</option><option value="/it/how-it-works/" data-lang="it">Italiano</option><option value="/pt/how-it-works/" data-lang="pt">Português</option><option value="/zh/how-it-works/" data-lang="zh">中文</option><option value="/ja/how-it-works/" data-lang="ja">日本語</option><option value="/ko/how-it-works/" data-lang="ko">한국어</option><option value="/ar/how-it-works/" data-lang="ar">العربية</option></select></label>
+        </nav>
+      </div>
+
+      <section class="hero">
+        <h1>Rustiger samen kiezen</h1>
+        <p>Jij vindt Luna mooi. Je partner Max. Geen van beiden zegt het hardop, en het gesprek ligt een maand stil.</p>
+        <div class="cta">
+          <a class="btn" href="/get/">Download Babinom — gratis</a>
+          <a class="btn btn--ghost" href="/nl/">Probeer het</a>
+        </div>
+      </section>
+
+      <section class="pull"><p>Ja. Je partner ziet een naam pas als jullie hem allebei leuk vonden.</p></section>
+
+      <div class="steps">
+        <section class="step">
+          <div class="shot"><img src="/assets/screens/partner.png" alt="Connect with your partner" loading="lazy" width="640" height="1428" /></div>
+          <div><p class="n">01</p><h2>Swipe privé</h2><p>Jullie gaan allebei in je eigen tempo. Wat jij leuk vindt ziet je partner niet, dus er is geen druk om het eens te zijn en geen ongemak bij een nee.</p></div>
+        </section>
+        <section class="step">
+          <div class="shot"><img src="/assets/screens/match.png" alt="You both chose the same name" loading="lazy" width="640" height="1428" /></div>
+          <div><p class="n">02</p><h2>Match samen</h2><p>Een naam verschijnt pas als jullie hem allebei leuk vonden. Je ziet nooit wat de ander afwees — dat houdt het gesprek prettig.</p></div>
+        </section>
+        <section class="step">
+          <div class="shot"><img src="/assets/screens/matches.png" alt="Your shortlist" loading="lazy" width="640" height="1428" /></div>
+          <div><p class="n">03</p><h2>Bouw je lijstje</h2><p>Elke match wordt bewaard met betekenis en herkomst. Kijk terug, streep door, en beslis wanneer jullie eraan toe zijn.</p></div>
+        </section>
+      </div>
+
+      <section class="band">
+        <h2>Eén keer upgraden, samen gebruiken</h2>
+        <p>Premium haalt de daglimiet weg en ontgrendelt alle filters — op land, herkomst, stijl en populariteit. Eén betaling, geen abonnement, en het geldt meteen voor jullie allebei zodra één van jullie koopt.</p>
+        <a class="btn" href="/get/">Premium kopen</a>
+        <p class="note">Je ontvangt een e-mail met een link die Premium aan je account toevoegt.</p>
+      </section>
+
+      <section class="faq">
+        <h2>Wat stellen ons vragen</h2>
+        <details><summary>Moeten we allebei betalen?</summary><p>Nee. Eén aankoop geldt direct voor jullie allebei in dezelfde kamer.</p></details>
+        <details><summary>Kan ik Babinom alleen gebruiken?</summary><p>Ja. Begin alleen en nodig je partner uit wanneer je wilt — je eerdere keuzes gaan mee.</p></details>
+        <details><summary>Blijven onze keuzes privé?</summary><p>Ja. Je partner ziet een naam pas als jullie hem allebei leuk vonden.</p></details>
+        <details><summary>Welke talen spreekt de app?</summary><p>Elf, inclusief deze. Ook de betekenissen staan in jouw taal.</p></details>
+      </section>
+
+    <footer class="foot">
+      <nav class="foot-links">
+        <a href="/nl/how-it-works/">Hoe het werkt</a>
+        <a href="/get/">Download de app</a>
+        <a href="/privacy/">Privacybeleid</a>
+        <a href="/terms/">Algemene voorwaarden</a>
+        <a href="/cookies/">Cookiebeleid</a>
+        <a href="/ai-disclaimer/">AI-verklaring</a>
+        <a href="/support/">Hulp &amp; support</a>
+      </nav>
+      <p class="promise">Geen advertenties. Geen tracking. Privé by design.</p>
+      <p class="copy">&copy; 2026 Babinom &middot; <span class="lang-slot"></span></p>
+    </footer>
+    </div>
+    <script>
+      // LANGUAGE — two rules, and the second matters more than the first.
+      //
+      // 1. Detect ONCE, on the English root only. navigator.language is the
+      //    visitor's own setting, which beats IP: a Dutch speaker in Spain
+      //    should get Dutch, not Spanish.
+      // 2. A MANUAL CHOICE WINS AND STICKS. Stored on pick, checked before any
+      //    redirect, and detection never runs twice. Auto-detection is wrong
+      //    for somebody however it is built, and someone who cannot escape the
+      //    wrong language leaves.
+      (function(){
+        var DIRS={"en":"/","nl":"/nl/","de":"/de/","fr":"/fr/","es":"/es/","it":"/it/","pt":"/pt/","zh":"/zh/","ja":"/ja/","ko":"/ko/","ar":"/ar/"}, KEY="babinom_lang";
+        var sel=document.getElementById("lang-select");
+        function store(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+        function stored(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+        if(sel){sel.addEventListener("change",function(){
+          var o=sel.options[sel.selectedIndex];
+          store(o.getAttribute("data-lang"));   // remember the LANGUAGE, not the URL
+          location.href=o.value;
+        });}
+        if("nl"!=="en") return;
+        if(location.search.indexOf("nolang")>=0) return;
+        if(stored()) return;
+        try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
+             sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
+        var want=(navigator.language||"en").toLowerCase().split("-")[0];
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+      })();
+      (function(){var s=document.querySelector(".lang-slot");
+        var sel=document.getElementById("lang-select");
+        if(s&&sel) s.textContent=sel.options[sel.selectedIndex].textContent;})();
+    </script>
+  </body>
+</html>
