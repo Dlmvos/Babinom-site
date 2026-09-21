@@ -6,9 +6,21 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Get Babinom</title>
-    <meta name="description" content="Download Babinom and find your baby name together." />
+    <meta name="description" content="Download Babinom, or unlock Premium for both of you." />
     <meta name="robots" content="noindex" />
     <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .get-card{background:#FFF7E8;border:1px solid #F0E6D2;border-radius:20px;padding:28px 24px;text-align:left;display:flex;flex-direction:column}
+      .get-card h2{margin:0 0 6px;font-size:1.15rem;color:#1E293B}
+      .get-card>p{margin:0 0 18px;color:#64748B;font-size:.95rem;line-height:1.55}
+      .get-grid{display:grid;gap:16px;margin-top:28px;text-align:left}
+      @media(min-width:720px){.get-grid{grid-template-columns:1fr 1fr}}
+      .get-price{font-size:1.6rem;color:#1E293B;font-weight:600;margin:0 0 2px!important}
+      .get-sub{font-size:.8rem;color:#64748B;margin:0 0 16px!important}
+      .get-list{list-style:none;padding:0;margin:0 0 18px;font-size:.9rem;color:#2F3A44}
+      .get-list li{padding:3px 0 3px 20px;position:relative}
+      .get-list li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%;background:#EE8877}
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -29,19 +41,45 @@
       <section class="site-section site-section--hero">
         <div class="container">
           <div class="container-inner--narrow page-stack" style="text-align:center;">
-            <p class="eyebrow" style="margin: 0 auto 20px; display:inline-block;">Babinom</p>
-            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Find your baby name together 💜</h1>
+            <h1 style="font-size: clamp(1.9rem, 5.5vw, 3rem);">Find your baby name together</h1>
             <p class="lead">
-              You and your partner swipe names on your own phones. A name only shows up as a match when you both liked it.
+              You and your partner swipe names on your own phones. A name only becomes a match
+              when you both liked it.
             </p>
-            <div class="actions" aria-label="Download" style="justify-content:center; margin-top: 20px;">
-              <a class="button" id="ios" href="https://apps.apple.com/app/id6764676399">Download on the App Store</a>
+
+            <div class="get-grid">
+              <div class="get-card">
+                <h2>Get the app</h2>
+                <p>Free. Start swiping in under a minute.</p>
+                <div class="actions" style="margin-top:auto;">
+                  <a class="button" id="ios" href="https://apps.apple.com/app/id6764676399">Download on the App&nbsp;Store</a>
+                </div>
+                <p class="cta-note" id="android" hidden style="margin-top:14px;">
+                  Android is still in testing &mdash; <a href="/support/">let us know</a> and we&rsquo;ll tell you when it lands.
+                </p>
+              </div>
+
+              <div class="get-card" id="premium-card">
+                <h2>Unlock Premium</h2>
+                <p class="get-price">&euro;14.99</p>
+                <p class="get-sub">One payment, shared with your partner. No subscription.</p>
+                <ul class="get-list">
+                  <li>Unlimited swipes for both of you</li>
+                  <li>Every filter unlocked</li>
+                  <li>Works on the phone you already have</li>
+                </ul>
+                <div class="actions" style="margin-top:auto;">
+                  <a class="button button--ghost" id="buy" href="#">Buy Premium</a>
+                </div>
+                <p class="cta-note" style="margin-top:14px;">
+                  You&rsquo;ll get an email with a link that adds Premium to your account.
+                </p>
+              </div>
             </div>
-            <p class="cta-note" id="note" style="margin-top: 16px;">
-              On an iPhone this opens the App Store automatically.
-            </p>
-            <p class="cta-note" id="android" hidden style="margin-top: 16px;">
-              Android is still in testing &mdash; <a href="/support/">let us know</a> and we&rsquo;ll tell you when it lands.
+
+            <p class="cta-note" style="margin-top:24px;">
+              Already bought on the web? Open the link in your purchase email, or
+              <a href="/support/">ask us to resend it</a>.
             </p>
           </div>
         </div>
@@ -55,38 +93,55 @@
     </footer>
 
     <script>
-      // Short, tappable destination for social bios: babinom.com/get
+      // babinom.com/get — the one page that turns interest into either an
+      // install or a purchase. It is also the TikTok bio destination (bio TEXT
+      // is not tappable on TikTok; only the profile Website field is).
       //
-      // TikTok bio TEXT is not a link - only the profile Website field is
-      // tappable - so a URL typed into the bio spends characters and does
-      // nothing. This page is what the Website field should point at.
-      //
-      // Only iOS auto-redirects. Android is deliberately NOT sent to Play:
-      // Babinom has only ever released to the internal track, so a Play link
-      // is a dead end for the public. Desktop stays here too, because the
-      // App Store web page is a poor landing for someone on a laptop.
+      // THE AUTO-REDIRECT IS GONE, DELIBERATELY. This page used to send every
+      // iPhone straight to the App Store. The moment it also sells, that
+      // redirect means no iOS visitor ever sees the purchase option — the same
+      // mistake /verloscast had, where bouncing to the store hid the only
+      // thing the web route exists to do. Cost: one extra tap for bio traffic.
+      // Benefit: the page can convert.
       (function () {
         var APP_STORE = "https://apps.apple.com/app/id6764676399";
-        var ua = navigator.userAgent || "";
-        var isIOS = /iPad|iPhone|iPod/.test(ua) ||
-                    // iPadOS 13+ reports itself as a Mac; touch points give it away
-                    (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-        var isAndroid = /Android/.test(ua);
+        var GENERIC_BUY = "https://buy.stripe.com/test_00w5kC4ca2Iv8mU8BveUU01";
 
-        // Pass an App Store campaign token straight through, so /get?ct=tiktok
-        // can be told apart from other traffic in App Analytics. Apple also
-        // needs your Provider Token (pt) before ct is reported - add it here
-        // once you have it from App Store Connect.
-        var ct = new URLSearchParams(location.search).get("ct");
-        var dest = ct ? APP_STORE + "?ct=" + encodeURIComponent(ct.slice(0, 40)) : APP_STORE;
-        document.getElementById("ios").href = dest;
+        // Per-partner checkout. A visitor who arrived from an affiliate page
+        // keeps that attribution through to a purchase that finishes HERE
+        // rather than on the partner's own page. Held in sessionStorage as
+        // well as the query string, because the trip from a partner page to
+        // this one to Stripe can lose a param to a share sheet, an in-app
+        // browser, or someone retyping the URL.
+        var AFFILIATE_BUY = {
+          verloscast: "https://buy.stripe.com/test_8x2eVc0ZY4QD7iQ4lfeUU00"
+        };
 
-        if (isAndroid) {
-          document.getElementById("note").hidden = true;
-          document.getElementById("android").hidden = false;
-          return;
+        var qs = new URLSearchParams(location.search);
+        var ref = (qs.get("ref") || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
+        try {
+          if (ref) sessionStorage.setItem("babinom_ref", ref);
+          else ref = sessionStorage.getItem("babinom_ref") || "";
+        } catch (e) { /* private mode: the query string alone still works */ }
+
+        var buy = AFFILIATE_BUY[ref] || GENERIC_BUY;
+        if (ref) buy += (buy.indexOf("?") < 0 ? "?" : "&") + "client_reference_id=" + encodeURIComponent(ref);
+        document.getElementById("buy").href = buy;
+
+        // App Store campaign token passthrough, so /get?ct=tiktok is separable
+        // in App Analytics. Apple also needs the Provider Token (pt) before ct
+        // is reported — add it here once App Store Connect gives you one.
+        var ct = qs.get("ct");
+        if (ct) {
+          document.getElementById("ios").href =
+            APP_STORE + "?ct=" + encodeURIComponent(ct.slice(0, 40));
         }
-        if (isIOS) location.replace(dest);
+
+        // Android is deliberately not linked to Play: Babinom has only ever
+        // released to the internal track, so a Play link is a dead end.
+        if (/Android/.test(navigator.userAgent || "")) {
+          document.getElementById("android").hidden = false;
+        }
       })();
     </script>
   </body>
