@@ -66,7 +66,11 @@
          viewport HEIGHT, which is what actually constrains it on a laptop. */
       .deck{position:relative;width:min(86vw,340px);height:min(62dvh,500px)}
       @media (min-width:900px) and (min-height:760px){
-        .deck{width:min(40vw,400px);height:min(70dvh,600px)}
+        /* Height is capped tighter than it looks like it should be. The app's
+           card is taller because it also carries pronunciation and a longer
+           meaning; without those the extra height is just a gap between the
+           chips and the controls. */
+        .deck{width:min(38vw,380px);height:min(60dvh,530px)}
       }
 
       .name-card{
