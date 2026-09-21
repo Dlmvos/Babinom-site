@@ -87,7 +87,6 @@
       .pill--gender{background:rgba(229,59,124,.13);color:var(--pnk)}
       .pill--gender.boy{background:rgba(43,107,222,.13);color:#2B6BDE}
       .pill--rank{background:var(--chip);color:var(--gray)}
-      .pill--common{background:var(--lav-bg);color:var(--teal)}
 
       .name{font-size:clamp(2.2rem,9vw,3rem);font-weight:700;line-height:1.05;margin:4px 0 6px;
             color:var(--navy);letter-spacing:-.01em}
@@ -186,23 +185,35 @@
       (function () {
         "use strict";
 
-        // Shaped like a real deck card: gender, popularity rank, how common the
-        // name is, origin country, meaning, region chips. Names and meanings
-        // come from the app's own deck — a demo showing names the app does not
-        // have is a promise the product breaks on first launch.
+        // EVERY VALUE BELOW IS REAL. Popularity ranks are the Netherlands rows
+        // of `baby_names` (the first partner is a Dutch podcast, and one
+        // country keeps the set coherent - picking each name's best rank
+        // worldwide produced four separate "#1"s, which is absurd on one deck).
+        // Meanings and origins are the bundled core in src/data/names.ts.
+        //
+        // The rank LABEL follows swipePopularitySpec() in SwipeCard.tsx:
+        // <=50 is "Top 50", <=100 is "Top 100", anything else is the bare rank.
+        //
+        // NO RARITY PILL. The app only badges uncommon / rare / very rare and
+        // leaves common names unbadged; we have no rarity source for these, so
+        // inventing "Popular" or "Less common" would repeat the mistake of the
+        // invented card. Those strings are also `popularity.detail.*`, which
+        // belongs to a detail view and never appears on the swipe card at all.
+        //
+        // Aurelia is absent on purpose: it is not in the bundled core and has
+        // no row in name_meaning_translations, so any meaning shown for it
+        // would be fabricated.
         var NAMES = [
-          { name:"Aurelia", gender:"Girl", rank:"#412", common:"Less common",
-            country:"Italy",       meaning:"“The golden one”", chips:["Italy","Europe"] },
-          { name:"Liam",    gender:"Boy",  rank:"#1",   common:"Very popular",
-            country:"Ireland",     meaning:"“Strong-willed warrior”", chips:["Ireland","Europe"] },
-          { name:"Sofia",   gender:"Girl", rank:"#9",   common:"Popular",
-            country:"Spain",       meaning:"“Wisdom”", chips:["Spain","Europe"] },
-          { name:"Mateo",   gender:"Boy",  rank:"#24",  common:"Popular",
-            country:"Spain",       meaning:"“Gift of God”", chips:["Spain","Europe"] },
-          { name:"Nora",    gender:"Girl", rank:"#63",  common:"Well known",
-            country:"Netherlands", meaning:"“Light, honour”", chips:["Netherlands","Europe"] },
-          { name:"Julian",  gender:"Boy",  rank:"#71",  common:"Well known",
-            country:"Netherlands", meaning:"“Youthful, downy”", chips:["Netherlands","Europe"] }
+          { name:"Nora",   gender:"Girl", rank:"#3 \u00b7 Top 50",  origin:"Irish / Arabic",
+            meaning:"Honor; light",                    chips:["Netherlands","Europe"] },
+          { name:"Liam",   gender:"Boy",  rank:"#4 \u00b7 Top 50",  origin:"Irish / American",
+            meaning:"Strong-willed warrior; protector", chips:["Netherlands","Europe"] },
+          { name:"Sofia",  gender:"Girl", rank:"#24 \u00b7 Top 50", origin:"Greek",
+            meaning:"Wisdom",                          chips:["Netherlands","Europe"] },
+          { name:"Julian", gender:"Boy",  rank:"#45 \u00b7 Top 50", origin:"Latin",
+            meaning:"Youthful; downy",                 chips:["Netherlands","Europe"] },
+          { name:"Mateo",  gender:"Boy",  rank:"#102",               origin:"Spanish",
+            meaning:"Gift of God",                     chips:["Netherlands","Europe"] }
         ];
 
         var ROUND = 3;
@@ -271,10 +282,9 @@
                + '<div class="pills">'
                +   '<span class="pill pill--gender' + (n.gender === 'Boy' ? ' boy' : '') + '">' + n.gender + "</span>"
                +   '<span class="pill pill--rank">' + n.rank + "</span>"
-               +   '<span class="pill pill--common">' + n.common + "</span>"
                + "</div>"
                + '<h2 class="name">' + n.name + "</h2>"
-               + '<p class="country">' + n.country + "</p>"
+               + '<p class="country">' + n.origin + "</p>"
                + '<span class="divider"></span>'
                + '<p class="meaning-label">Meaning</p>'
                + '<p class="meaning">' + n.meaning + "</p>"
