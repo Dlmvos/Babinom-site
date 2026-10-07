@@ -146,18 +146,16 @@
         }
 
         // ---- Google Play -------------------------------------------------
-        // ONE BOOLEAN, and it is false on purpose. Babinom has only ever
-        // released to Play's INTERNAL track, and a store URL for an
-        // internal-only app answers "item not found" to everyone who is not an
-        // opted-in tester. A visible Play button today would therefore send
-        // every Android visitor to a dead end, which is worse than the honest
-        // note below.
+        // Live. Babinom reached Play's production track on 2026-10-06 (version
+        // code 13, all markets) and the public listing began serving on
+        // 2026-10-07 — a first production release takes hours to propagate, and
+        // until it does the store URL answers "item not found" to everyone,
+        // which is why this stayed false for a day after publishing.
         //
-        // Flip this to true the moment a closed, open or production track is
-        // live — the button is already wired and needs no other change. See
-        // CLAUDE.md "Internal testing does NOT count toward production access":
-        // production needs 12 testers opted in for 14 continuous days.
-        var PLAY_LIVE = false;
+        // Verified 200 from the default storefront and from US, ES and NL
+        // before flipping. If a Play button ever needs hiding again, this is
+        // still the one line that does it.
+        var PLAY_LIVE = true;
         var PLAY_URL = "https://play.google.com/store/apps/details?id=com.daanvos.namenest";
 
         if (PLAY_LIVE) {
