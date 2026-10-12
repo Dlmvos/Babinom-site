@@ -40,9 +40,6 @@
                 text-decoration:none;display:inline-flex;align-items:center;gap:9px}
       .wordmark img{width:26px;height:26px;border-radius:7px;display:block}
       .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-align:end;max-width:9rem;line-height:1.5}
-      .bottom{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;padding:0 0 24px;position:relative;z-index:3}
-      .bottom a{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
-      .bottom a:hover{color:var(--navy);border-bottom-color:var(--pnk)}
       .hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
       .heart{position:absolute;bottom:-60px;color:var(--pnk);opacity:0;animation:rise var(--dur) linear var(--delay) infinite}
       .heart svg{display:block;animation:beat 1.6s ease-in-out infinite}
@@ -123,13 +120,6 @@
         <div class="deck" id="deck"></div>
         <p class="hint">밀거나 누르세요 — 선택은 아무에게도 보이지 않습니다</p>
       </div></div>
-      <div class="bottom">
-        <a href="/get/">앱 받기</a>
-        <a href="/ko/how-it-works/">이용 방법</a>
-        <a href="/privacy/">개인정보</a>
-        <a href="/support/">고객지원</a>
-        <label class="lang"><span class="sr-only">언어</span><select id="lang-select" aria-label="언어"><option value="/" data-lang="en">English</option><option value="/nl/" data-lang="nl">Nederlands</option><option value="/de/" data-lang="de">Deutsch</option><option value="/fr/" data-lang="fr">Français</option><option value="/es/" data-lang="es">Español</option><option value="/it/" data-lang="it">Italiano</option><option value="/pt/" data-lang="pt">Português</option><option value="/zh/" data-lang="zh">中文</option><option value="/ja/" data-lang="ja">日本語</option><option value="/ko/" data-lang="ko" selected>한국어</option><option value="/ar/" data-lang="ar">العربية</option></select></label>
-      </div>
       <div class="result" id="result"><div class="r-in">
         <h1 id="r-title">선택한 이름 <span id="r-names"></span></h1>
         <p id="r-body"></p>
