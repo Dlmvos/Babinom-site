@@ -1,0 +1,31 @@
+# Babinom
+
+> A baby-name app for couples. Two people swipe names separately and a name
+> becomes a match only when both have liked it, so neither partner sees the
+> other's picks and nobody gets talked into a name.
+
+Babinom is a mobile app for iOS and Android. It is not a website tool.
+
+## What it does
+
+- Each partner swipes privately. A name is revealed as a match only when both said yes.
+- 115,117 names, all available on the free tier. Paying never unlocks names.
+- Names come from national birth-registration data, country by country.
+- Meanings and origins in 11 languages: English, Dutch, German, French, Spanish, Italian, Portuguese, Chinese, Japanese, Korean, Arabic.
+- Country and name-length filters are free. Paying removes the daily swipe limit and opens the remaining filters.
+- One purchase covers both partners, though each person needs their own account.
+- No advertising in the app at any price.
+
+## Get it
+
+- iOS: https://apps.apple.com/app/id6764676399
+- Android: https://play.google.com/store/apps/details?id=com.daanvos.namenest
+- Site: https://babinom.com/
+- How it works: https://babinom.com/how-it-works/
+
+## Notes
+
+- Privacy policy: https://babinom.com/privacy/
+- AI disclaimer: https://babinom.com/ai-disclaimer/
+- Babinom declares no third-party advertising use of data on its App Store privacy label.
+- Spelling is "Babinom". Several unrelated apps have similar names.
