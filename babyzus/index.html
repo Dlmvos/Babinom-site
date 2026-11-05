@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://ivydlnahcnembpjnmntm.supabase.co; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Babinom</title>
+    <meta name="description" content="Find your baby name together." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="site-section site-section--hero">
+        <div class="container">
+          <div class="container-inner--narrow page-stack" style="text-align:center;">
+            <h1 style="font-size: clamp(2rem, 6vw, 3.4rem);">Find your baby name together 💜</h1>
+            <p class="lead">
+              You and your partner swipe names on your own phones. A name only shows up as a
+              match when you both liked it.
+            </p>
+            <div class="actions" style="justify-content:center; margin-top: 20px;">
+              <a class="button" id="go" href="https://babinom.onelink.me/cjbH?pid=babyzus&c=babyzus_default">Get Babinom — free</a>
+            </div>
+            <div class="actions" style="justify-content:center; margin-top: 12px;">
+              <a class="button button--ghost" id="buy" href="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401?client_reference_id=babyzus">Unlock Premium for both of you</a>
+            </div>
+            <p class="cta-note" style="margin-top: 12px; font-size: 0.85rem;">
+              One payment, shared with your partner. No subscription.
+            </p>
+            <p class="cta-note" style="margin-top: 16px;">Thanks for coming from Babyzus.nl.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit("babyzus");</script>
+    <script>
+      // NO auto-redirect on a page that has something to sell — bouncing
+      // straight to the app store would mean nobody ever sees the purchase
+      // option, which is the entire point of the web route.
+      //
+      // Dutch for Dutch browsers. The first partner is a Dutch midwifery
+      // podcast and this is static hosting, so the browser's own preference
+      // is the only language signal available.
+      (function () {
+        if ((navigator.language || 'en').toLowerCase().indexOf('nl') !== 0) return;
+        document.documentElement.lang = 'nl';
+        document.querySelector('h1').textContent = 'Kies samen jullie babynaam 💜';
+        document.querySelector('.lead').textContent =
+          'Jij en je partner swipen namen op je eigen telefoon. Een naam wordt pas een match als jullie hem allebei leuk vinden.';
+        document.getElementById('go').textContent = 'Download Babinom — gratis';
+        document.getElementById('buy').textContent = 'Premium voor jullie samen';
+        var notes = document.querySelectorAll('.cta-note');
+        notes[0].textContent = 'Eén betaling, gedeeld met je partner. Geen abonnement.';
+        notes[1].textContent = 'Bedankt dat je via Babyzus.nl komt.';
+      })();
+    </script>
+  </body>
+</html>

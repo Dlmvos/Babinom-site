@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://ivydlnahcnembpjnmntm.supabase.co; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Babinom — babynamen voor stellen</title>
     <meta name="description" content="Swipe babynamen privé. Een naam wordt pas een match als jullie hem allebei leuk vinden." />
@@ -245,6 +245,8 @@
         // an unattributed sale is a partner we cannot pay.
         var qs=new URLSearchParams(location.search);
         var ref=(qs.get("ref")||"").toLowerCase().replace(/[^a-z0-9-]/g,"").slice(0,40);
+        // partner dashboard: count the visit that ARRIVED with ?ref, not later pages restoring it
+        window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit(ref);
         try{ if(ref) sessionStorage.setItem("babinom_ref",ref); else ref=sessionStorage.getItem("babinom_ref")||""; }catch(e){}
         var buy=AFF[ref]||GEN;
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);

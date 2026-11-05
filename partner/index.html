@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://ivydlnahcnembpjnmntm.supabase.co; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Babinom partner dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      /* Partner dashboard (NameMatch migration 20260969). Hand-written page:
+         the token is the whole auth and lives in the URL FRAGMENT (#t=...),
+         which browsers never send to a server, and referrer is off so it
+         cannot leak through a link either. */
+      .pd { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+      .pd-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #5b4a87; }
+      .pd-brand span { font-weight: 500; color: #8a7fa6; }
+      .pd h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 18px 0 4px; }
+      .pd-sub { color: #6f6886; margin: 0 0 24px; }
+      .pd-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      @media (min-width: 640px) { .pd-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      .pd-card { background: #fff; border: 1px solid #ece7f5; border-radius: 16px; padding: 16px; }
+      .pd-card--hero { background: linear-gradient(160deg, #5b4a87, #382a54); color: #fff; border: 0; }
+      .pd-label { font-size: 0.8rem; color: #8a7fa6; margin: 0 0 6px; }
+      .pd-card--hero .pd-label { color: #e6e0f5; }
+      .pd-value { font-size: 1.6rem; font-weight: 700; margin: 0; line-height: 1.1; }
+      .pd-panel { background: #fff; border: 1px solid #ece7f5; border-radius: 16px; padding: 18px; margin-top: 16px; }
+      .pd-panel h2 { font-size: 1rem; margin: 0 0 12px; }
+      .pd-legend { display: flex; gap: 16px; font-size: 0.8rem; color: #6f6886; margin-bottom: 8px; }
+      .pd-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+      .pd-note { font-size: 0.85rem; color: #6f6886; line-height: 1.5; margin: 6px 0 0; }
+      .pd-error { text-align: center; padding: 64px 16px; color: #6f6886; }
+      svg text { font-size: 10px; fill: #8a7fa6; }
+    </style>
+  </head>
+  <body>
+    <main class="pd">
+      <div class="pd-brand">Babinom <span id="t-brand">· Partner dashboard</span></div>
+      <div id="out"><p class="pd-note" id="t-loading">Loading…</p></div>
+    </main>
+    <script>
+      (function () {
+        var URL = "https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/affiliate_dashboard";
+        var KEY = "sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV";
+
+        var S = {
+          en: { brand: "· Partner dashboard", loading: "Loading…", hello: "Hi {name}",
+                sub: "Your Babinom partnership at a glance.", visits: "Link visits", sales: "Purchases",
+                net: "Net revenue", earn: "Your earnings ({pct}%)", weekly: "Per week",
+                lv: "Visits", ls: "Purchases", period: "Commission period: {from} – {to}.",
+                open: "open-ended", start: "from the start",
+                notes: "Purchases count when someone buys Premium on the website through your link (the “Unlock Premium” button). Net revenue is the purchase amount minus VAT, minus refunds. Payouts are monthly.",
+                noamt: "{n} earlier purchase(s) have no amount recorded yet and are counted once settled.",
+                refunds: "{n} refunded.", updated: "Updated {when}.",
+                bad: "This link is not valid. Ask Babinom for a new one." },
+          nl: { brand: "· Partnerdashboard", loading: "Laden…", hello: "Hoi {name}",
+                sub: "Je samenwerking met Babinom in één oogopslag.", visits: "Bezoeken via je link", sales: "Aankopen",
+                net: "Netto-opbrengst", earn: "Jouw verdiensten ({pct}%)", weekly: "Per week",
+                lv: "Bezoeken", ls: "Aankopen", period: "Commissieperiode: {from} – {to}.",
+                open: "doorlopend", start: "vanaf het begin",
+                notes: "Een aankoop telt als iemand via jouw link Premium koopt op de website (de knop “Premium ontgrendelen”). Netto-opbrengst is het aankoopbedrag min btw, min terugbetalingen. Uitbetaling gebeurt maandelijks.",
+                noamt: "{n} eerdere aankoop/aankopen hebben nog geen bedrag en worden later meegeteld.",
+                refunds: "{n} terugbetaald.", updated: "Bijgewerkt {when}.",
+                bad: "Deze link is niet geldig. Vraag Babinom om een nieuwe." },
+          pt: { brand: "· Painel do parceiro", loading: "Carregando…", hello: "Oi, {name}",
+                sub: "Sua parceria com a Babinom em um só lugar.", visits: "Visitas pelo seu link", sales: "Compras",
+                net: "Receita líquida", earn: "Seus ganhos ({pct}%)", weekly: "Por semana",
+                lv: "Visitas", ls: "Compras", period: "Período de comissão: {from} – {to}.",
+                open: "sem data de término", start: "desde o início",
+                notes: "Uma compra conta quando alguém compra o Premium no site pelo seu link (o botão “Desbloquear Premium”). A receita líquida é o valor da compra menos impostos e reembolsos. O pagamento é mensal.",
+                noamt: "{n} compra(s) anterior(es) ainda sem valor registrado; entram na conta depois.",
+                refunds: "{n} reembolsada(s).", updated: "Atualizado {when}.",
+                bad: "Este link não é válido. Peça um novo à Babinom." }
+        };
+        var nav = (navigator.language || "en").toLowerCase();
+        var q = new URLSearchParams(location.search).get("lang");
+        var lang = q && S[q] ? q : nav.indexOf("nl") === 0 ? "nl" : nav.indexOf("pt") === 0 ? "pt" : "en";
+        var L = S[lang], locale = lang === "pt" ? "pt-BR" : lang === "nl" ? "nl-NL" : "en-GB";
+        document.documentElement.lang = locale;
+        document.getElementById("t-brand").textContent = L.brand;
+        document.getElementById("t-loading").textContent = L.loading;
+
+        function f(s, v) { return s.replace(/\{(\w+)\}/g, function (_, k) { return v[k]; }); }
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+        function fail() { document.getElementById("out").innerHTML = '<p class="pd-error">' + esc(L.bad) + "</p>"; }
+
+        var token = (new URLSearchParams(location.hash.slice(1))).get("t") || "";
+        if (token.length < 32) return fail();
+
+        fetch(URL, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" },
+                     body: JSON.stringify({ p_token: token }) })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) { if (!d) return fail(); render(d); })
+          .catch(fail);
+
+        function money(cents, cur) {
+          return new Intl.NumberFormat(locale, { style: "currency", currency: (cur || "eur").toUpperCase() }).format((cents || 0) / 100);
+        }
+        function day(iso) { return iso ? new Date(iso).toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" }) : null; }
+
+        function chart(weeks) {
+          var W = 640, H = 170, P = 22, n = Math.max(weeks.length, 1), bw = (W - P * 2) / n;
+          var max = Math.max(1, Math.max.apply(null, weeks.map(function (w) { return Math.max(w.visits, w.sales); })));
+          var out = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="' + esc(L.weekly) + '">';
+          weeks.forEach(function (w, i) {
+            var x = P + i * bw, hv = (w.visits / max) * (H - 40), hs = (w.sales / max) * (H - 40);
+            out += '<rect x="' + (x + bw * 0.15) + '" y="' + (H - 20 - hv) + '" width="' + bw * 0.34 + '" height="' + hv + '" rx="3" fill="#cfc4ea"><title>' + w.visits + " " + esc(L.lv) + "</title></rect>";
+            out += '<rect x="' + (x + bw * 0.51) + '" y="' + (H - 20 - hs) + '" width="' + bw * 0.34 + '" height="' + hs + '" rx="3" fill="#f77c5a"><title>' + w.sales + " " + esc(L.ls) + "</title></rect>";
+            out += '<text x="' + (x + bw / 2) + '" y="' + (H - 5) + '" text-anchor="middle">' +
+                   new Date(w.week).toLocaleDateString(locale, { day: "numeric", month: "short" }) + "</text>";
+          });
+          return out + "</svg>";
+        }
+
+        function render(d) {
+          var cur = d.currency, h = "";
+          h += "<h1>" + esc(f(L.hello, { name: d.partner_name })) + "</h1>";
+          h += '<p class="pd-sub">' + esc(L.sub) + "</p>";
+          h += '<div class="pd-grid">' +
+               card(L.visits, Number(d.visits_total).toLocaleString(locale)) +
+               card(L.sales, Number(d.sales).toLocaleString(locale)) +
+               card(L.net, money(d.net_cents, cur)) +
+               card(f(L.earn, { pct: Number(d.commission_pct).toLocaleString(locale) }), money(d.earnings_cents, cur), true) +
+               "</div>";
+          h += '<div class="pd-panel"><h2>' + esc(L.weekly) + "</h2>" +
+               '<div class="pd-legend"><span><i class="pd-dot" style="background:#cfc4ea"></i>' + esc(L.lv) +
+               '</span><span><i class="pd-dot" style="background:#f77c5a"></i>' + esc(L.ls) + "</span></div>" +
+               chart(d.weekly || []) + "</div>";
+          var notes = [f(L.period, { from: day(d.commission_starts_at) || L.start, to: day(d.commission_ends_at) || L.open }), L.notes];
+          if (d.refunds > 0) notes.push(f(L.refunds, { n: d.refunds }));
+          if (d.sales_without_amount > 0) notes.push(f(L.noamt, { n: d.sales_without_amount }));
+          notes.push(f(L.updated, { when: new Date(d.updated_at).toLocaleString(locale, { dateStyle: "medium", timeStyle: "short" }) }));
+          h += '<div class="pd-panel">' + notes.map(function (t) { return '<p class="pd-note">' + esc(t) + "</p>"; }).join("") + "</div>";
+          document.getElementById("out").innerHTML = h;
+        }
+        function card(label, value, hero) {
+          return '<div class="pd-card' + (hero ? " pd-card--hero" : "") + '"><p class="pd-label">' + esc(label) +
+                 '</p><p class="pd-value">' + esc(value) + "</p></div>";
+        }
+      })();
+    </script>
+  </body>
+</html>
