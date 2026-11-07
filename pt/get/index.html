@@ -111,6 +111,9 @@
       .get-list li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--pnk)}
       .get .note{color:var(--gray);font-size:.85rem;line-height:1.5;margin:14px 0 0}
       .get .note a{color:var(--navy)}
+      .promo{display:block;width:fit-content;margin:10px auto 0;background:var(--navy);color:#fff;border-radius:14px;
+             padding:10px 16px;font-size:.92rem;font-weight:600;line-height:1.45}
+      .promo[hidden]{display:none}
     </style>
   </head>
   <body>
@@ -127,6 +130,7 @@
         <h1>Encontrem juntos o nome do vosso bebé</h1>
         <p class="lead">Você e o seu parceiro deslizam nomes, cada um no seu telemóvel. Um nome só se torna um match quando os dois gostaram dele.</p>
         <p class="trial">Grátis para começar. Ligue-se ao seu parceiro e os dois recebem 3 dias de deslizes ilimitados.</p>
+        <p class="promo" id="promo">Black Friday: Premium a preço de lançamento até 1 de dezembro.</p>
 
         <div class="get-grid">
           <section class="get-card">
@@ -147,7 +151,7 @@
               <li>Funciona no telemóvel que já tem</li>
             </ul>
             <div class="btns">
-              <a class="btn btn--ghost" id="buy" href="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401">Comprar Premium</a>
+              <a class="btn btn--ghost" id="buy" href="https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402">Comprar Premium</a>
             </div>
             <p class="note">Vai receber um e-mail com uma ligação que adiciona o Premium à sua conta.</p>
           </section>
@@ -213,14 +217,15 @@
         if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"get/"+location.search+location.hash);
       })();
       (function(){
-        var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401";
+        var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",PROMO={"url":"https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402","end":1796164556000};
+        if(!(PROMO&&Date.now()<PROMO.end)){var pe=document.getElementById("promo");if(pe)pe.hidden=true;}
         var qs=new URLSearchParams(location.search);
         var ref=(qs.get("ref")||"").toLowerCase().replace(/[^a-z0-9-]/g,"").slice(0,40);
         window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit(ref);
         // sessionStorage as well as the query string: the hop partner page ->
         // here -> Stripe can lose a param to a share sheet or in-app browser.
         try{ if(ref) sessionStorage.setItem("babinom_ref",ref); else ref=sessionStorage.getItem("babinom_ref")||""; }catch(e){}
-        var buy=AFF[ref]||GEN;
+        var buy=(PROMO&&Date.now()<PROMO.end)?PROMO.url:(AFF[ref]||GEN);
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
         document.getElementById("buy").href=buy;
         // App Store campaign token passthrough (/es/get/?ct=tiktok_es), so a

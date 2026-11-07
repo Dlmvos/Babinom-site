@@ -188,7 +188,7 @@
     <script>
       var T={"meaning":"뜻","liked":"좋아요","passed":"넘기기","swipe":"&larr; 밀기 &rarr;","rTitle":"선택한 이름","rBody":"바로 이것이 핵심입니다. 두 사람이 각자 비공개로 넘겨보고, 둘 다 좋다고 한 이름만 나타납니다.","nTitle":"마음에 드는 게 없나요?","nBody":"그럴 수 있습니다 — 앱에는 수십만 개가 더 있고 유래, 분위기, 나라로 걸러 볼 수 있습니다."};
       var NAMES=[{"name":"Nora","gender":"여자아이","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"남자아이","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"여자아이","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"남자아이","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"남자아이","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
-      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",GET="/ko/get/";
+      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",GET="/ko/get/",PROMO={"url":"https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402","end":1796164556000};
 
       // LANGUAGE — two rules, and the second matters more than the first.
       //
@@ -250,7 +250,7 @@
         // partner dashboard: count the visit that ARRIVED with ?ref, not later pages restoring it
         window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit(ref);
         try{ if(ref) sessionStorage.setItem("babinom_ref",ref); else ref=sessionStorage.getItem("babinom_ref")||""; }catch(e){}
-        var buy=AFF[ref]||GEN;
+        var buy=(PROMO&&Date.now()<PROMO.end)?PROMO.url:(AFF[ref]||GEN);
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
         document.getElementById("cta-prem").href=buy;
         document.getElementById("cta-free").href=ref?GET+"?ref="+encodeURIComponent(ref):GET;
