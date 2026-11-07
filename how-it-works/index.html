@@ -199,7 +199,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash);
       })();</script>
   </body>
 </html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://ivydlnahcnembpjnmntm.supabase.co; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Obtenir Babinom</title>
+    <meta name="description" content="Téléchargez Babinom, ou débloquez Premium pour vous deux." />
+    <link rel="canonical" href="https://babinom.com/fr/get/" />
+    <link rel="alternate" hreflang="en" href="https://babinom.com/get/" />
+    <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/get/" />
+    <link rel="alternate" hreflang="de" href="https://babinom.com/de/get/" />
+    <link rel="alternate" hreflang="fr" href="https://babinom.com/fr/get/" />
+    <link rel="alternate" hreflang="es" href="https://babinom.com/es/get/" />
+    <link rel="alternate" hreflang="it" href="https://babinom.com/it/get/" />
+    <link rel="alternate" hreflang="pt" href="https://babinom.com/pt/get/" />
+    <link rel="alternate" hreflang="zh" href="https://babinom.com/zh/get/" />
+    <link rel="alternate" hreflang="ja" href="https://babinom.com/ja/get/" />
+    <link rel="alternate" hreflang="ko" href="https://babinom.com/ko/get/" />
+    <link rel="alternate" hreflang="ar" href="https://babinom.com/ar/get/" />
+    <link rel="alternate" hreflang="x-default" href="https://babinom.com/get/" />
+    <style>
+      :root{--bg-top:#FFF1F5;--bg-bot:#FFF8F5;--card:#FCFCFD;--navy:#1F2937;
+            --body:#2F3A44;--gray:#8C94A0;--lgry:#B0B6C2;--line:#EEF0F3;
+            --chip:#F6F7F9;--pnk:#E53B7C;--grn:#38D39F;--red:#FF6B6B}
+      *{box-sizing:border-box}
+      html,body{margin:0}
+      body{background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-top) 38%,var(--bg-bot) 100%);
+           color:var(--navy);font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+      .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+      a{color:inherit}
+      .lang select{font:inherit;font-size:.76rem;color:var(--gray);background:transparent;border:0;cursor:pointer}
+
+      .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+      .bar{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+      .bar a.brand{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;
+                   text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+      .brand img,.wordmark img{width:26px;height:26px;border-radius:7px;display:block}
+      .bar nav{display:flex;gap:18px;align-items:center}
+      .bar nav a{font-size:.8rem;color:var(--gray);text-decoration:none}
+      .bar nav a:hover{color:var(--navy)}
+      .hero{padding:48px 0 12px;max-width:44rem}
+      .hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+      .hero p{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--body);line-height:1.55;margin:0 0 28px}
+      .cta{display:flex;gap:12px;flex-wrap:wrap}
+      .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:15px 28px;
+           border-radius:999px;font-weight:600;font-size:.95rem}
+      .btn--ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+      /* The pull-quote is the one moment with no card around it. Uniform boxes
+         all the way down is what made the old page read as assembled rather
+         than designed. */
+      .pull{padding:64px 0 72px;max-width:30rem}
+      .pull:before{content:"";display:block;width:44px;height:3px;border-radius:2px;
+                   background:var(--pnk);margin:0 0 22px}
+      .pull p{font-size:clamp(1.25rem,2.8vw,1.6rem);line-height:1.45;margin:0;
+              color:var(--navy);font-weight:500;letter-spacing:-.005em}
+      .steps{display:grid;gap:56px;padding:24px 0 72px}
+      @media(min-width:860px){.steps{gap:96px}}
+      .step{display:grid;gap:28px;align-items:center}
+      @media(min-width:860px){
+        .step{grid-template-columns:1fr 1fr}
+        .step:nth-child(even) .shot{order:2}
+      }
+      .step .n{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pnk);margin:0 0 10px}
+      .step h2{font-size:clamp(1.35rem,3.2vw,1.9rem);margin:0 0 12px;line-height:1.2}
+      .step p{color:var(--body);line-height:1.65;margin:0;font-size:1rem}
+      .shot img{display:block;width:100%;height:auto;max-width:300px;margin:0 auto;
+                filter:drop-shadow(0 24px 44px rgba(30,41,59,.16))}
+      .band{background:var(--card);border-radius:36px;padding:clamp(32px,6vw,64px);margin:0 0 72px}
+      .band h2{font-size:clamp(1.5rem,4vw,2.2rem);margin:0 0 14px;line-height:1.2}
+      .band p{color:var(--body);line-height:1.65;margin:0 0 26px;max-width:38rem;font-size:1rem}
+      .band .note{color:var(--gray);font-size:.85rem;margin:14px 0 0}
+      .faq{padding:0 0 72px}
+      .faq h2{font-size:clamp(1.4rem,3.4vw,2rem);margin:0 0 26px}
+      .faq details{border-top:1px solid var(--line);padding:18px 0}
+      .faq summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none}
+      .faq summary::-webkit-details-marker{display:none}
+      .faq summary::after{content:"+";float:inline-end;color:var(--gray);font-weight:400}
+      .faq details[open] summary::after{content:"\2013"}
+      .faq p{color:var(--body);line-height:1.65;margin:12px 0 0;font-size:.98rem}
+
+      .foot{border-top:1px solid var(--line);padding:36px 0 48px;text-align:center}
+      .foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+      .foot-links a{font-size:.8rem;color:var(--gray);text-decoration:none}
+      .foot-links a:hover{color:var(--navy)}
+      .promise{color:var(--navy);font-size:.88rem;margin:0 0 6px}
+      .copy{color:var(--lgry);font-size:.78rem;margin:0}
+      .foot-social{display:flex;gap:14px;justify-content:center;margin:0 0 16px}
+      .foot-social a{color:var(--gray);display:inline-flex;transition:color .15s}
+      .foot-social a:hover{color:var(--navy)}
+      .foot-langs{display:flex;gap:6px 14px;justify-content:center;flex-wrap:wrap;margin:0 0 14px}
+      .foot-langs a{font-size:.78rem;color:var(--gray);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+      .foot-langs a:hover{color:var(--navy)}
+      .foot-langs a[aria-current]{color:var(--navy);font-weight:600}
+      .foot-langs .flag{font-size:.95rem;line-height:1}
+      .get{max-width:46rem;margin:0 auto;padding:24px 0 56px;text-align:center}
+      .get h1{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
+      .get .lead{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--body);line-height:1.6;margin:0 auto 18px;max-width:36rem}
+      .trial{display:inline-block;background:#FFE4EE;color:var(--navy);border-radius:14px;padding:10px 16px;
+             font-size:.92rem;line-height:1.45;margin:0 0 8px}
+      .get-grid{display:grid;gap:16px;margin-top:24px;text-align:start}
+      @media(min-width:720px){.get-grid{grid-template-columns:1fr 1fr}}
+      .get-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px;display:flex;flex-direction:column}
+      .get-card h2{margin:0 0 6px;font-size:1.15rem}
+      .get-card>p{margin:0 0 18px;color:var(--body);font-size:.95rem;line-height:1.55}
+      .get-card .btns{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+      .get-card .btn{text-align:center}
+      .get-list{list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--body)}
+      .get-list li{padding:3px 0;padding-inline-start:20px;position:relative}
+      .get-list li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--pnk)}
+      .get .note{color:var(--gray);font-size:.85rem;line-height:1.5;margin:14px 0 0}
+      .get .note a{color:var(--navy)}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="bar">
+        <a class="brand" href="/fr/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
+        <nav>
+          <a href="/fr/how-it-works/">Comment ça marche</a>
+          <label class="lang"><span class="sr-only">Langue</span><select id="lang-select" aria-label="Langue"><option value="/get/" data-lang="en">English</option><option value="/nl/get/" data-lang="nl">Nederlands</option><option value="/de/get/" data-lang="de">Deutsch</option><option value="/fr/get/" data-lang="fr" selected>Français</option><option value="/es/get/" data-lang="es">Español</option><option value="/it/get/" data-lang="it">Italiano</option><option value="/pt/get/" data-lang="pt">Português</option><option value="/zh/get/" data-lang="zh">中文</option><option value="/ja/get/" data-lang="ja">日本語</option><option value="/ko/get/" data-lang="ko">한국어</option><option value="/ar/get/" data-lang="ar">العربية</option></select></label>
+        </nav>
+      </div>
+
+      <main class="get">
+        <h1>Trouvez ensemble le prénom de votre bébé</h1>
+        <p class="lead">Vous et votre partenaire faites défiler les prénoms chacun sur votre téléphone. Un prénom ne devient un match que si vous l'avez aimé tous les deux.</p>
+        <p class="trial">Gratuit pour commencer. Connectez-vous à votre partenaire et profitez tous les deux de 3 jours de balayages illimités.</p>
+
+        <div class="get-grid">
+          <section class="get-card">
+            <h2>Obtenir l'app</h2>
+            <p>Gratuit. Vous commencez en moins d'une minute.</p>
+            <div class="btns">
+              <a class="btn" id="ios" href="https://apps.apple.com/app/id6764676399">Télécharger dans l'App Store</a>
+              <a class="btn btn--ghost" id="play" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Disponible sur Google Play</a>
+            </div>
+          </section>
+
+          <section class="get-card">
+            <h2>Débloquer Premium</h2>
+            <p>Un seul paiement, partagé avec votre partenaire. Pas d'abonnement — vous verrez le prix dans votre devise au moment de payer.</p>
+            <ul class="get-list">
+              <li>Balayages illimités pour vous deux</li>
+              <li>Tous les filtres débloqués</li>
+              <li>Fonctionne sur le téléphone que vous avez déjà</li>
+            </ul>
+            <div class="btns">
+              <a class="btn btn--ghost" id="buy" href="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401">Acheter Premium</a>
+            </div>
+            <p class="note">Vous recevrez un e-mail contenant un lien qui ajoute Premium à votre compte.</p>
+          </section>
+        </div>
+
+        <p class="note" style="margin-top:24px">Déjà acheté sur le site ? Ouvrez le lien dans l'e-mail d'achat, ou <a href="/support/">demandez-nous de le renvoyer</a>.</p>
+      </main>
+
+    <footer class="foot">
+      <nav class="foot-links">
+        <a href="/fr/how-it-works/">Comment ça marche</a>
+        <a href="/fr/get/">Obtenir l'app</a>
+        <a href="/privacy/">Politique de confidentialité</a>
+        <a href="/terms/">Conditions d'utilisation</a>
+        <a href="/cookies/">Politique relative aux cookies</a>
+        <a href="/ai-disclaimer/">Avertissement IA</a>
+        <a href="/support/">Aide &amp; support</a>
+      </nav>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/babinom.app/" rel="me noopener" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+        <a href="https://www.tiktok.com/@babinom.app" rel="me noopener" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+      </div>
+      <p class="promise">Pas de publicité. Pas de pistage. Privé par conception.</p>
+      <nav class="foot-langs"><a href="/get/" data-lang="en" hreflang="en"><span class="flag" aria-hidden="true">🇬🇧</span>English</a><a href="/nl/get/" data-lang="nl" hreflang="nl"><span class="flag" aria-hidden="true">🇳🇱</span>Nederlands</a><a href="/de/get/" data-lang="de" hreflang="de"><span class="flag" aria-hidden="true">🇩🇪</span>Deutsch</a><a href="/fr/get/" data-lang="fr" hreflang="fr" aria-current="true"><span class="flag" aria-hidden="true">🇫🇷</span>Français</a><a href="/es/get/" data-lang="es" hreflang="es"><span class="flag" aria-hidden="true">🇪🇸</span>Español</a><a href="/it/get/" data-lang="it" hreflang="it"><span class="flag" aria-hidden="true">🇮🇹</span>Italiano</a><a href="/pt/get/" data-lang="pt" hreflang="pt"><span class="flag" aria-hidden="true">🇵🇹</span>Português</a><a href="/zh/get/" data-lang="zh" hreflang="zh"><span class="flag" aria-hidden="true">🇨🇳</span>中文</a><a href="/ja/get/" data-lang="ja" hreflang="ja"><span class="flag" aria-hidden="true">🇯🇵</span>日本語</a><a href="/ko/get/" data-lang="ko" hreflang="ko"><span class="flag" aria-hidden="true">🇰🇷</span>한국어</a><a href="/ar/get/" data-lang="ar" hreflang="ar"><span class="flag" aria-hidden="true">🇸🇦</span>العربية</a></nav>
+      <p class="copy">&copy; 2026 Babinom</p>
+    </footer>
+    </div>
+    <script>
+
+      // LANGUAGE — two rules, and the second matters more than the first.
+      //
+      // 1. Detect ONCE, on the English root only. navigator.language is the
+      //    visitor's own setting, which beats IP: a Dutch speaker in Spain
+      //    should get Dutch, not Spanish.
+      // 2. A MANUAL CHOICE WINS AND STICKS. Stored on pick, checked before any
+      //    redirect, and detection never runs twice. Auto-detection is wrong
+      //    for somebody however it is built, and someone who cannot escape the
+      //    wrong language leaves.
+      (function(){
+        var DIRS={"en":"/","nl":"/nl/","de":"/de/","fr":"/fr/","es":"/es/","it":"/it/","pt":"/pt/","zh":"/zh/","ja":"/ja/","ko":"/ko/","ar":"/ar/"}, KEY="babinom_lang";
+        var sel=document.getElementById("lang-select");
+        function store(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+        function stored(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+        // Footer language links: remember the pick before navigating, or the
+        // English root re-detects over it on the visitor's next visit.
+        document.addEventListener("click",function(e){
+          var a=e.target.closest&&e.target.closest("a[data-lang]");
+          if(a) store(a.getAttribute("data-lang"));
+        });
+        if(sel){sel.addEventListener("change",function(){
+          var o=sel.options[sel.selectedIndex];
+          store(o.getAttribute("data-lang"));   // remember the LANGUAGE, not the URL
+          location.href=o.value;
+        });}
+        if("fr"!=="en") return;
+        if(location.search.indexOf("nolang")>=0) return;
+        if(stored()) return;
+        try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
+             sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
+        var want=(navigator.language||"en").toLowerCase().split("-")[0];
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"get/"+location.search+location.hash);
+      })();
+      (function(){
+        var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401";
+        var qs=new URLSearchParams(location.search);
+        var ref=(qs.get("ref")||"").toLowerCase().replace(/[^a-z0-9-]/g,"").slice(0,40);
+        window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit(ref);
+        // sessionStorage as well as the query string: the hop partner page ->
+        // here -> Stripe can lose a param to a share sheet or in-app browser.
+        try{ if(ref) sessionStorage.setItem("babinom_ref",ref); else ref=sessionStorage.getItem("babinom_ref")||""; }catch(e){}
+        var buy=AFF[ref]||GEN;
+        if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
+        document.getElementById("buy").href=buy;
+        // App Store campaign token passthrough (/es/get/?ct=tiktok_es), so a
+        // campaign is separable in App Analytics. Apple also needs the Provider
+        // Token (pt) before ct is reported; add it once App Store Connect gives one.
+        var ct=qs.get("ct");
+        if(ct) document.getElementById("ios").href="https://apps.apple.com/app/id6764676399"+"?ct="+encodeURIComponent(ct.slice(0,40));
+      })();
+    </script>
+  </body>
+</html>

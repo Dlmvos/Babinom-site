@@ -102,7 +102,7 @@
         <a class="brand" href="/ja/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
         <nav>
           <a href="/ja/">試してみる</a>
-          <a href="/get/">アプリを入手</a>
+          <a href="/ja/get/">アプリを入手</a>
           <label class="lang"><span class="sr-only">言語</span><select id="lang-select" aria-label="言語"><option value="/how-it-works/" data-lang="en">English</option><option value="/nl/how-it-works/" data-lang="nl">Nederlands</option><option value="/de/how-it-works/" data-lang="de">Deutsch</option><option value="/fr/how-it-works/" data-lang="fr">Français</option><option value="/es/how-it-works/" data-lang="es">Español</option><option value="/it/how-it-works/" data-lang="it">Italiano</option><option value="/pt/how-it-works/" data-lang="pt">Português</option><option value="/zh/how-it-works/" data-lang="zh">中文</option><option value="/ja/how-it-works/" data-lang="ja" selected>日本語</option><option value="/ko/how-it-works/" data-lang="ko">한국어</option><option value="/ar/how-it-works/" data-lang="ar">العربية</option></select></label>
         </nav>
       </div>
@@ -111,7 +111,7 @@
         <h1>ふたりで、おだやかに決める</h1>
         <p>あなたは Luna がいい。相手は Max がいい。どちらも口に出さないまま、話は一か月止まります。</p>
         <div class="cta">
-          <a class="btn" href="/get/">Babinom を無料で入手</a>
+          <a class="btn" href="/ja/get/">Babinom を無料で入手</a>
           <a class="btn btn--ghost" href="/ja/">試してみる</a>
         </div>
       </section>
@@ -136,7 +136,7 @@
       <section class="band">
         <h2>一度の購入を、ふたりで</h2>
         <p>プレミアムは1日のスワイプ上限をなくし、すべての絞り込み（国・由来・雰囲気・人気度）を解除します。ここでの買い切りで、ずっとお使いいただけます。どちらかが購入した時点でふたりとも使えます。</p>
-        <a class="btn" href="/get/">プレミアムを購入</a>
+        <a class="btn" href="/ja/get/">プレミアムを購入</a>
         <p class="note">アカウントにプレミアムを追加するリンクをメールでお送りします。</p>
       </section>
 
@@ -151,7 +151,7 @@
     <footer class="foot">
       <nav class="foot-links">
         <a href="/ja/how-it-works/">使い方</a>
-        <a href="/get/">アプリを入手</a>
+        <a href="/ja/get/">アプリを入手</a>
         <a href="/privacy/">プライバシーポリシー</a>
         <a href="/terms/">利用規約</a>
         <a href="/cookies/">Cookie ポリシー</a>
@@ -199,7 +199,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash);
       })();</script>
   </body>
 </html>

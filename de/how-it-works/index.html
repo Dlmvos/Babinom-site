@@ -102,7 +102,7 @@
         <a class="brand" href="/de/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
         <nav>
           <a href="/de/">Ausprobieren</a>
-          <a href="/get/">App holen</a>
+          <a href="/de/get/">App holen</a>
           <label class="lang"><span class="sr-only">Sprache</span><select id="lang-select" aria-label="Sprache"><option value="/how-it-works/" data-lang="en">English</option><option value="/nl/how-it-works/" data-lang="nl">Nederlands</option><option value="/de/how-it-works/" data-lang="de" selected>Deutsch</option><option value="/fr/how-it-works/" data-lang="fr">Français</option><option value="/es/how-it-works/" data-lang="es">Español</option><option value="/it/how-it-works/" data-lang="it">Italiano</option><option value="/pt/how-it-works/" data-lang="pt">Português</option><option value="/zh/how-it-works/" data-lang="zh">中文</option><option value="/ja/how-it-works/" data-lang="ja">日本語</option><option value="/ko/how-it-works/" data-lang="ko">한국어</option><option value="/ar/how-it-works/" data-lang="ar">العربية</option></select></label>
         </nav>
       </div>
@@ -111,7 +111,7 @@
         <h1>Gemeinsam entscheiden, ohne Streit</h1>
         <p>Dir gefällt Luna. Ihm gefällt Max. Keiner sagt es laut, und das Gespräch steht einen Monat still.</p>
         <div class="cta">
-          <a class="btn" href="/get/">Babinom holen — gratis</a>
+          <a class="btn" href="/de/get/">Babinom holen — gratis</a>
           <a class="btn btn--ghost" href="/de/">Ausprobieren</a>
         </div>
       </section>
@@ -136,7 +136,7 @@
       <section class="band">
         <h2>Einmal freischalten, zu zweit nutzen</h2>
         <p>Premium hebt das tägliche Wischlimit auf und schaltet alle Filter frei — nach Land, Herkunft, Stil und Beliebtheit. Eine Zahlung hier, dauerhaft freigeschaltet, und es gilt sofort für euch beide, sobald einer von euch kauft.</p>
-        <a class="btn" href="/get/">Premium kaufen</a>
+        <a class="btn" href="/de/get/">Premium kaufen</a>
         <p class="note">Du bekommst eine E-Mail mit einem Link, der Premium deinem Konto hinzufügt.</p>
       </section>
 
@@ -151,7 +151,7 @@
     <footer class="foot">
       <nav class="foot-links">
         <a href="/de/how-it-works/">So funktioniert es</a>
-        <a href="/get/">App holen</a>
+        <a href="/de/get/">App holen</a>
         <a href="/privacy/">Datenschutzerklärung</a>
         <a href="/terms/">Nutzungsbedingungen</a>
         <a href="/cookies/">Cookie-Richtlinie</a>
@@ -199,7 +199,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash);
       })();</script>
   </body>
 </html>

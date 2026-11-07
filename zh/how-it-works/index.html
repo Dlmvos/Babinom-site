@@ -102,7 +102,7 @@
         <a class="brand" href="/zh/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
         <nav>
           <a href="/zh/">试一试</a>
-          <a href="/get/">下载应用</a>
+          <a href="/zh/get/">下载应用</a>
           <label class="lang"><span class="sr-only">语言</span><select id="lang-select" aria-label="语言"><option value="/how-it-works/" data-lang="en">English</option><option value="/nl/how-it-works/" data-lang="nl">Nederlands</option><option value="/de/how-it-works/" data-lang="de">Deutsch</option><option value="/fr/how-it-works/" data-lang="fr">Français</option><option value="/es/how-it-works/" data-lang="es">Español</option><option value="/it/how-it-works/" data-lang="it">Italiano</option><option value="/pt/how-it-works/" data-lang="pt">Português</option><option value="/zh/how-it-works/" data-lang="zh" selected>中文</option><option value="/ja/how-it-works/" data-lang="ja">日本語</option><option value="/ko/how-it-works/" data-lang="ko">한국어</option><option value="/ar/how-it-works/" data-lang="ar">العربية</option></select></label>
         </nav>
       </div>
@@ -111,7 +111,7 @@
         <h1>更从容地一起决定</h1>
         <p>你喜欢 Luna，另一半喜欢 Max。谁都没说出口，这个话题就搁置了一个月。</p>
         <div class="cta">
-          <a class="btn" href="/get/">免费下载 Babinom</a>
+          <a class="btn" href="/zh/get/">免费下载 Babinom</a>
           <a class="btn btn--ghost" href="/zh/">试一试</a>
         </div>
       </section>
@@ -136,7 +136,7 @@
       <section class="band">
         <h2>一次升级，两个人共享</h2>
         <p>高级版取消每日滑动上限，并解锁全部筛选 — 国家、来源、风格与热门度。在这里一次付费，永久有效，只要一方购买，双方立即生效。</p>
-        <a class="btn" href="/get/">购买高级版</a>
+        <a class="btn" href="/zh/get/">购买高级版</a>
         <p class="note">你会收到一封邮件，点击其中的链接即可为账号添加高级版。</p>
       </section>
 
@@ -151,7 +151,7 @@
     <footer class="foot">
       <nav class="foot-links">
         <a href="/zh/how-it-works/">使用方法</a>
-        <a href="/get/">下载应用</a>
+        <a href="/zh/get/">下载应用</a>
         <a href="/privacy/">隐私政策</a>
         <a href="/terms/">服务条款</a>
         <a href="/cookies/">Cookie 政策</a>
@@ -199,7 +199,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash);
       })();</script>
   </body>
 </html>

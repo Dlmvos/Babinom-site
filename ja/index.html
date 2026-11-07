@@ -159,8 +159,8 @@
         <h1 id="r-title">選んだ名前 <span id="r-names"></span></h1>
         <p id="r-body"></p>
         <div class="row">
-          <a class="btn" id="cta-free" href="/get/">Babinom を無料で入手</a>
-          <a class="btn btn--ghost" id="cta-prem" href="/get/">プレミアムを解除</a>
+          <a class="btn" id="cta-free" href="/ja/get/">Babinom を無料で入手</a>
+          <a class="btn btn--ghost" id="cta-prem" href="/ja/get/">プレミアムを解除</a>
         </div>
         <p class="more"><a href="/ja/how-it-works/">使い方を見る</a></p>
         <button class="again" id="again">もう3つ見る</button>
@@ -170,7 +170,7 @@
     <footer class="foot">
       <nav class="foot-links">
         <a href="/ja/how-it-works/">使い方</a>
-        <a href="/get/">アプリを入手</a>
+        <a href="/ja/get/">アプリを入手</a>
         <a href="/privacy/">プライバシーポリシー</a>
         <a href="/terms/">利用規約</a>
         <a href="/cookies/">Cookie ポリシー</a>
@@ -188,7 +188,7 @@
     <script>
       var T={"meaning":"意味","liked":"好き","passed":"パス","swipe":"&larr; スワイプ &rarr;","rTitle":"選んだ名前","rBody":"それがこのアプリの考え方です。あなたも相手もそれぞれ非公開でスワイプし、ふたりとも「はい」と答えた名前だけが表れます。","nTitle":"どれもぴんとこない？","nBody":"よくあることです — アプリには何十万もの名前があり、由来・雰囲気・国で絞り込めます。"};
       var NAMES=[{"name":"Nora","gender":"女の子","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"男の子","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"女の子","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"男の子","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"男の子","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
-      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401";
+      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",GET="/ja/get/";
 
       // LANGUAGE — two rules, and the second matters more than the first.
       //
@@ -221,7 +221,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+""+location.search+location.hash);
       })();
 
       (function(){
@@ -251,7 +253,7 @@
         var buy=AFF[ref]||GEN;
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
         document.getElementById("cta-prem").href=buy;
-        document.getElementById("cta-free").href=ref?"/get/?ref="+encodeURIComponent(ref):"/get/";
+        document.getElementById("cta-free").href=ref?GET+"?ref="+encodeURIComponent(ref):GET;
 
         function shuffled(){var a=NAMES.slice();
           for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}

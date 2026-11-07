@@ -159,8 +159,8 @@
         <h1 id="r-title">Gostou de <span id="r-names"></span></h1>
         <p id="r-body"></p>
         <div class="row">
-          <a class="btn" id="cta-free" href="/get/">Obter Babinom — grátis</a>
-          <a class="btn btn--ghost" id="cta-prem" href="/get/">Desbloquear Premium</a>
+          <a class="btn" id="cta-free" href="/pt/get/">Obter Babinom — grátis</a>
+          <a class="btn btn--ghost" id="cta-prem" href="/pt/get/">Desbloquear Premium</a>
         </div>
         <p class="more"><a href="/pt/how-it-works/">Como funciona</a></p>
         <button class="again" id="again">Mais três nomes</button>
@@ -170,7 +170,7 @@
     <footer class="foot">
       <nav class="foot-links">
         <a href="/pt/how-it-works/">Como funciona</a>
-        <a href="/get/">Obter a app</a>
+        <a href="/pt/get/">Obter a app</a>
         <a href="/privacy/">Política de privacidade</a>
         <a href="/terms/">Termos de serviço</a>
         <a href="/cookies/">Política de cookies</a>
@@ -188,7 +188,7 @@
     <script>
       var T={"meaning":"Significado","liked":"Gosto","passed":"Não","swipe":"&larr; deslizar &rarr;","rTitle":"Gostou de","rBody":"É exatamente essa a ideia. Desliza em privado, o seu parceiro desliza em privado, e um nome só aparece quando ambos disseram que sim.","nTitle":"Nenhum destes?","nBody":"Acontece — na app há centenas de milhares mais, filtrados por origem, estilo e país."};
       var NAMES=[{"name":"Nora","gender":"Menina","cls":"girl","rank":"#3 · Top 50","origin":"Irish / Arabic","meaning":"Honor; light"},{"name":"Liam","gender":"Menino","cls":"boy","rank":"#4 · Top 50","origin":"Irish / American","meaning":"Strong-willed warrior; protector"},{"name":"Sofia","gender":"Menina","cls":"girl","rank":"#24 · Top 50","origin":"Greek","meaning":"Wisdom"},{"name":"Julian","gender":"Menino","cls":"boy","rank":"#45 · Top 50","origin":"Latin","meaning":"Youthful; downy"},{"name":"Mateo","gender":"Menino","cls":"boy","rank":"#102","origin":"Spanish","meaning":"Gift of God"}];
-      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401";
+      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",GET="/pt/get/";
 
       // LANGUAGE — two rules, and the second matters more than the first.
       //
@@ -221,7 +221,9 @@
         try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
              sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+location.search+location.hash);
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+""+location.search+location.hash);
       })();
 
       (function(){
@@ -251,7 +253,7 @@
         var buy=AFF[ref]||GEN;
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
         document.getElementById("cta-prem").href=buy;
-        document.getElementById("cta-free").href=ref?"/get/?ref="+encodeURIComponent(ref):"/get/";
+        document.getElementById("cta-free").href=ref?GET+"?ref="+encodeURIComponent(ref):GET;
 
         function shuffled(){var a=NAMES.slice();
           for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}
