@@ -24,7 +24,7 @@
               <a class="button" id="go" href="https://babinom.onelink.me/cjbH?pid=babyzus&c=babyzus_default">Get Babinom — free</a>
             </div>
             <div class="actions" style="justify-content:center; margin-top: 12px;">
-              <a class="button button--ghost" id="buy" href="https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402?client_reference_id=babyzus">Unlock Premium for both of you</a>
+              <a class="button button--ghost" id="buy" data-track="web" href="https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402?client_reference_id=babyzus">Unlock Premium for both of you</a>
             </div>
             <p class="cta-note" style="margin-top: 12px; font-size: 0.85rem;">
               One payment, shared with your partner. No subscription.
@@ -34,7 +34,7 @@
         </div>
       </section>
     </main>
-    <script>window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit("babyzus");</script>
+    <script>window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit("babyzus");window.babinomTrack=function(p,l){var ct=(new URLSearchParams(location.search).get("ct")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);function send(ev){try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_site_event",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_page:p,p_lang:l,p_ct:ct,p_event:ev})}).catch(function(){})}catch(e){}}if(!window.babinomRedirecting)send("view");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-track]");if(a)send(a.getAttribute("data-track"))},true);return ct};babinomTrack("partner","en");</script>
     <script>
       // NO auto-redirect on a page that has something to sell — bouncing
       // straight to the app store would mean nobody ever sees the purchase

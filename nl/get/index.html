@@ -137,8 +137,8 @@
             <h2>Download de app</h2>
             <p>Gratis. Binnen een minuut aan het swipen.</p>
             <div class="btns">
-              <a class="btn" id="ios" href="https://apps.apple.com/app/id6764676399">Download in de App Store</a>
-              <a class="btn btn--ghost" id="play" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Ontdek het op Google Play</a>
+              <a class="btn" id="ios" data-track="ios" href="https://apps.apple.com/app/id6764676399">Download in de App Store</a>
+              <a class="btn btn--ghost" id="play" data-track="android" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Ontdek het op Google Play</a>
             </div>
           </section>
 
@@ -151,7 +151,7 @@
               <li>Werkt op de telefoon die je al hebt</li>
             </ul>
             <div class="btns">
-              <a class="btn btn--ghost" id="buy" href="https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402">Premium kopen</a>
+              <a class="btn btn--ghost" id="buy" data-track="web" href="https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402">Premium kopen</a>
             </div>
             <p class="note">Je ontvangt een e-mail met een link die Premium aan je account toevoegt.</p>
           </section>
@@ -214,8 +214,9 @@
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
         // Same page in their language: /get/ must land on /es/get/, not the
         // Spanish homepage, or paid traffic to the download page loses it.
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"get/"+location.search+location.hash);
+        if(DIRS[want]&&want!=="en"){ window.babinomRedirecting=true; location.replace(DIRS[want]+"get/"+location.search+location.hash); }
       })();
+      window.babinomTrack=function(p,l){var ct=(new URLSearchParams(location.search).get("ct")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);function send(ev){try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_site_event",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_page:p,p_lang:l,p_ct:ct,p_event:ev})}).catch(function(){})}catch(e){}}if(!window.babinomRedirecting)send("view");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-track]");if(a)send(a.getAttribute("data-track"))},true);return ct};babinomTrack("get","nl");
       (function(){
         var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",PROMO={"url":"https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402","end":1796164556000};
         if(!(PROMO&&Date.now()<PROMO.end)){var pe=document.getElementById("promo");if(pe)pe.hidden=true;}

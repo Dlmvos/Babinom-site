@@ -201,7 +201,8 @@
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
         // Same page in their language: /get/ must land on /es/get/, not the
         // Spanish homepage, or paid traffic to the download page loses it.
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash);
-      })();</script>
+        if(DIRS[want]&&want!=="en"){ window.babinomRedirecting=true; location.replace(DIRS[want]+"how-it-works/"+location.search+location.hash); }
+      })();
+      window.babinomTrack=function(p,l){var ct=(new URLSearchParams(location.search).get("ct")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);function send(ev){try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_site_event",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_page:p,p_lang:l,p_ct:ct,p_event:ev})}).catch(function(){})}catch(e){}}if(!window.babinomRedirecting)send("view");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-track]");if(a)send(a.getAttribute("data-track"))},true);return ct};babinomTrack("how","fr");</script>
   </body>
 </html>

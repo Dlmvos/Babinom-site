@@ -160,7 +160,7 @@
         <p id="r-body"></p>
         <div class="row">
           <a class="btn" id="cta-free" href="/ko/get/">Babinom 무료로 받기</a>
-          <a class="btn btn--ghost" id="cta-prem" href="/ko/get/">프리미엄 잠금 해제</a>
+          <a class="btn btn--ghost" id="cta-prem" data-track="web" href="/ko/get/">프리미엄 잠금 해제</a>
         </div>
         <p class="more"><a href="/ko/how-it-works/">이용 방법 보기</a></p>
         <button class="again" id="again">세 개 더 보기</button>
@@ -223,8 +223,9 @@
         var want=(navigator.language||"en").toLowerCase().split("-")[0];
         // Same page in their language: /get/ must land on /es/get/, not the
         // Spanish homepage, or paid traffic to the download page loses it.
-        if(DIRS[want]&&want!=="en") location.replace(DIRS[want]+""+location.search+location.hash);
+        if(DIRS[want]&&want!=="en"){ window.babinomRedirecting=true; location.replace(DIRS[want]+""+location.search+location.hash); }
       })();
+      window.babinomTrack=function(p,l){var ct=(new URLSearchParams(location.search).get("ct")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);function send(ev){try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_site_event",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_page:p,p_lang:l,p_ct:ct,p_event:ev})}).catch(function(){})}catch(e){}}if(!window.babinomRedirecting)send("view");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-track]");if(a)send(a.getAttribute("data-track"))},true);return ct};var CT=babinomTrack("home","ko");
 
       (function(){
         "use strict";
@@ -253,7 +254,8 @@
         var buy=(PROMO&&Date.now()<PROMO.end)?PROMO.url:(AFF[ref]||GEN);
         if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
         document.getElementById("cta-prem").href=buy;
-        document.getElementById("cta-free").href=ref?GET+"?ref="+encodeURIComponent(ref):GET;
+        var gq=[];if(ref)gq.push("ref="+encodeURIComponent(ref));if(CT)gq.push("ct="+CT);
+        document.getElementById("cta-free").href=GET+(gq.length?"?"+gq.join("&"):"");
 
         function shuffled(){var a=NAMES.slice();
           for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}
