@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://ivydlnahcnembpjnmntm.supabase.co; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Babinom — vauvanimet pariskunnille</title>
+    <meta name="description" content="Pyyhkäise vauvanimiä yksityisesti. Nimestä tulee osuma vasta, kun pidätte siitä molemmat." />
+    <link rel="canonical" href="https://babinom.com/fi/" />
+    <link rel="alternate" hreflang="en" href="https://babinom.com/" />
+    <link rel="alternate" hreflang="nl" href="https://babinom.com/nl/" />
+    <link rel="alternate" hreflang="de" href="https://babinom.com/de/" />
+    <link rel="alternate" hreflang="fr" href="https://babinom.com/fr/" />
+    <link rel="alternate" hreflang="es" href="https://babinom.com/es/" />
+    <link rel="alternate" hreflang="it" href="https://babinom.com/it/" />
+    <link rel="alternate" hreflang="pt" href="https://babinom.com/pt/" />
+    <link rel="alternate" hreflang="zh" href="https://babinom.com/zh/" />
+    <link rel="alternate" hreflang="ja" href="https://babinom.com/ja/" />
+    <link rel="alternate" hreflang="ko" href="https://babinom.com/ko/" />
+    <link rel="alternate" hreflang="ar" href="https://babinom.com/ar/" />
+    <link rel="alternate" hreflang="hu" href="https://babinom.com/hu/" />
+    <link rel="alternate" hreflang="pl" href="https://babinom.com/pl/" />
+    <link rel="alternate" hreflang="nb" href="https://babinom.com/nb/" />
+    <link rel="alternate" hreflang="tr" href="https://babinom.com/tr/" />
+    <link rel="alternate" hreflang="fi" href="https://babinom.com/fi/" />
+    <link rel="alternate" hreflang="x-default" href="https://babinom.com/" />    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Babinom",
+  "url": "https://babinom.com/fi/",
+  "description": "Pyyhkäise vauvanimiä yksityisesti. Nimestä tulee osuma vasta, kun pidätte siitä molemmat.",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "iOS, Android",
+  "inLanguage": [
+    "en",
+    "nl",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "pt",
+    "zh",
+    "ja",
+    "ko",
+    "ar",
+    "hu",
+    "pl",
+    "nb",
+    "tr",
+    "fi"
+  ],
+  "sameAs": [
+    "https://apps.apple.com/app/id6764676399",
+    "https://play.google.com/store/apps/details?id=com.daanvos.namenest",
+    "https://www.instagram.com/babinom.app/",
+    "https://www.tiktok.com/@babinom.app"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Babinom",
+    "url": "https://babinom.com/"
+  }
+}
+    </script>
+
+    <style>
+      :root{--bg-top:#FFF1F5;--bg-bot:#FFF8F5;--card:#FCFCFD;--navy:#1F2937;
+            --body:#2F3A44;--gray:#8C94A0;--lgry:#B0B6C2;--line:#EEF0F3;
+            --chip:#F6F7F9;--pnk:#E53B7C;--grn:#38D39F;--red:#FF6B6B}
+      *{box-sizing:border-box}
+      html,body{margin:0}
+      body{background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-top) 38%,var(--bg-bot) 100%);
+           color:var(--navy);font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+      .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+      a{color:inherit}
+      .lang select{font:inherit;font-size:.76rem;color:var(--gray);background:transparent;border:0;cursor:pointer}
+
+      body{overflow:hidden}
+      .stage{position:relative;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;
+             padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom)}
+      .top{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 4px 0;position:relative;z-index:3}
+      .wordmark{font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;
+                text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+      .wordmark img{width:26px;height:26px;border-radius:7px;display:block}
+      .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-align:end;max-width:9rem;line-height:1.5}
+      .hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+      .heart{position:absolute;bottom:-60px;color:var(--pnk);opacity:0;animation:rise var(--dur) linear var(--delay) infinite}
+      .heart svg{display:block;animation:beat 1.6s ease-in-out infinite}
+      @keyframes rise{0%{transform:translate3d(0,0,0) scale(var(--s));opacity:0}12%{opacity:var(--o)}88%{opacity:var(--o)}
+        100%{transform:translate3d(var(--drift),calc(-100dvh - 120px),0) scale(var(--s));opacity:0}}
+      @keyframes beat{0%,100%{transform:scale(1)}45%{transform:scale(1.18)}}
+      .deck-wrap{position:relative;display:grid;place-items:center;z-index:2}
+      .deck{position:relative;width:min(86vw,340px);height:min(62dvh,500px)}
+      @media(min-width:900px) and (min-height:760px){.deck{width:min(38vw,380px);height:min(60dvh,530px)}}
+      .name-card{position:absolute;inset:0;background:var(--card);border-radius:34px;display:flex;
+        flex-direction:column;align-items:center;text-align:center;padding:26px 22px 20px;
+        box-shadow:0 20px 44px rgba(30,41,59,.10),0 2px 6px rgba(30,41,59,.04);
+        touch-action:pan-y;cursor:grab;will-change:transform;overflow:hidden}
+      .pills{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+      .pill{font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:999px;white-space:nowrap}
+      .pill--girl{background:rgba(229,59,124,.13);color:var(--pnk)}
+      .pill--boy{background:rgba(43,107,222,.13);color:#2B6BDE}
+      .pill--rank{background:var(--chip);color:var(--gray)}
+      .nm{font-size:clamp(2.2rem,9vw,3rem);font-weight:700;line-height:1.05;margin:4px 0 6px;letter-spacing:-.01em}
+      @media(min-width:900px) and (min-height:760px){.nm{font-size:3.3rem}}
+      .origin{font-style:italic;color:var(--lgry);font-size:.95rem;margin:0 0 14px}
+      .divider{width:56px;height:3px;border-radius:2px;background:var(--line);margin:0 0 16px}
+      .m-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin:0 0 8px}
+      .m-text{font-size:.98rem;color:var(--body);line-height:1.5;margin:0 0 16px;max-width:17rem}
+      .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:auto}
+      .chip{background:var(--chip);color:var(--body);font-size:.78rem;font-weight:500;padding:7px 13px;border-radius:999px}
+      .card-controls{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 4px 0;margin-top:14px}
+      .ctl{width:62px;height:62px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;transition:transform .12s ease}
+      .ctl--pass{background:rgba(255,107,107,.15)}
+      .ctl--like{background:rgba(56,211,159,.15)}
+      .ctl:hover{transform:translateY(-2px)}
+      .ctl:active{transform:scale(.92)}
+      .veeg{font-size:.82rem;color:#9CA3AF}
+      .stamp{position:absolute;top:22px;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+             padding:7px 14px;border-radius:999px;opacity:0;border:2px solid currentColor;z-index:2}
+      .stamp--like{inset-inline-end:18px;color:var(--grn)}
+      .stamp--pass{inset-inline-start:18px;color:var(--red)}
+      .hint{text-align:center;font-size:.78rem;color:#9CA3AF;margin:18px 0 0;position:relative;z-index:3}
+      .result{position:absolute;inset:0;display:none;place-items:center;z-index:4;
+              background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bot) 100%);padding:24px}
+      .result.show{display:grid}
+      .r-in{text-align:center;max-width:27rem}
+      .r-in h1{font-size:clamp(1.5rem,6vw,2.2rem);margin:0 0 12px;line-height:1.25}
+      .r-in p{color:var(--gray);font-size:.98rem;line-height:1.6;margin:0 0 28px}
+      .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:15px 28px;
+           border-radius:999px;font-weight:600;font-size:.95rem}
+      .btn--ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+      .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+      .more{margin:20px 0 0}
+      .more a{font-size:.85rem;color:var(--gray)}
+      .again{display:block;margin:12px auto 0;background:none;border:0;color:var(--gray);font-size:.8rem;
+             cursor:pointer;text-decoration:underline;font-family:inherit}
+      @media (prefers-reduced-motion: reduce){.heart,.heart svg{animation:none;opacity:.12}.ctl{transition:none}}
+      .foot{border-top:1px solid var(--line);padding:36px 0 48px;text-align:center}
+      .foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+      .foot-links a{font-size:.8rem;color:var(--gray);text-decoration:none}
+      .foot-links a:hover{color:var(--navy)}
+      .promise{color:var(--navy);font-size:.88rem;margin:0 0 6px}
+      .copy{color:var(--lgry);font-size:.78rem;margin:0}
+      .foot-social{display:flex;gap:14px;justify-content:center;margin:0 0 16px}
+      .foot-social a{color:var(--gray);display:inline-flex;transition:color .15s}
+      .foot-social a:hover{color:var(--navy)}
+      .foot-langs{display:flex;gap:6px 14px;justify-content:center;flex-wrap:wrap;margin:0 0 14px}
+      .foot-langs a{font-size:.78rem;color:var(--gray);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+      .foot-langs a:hover{color:var(--navy)}
+      .foot-langs a[aria-current]{color:var(--navy);font-weight:600}
+      .foot-langs .flag{font-size:.95rem;line-height:1}
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="hearts" id="hearts" aria-hidden="true"></div>
+      <div class="top">
+        <a class="wordmark" href="/fi/"><img src="/assets/icon.png" alt="" width="26" height="26" decoding="async" /><span>Babinom</span></a>
+        <div class="tag">Vauvanimet<br />pariskunnille</div>
+      </div>
+      <div class="deck-wrap"><div>
+        <div class="deck" id="deck"></div>
+        <p class="hint">Pyyhkäise tai napauta – kukaan ei näe valintojasi</p>
+      </div></div>
+      <div class="result" id="result"><div class="r-in">
+        <h1 id="r-title">Tykkäsit <span id="r-names"></span></h1>
+        <p id="r-body"></p>
+        <div class="row">
+          <a class="btn" id="cta-free" href="/fi/get/">Lataa Babinom – ilmainen</a>
+          <a class="btn btn--ghost" id="cta-prem" data-track="web" href="/fi/get/">Avaa Premium</a>
+        </div>
+        <p class="more"><a href="/fi/how-it-works/">Katso, miten se toimii</a></p>
+        <button class="again" id="again">Kokeile kolmea uutta nimeä</button>
+      </div></div>
+    </div>
+
+    <footer class="foot">
+      <nav class="foot-links">
+        <a href="/fi/how-it-works/">Näin se toimii</a>
+        <a href="/fi/get/">Lataa sovellus</a>
+        <a href="/privacy/">Tietosuojakäytäntö</a>
+        <a href="/terms/">Käyttöehdot</a>
+        <a href="/cookies/">Evästekäytäntö</a>
+        <a href="/ai-disclaimer/">Tekoälyilmoitus</a>
+        <a href="/support/">Ohjeet &amp; tuki</a>
+      </nav>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/babinom.app/" rel="me noopener" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+        <a href="https://www.tiktok.com/@babinom.app" rel="me noopener" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+      </div>
+      <p class="promise">Ei mainoksia. Ei seurantaa. Yksityinen alusta alkaen.</p>
+      <nav class="foot-langs"><a href="/" data-lang="en" hreflang="en"><span class="flag" aria-hidden="true">🇬🇧</span>English</a><a href="/nl/" data-lang="nl" hreflang="nl"><span class="flag" aria-hidden="true">🇳🇱</span>Nederlands</a><a href="/de/" data-lang="de" hreflang="de"><span class="flag" aria-hidden="true">🇩🇪</span>Deutsch</a><a href="/fr/" data-lang="fr" hreflang="fr"><span class="flag" aria-hidden="true">🇫🇷</span>Français</a><a href="/es/" data-lang="es" hreflang="es"><span class="flag" aria-hidden="true">🇪🇸</span>Español</a><a href="/it/" data-lang="it" hreflang="it"><span class="flag" aria-hidden="true">🇮🇹</span>Italiano</a><a href="/pt/" data-lang="pt" hreflang="pt"><span class="flag" aria-hidden="true">🇵🇹</span>Português</a><a href="/zh/" data-lang="zh" hreflang="zh"><span class="flag" aria-hidden="true">🇨🇳</span>中文</a><a href="/ja/" data-lang="ja" hreflang="ja"><span class="flag" aria-hidden="true">🇯🇵</span>日本語</a><a href="/ko/" data-lang="ko" hreflang="ko"><span class="flag" aria-hidden="true">🇰🇷</span>한국어</a><a href="/ar/" data-lang="ar" hreflang="ar"><span class="flag" aria-hidden="true">🇸🇦</span>العربية</a><a href="/hu/" data-lang="hu" hreflang="hu"><span class="flag" aria-hidden="true">🇭🇺</span>Magyar</a><a href="/pl/" data-lang="pl" hreflang="pl"><span class="flag" aria-hidden="true">🇵🇱</span>Polski</a><a href="/nb/" data-lang="nb" hreflang="nb"><span class="flag" aria-hidden="true">🇳🇴</span>Norsk</a><a href="/tr/" data-lang="tr" hreflang="tr"><span class="flag" aria-hidden="true">🇹🇷</span>Türkçe</a><a href="/fi/" data-lang="fi" hreflang="fi" aria-current="true"><span class="flag" aria-hidden="true">🇫🇮</span>Suomi</a></nav>
+      <p class="copy">&copy; 2026 Babinom</p>
+    </footer>
+    <script>
+      var T={"meaning":"Merkitys","liked":"Tykätty","passed":"Ohita","country":"Alankomaat","region":"Eurooppa","swipe":"&larr; pyyhkäise &rarr;","rTitle":"Tykkäsit","rBody":"Siinä koko idea. Sinä pyyhkäiset yksityisesti, kumppanisi pyyhkäisee yksityisesti, ja nimi tulee esiin vasta, kun olette molemmat sanoneet kyllä.","nTitle":"Ei yhtäkään?","nBody":"Sitä sattuu – sovelluksessa on satojatuhansia nimiä lisää, suodatettavissa alkuperän, tyylin ja maan mukaan."};
+      var NAMES=[{"name":"Nora","gender":"Tyttö","cls":"girl","rank":"#3 · Top 50","origin":"Irlantilainen / Arabialainen","meaning":"Kunnia; valo"},{"name":"Liam","gender":"Poika","cls":"boy","rank":"#4 · Top 50","origin":"Irlantilainen / Amerikkalainen","meaning":"Lujatahtoinen soturi; suojelija"},{"name":"Sofia","gender":"Tyttö","cls":"girl","rank":"#24 · Top 50","origin":"Kreikkalainen","meaning":"Viisaus"},{"name":"Julian","gender":"Poika","cls":"boy","rank":"#45 · Top 50","origin":"Latinalainen","meaning":"Nuorekas; untuvainen"},{"name":"Mateo","gender":"Poika","cls":"boy","rank":"#102","origin":"Espanjalainen","meaning":"Jumalan lahja"}];
+      var AFF={"verloscast":"https://buy.stripe.com/4gM9AT8ZleCUa0Yd4sds400"},GEN="https://buy.stripe.com/eVq3cvb7teCU0qo0hGds401",GET="/fi/get/",PROMO={"url":"https://buy.stripe.com/9B6aEXb7tbqIgpme8wds402","end":1796164556000};
+
+      // LANGUAGE — two rules, and the second matters more than the first.
+      //
+      // 1. Detect ONCE, on the English root only. navigator.language is the
+      //    visitor's own setting, which beats IP: a Dutch speaker in Spain
+      //    should get Dutch, not Spanish.
+      // 2. A MANUAL CHOICE WINS AND STICKS. Stored on pick, checked before any
+      //    redirect, and detection never runs twice. Auto-detection is wrong
+      //    for somebody however it is built, and someone who cannot escape the
+      //    wrong language leaves.
+      (function(){
+        var DIRS={"en":"/","nl":"/nl/","de":"/de/","fr":"/fr/","es":"/es/","it":"/it/","pt":"/pt/","zh":"/zh/","ja":"/ja/","ko":"/ko/","ar":"/ar/","hu":"/hu/","pl":"/pl/","nb":"/nb/","tr":"/tr/","fi":"/fi/"}, KEY="babinom_lang";
+        var sel=document.getElementById("lang-select");
+        function store(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+        function stored(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+        // Footer language links: remember the pick before navigating, or the
+        // English root re-detects over it on the visitor's next visit.
+        document.addEventListener("click",function(e){
+          var a=e.target.closest&&e.target.closest("a[data-lang]");
+          if(a) store(a.getAttribute("data-lang"));
+        });
+        if(sel){sel.addEventListener("change",function(){
+          var o=sel.options[sel.selectedIndex];
+          store(o.getAttribute("data-lang"));   // remember the LANGUAGE, not the URL
+          location.href=o.value;
+        });}
+        if("fi"!=="en") return;
+        if(location.search.indexOf("nolang")>=0) return;
+        if(stored()) return;
+        try{ if(sessionStorage.getItem("babinom_lang_seen")) return;
+             sessionStorage.setItem("babinom_lang_seen","1"); }catch(e){}
+        var want=(navigator.language||"en").toLowerCase().split("-")[0];
+        // Norwegian browsers say no, nb or nn; the site has Bokmål as nb.
+        if(want==="no"||want==="nn") want="nb";
+        // Same page in their language: /get/ must land on /es/get/, not the
+        // Spanish homepage, or paid traffic to the download page loses it.
+        if(DIRS[want]&&want!=="en"){ window.babinomRedirecting=true; location.replace(DIRS[want]+""+location.search+location.hash); }
+      })();
+      window.babinomTrack=function(p,l){var ct=(new URLSearchParams(location.search).get("ct")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);function send(ev){try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_site_event",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_page:p,p_lang:l,p_ct:ct,p_event:ev})}).catch(function(){})}catch(e){}}if(!window.babinomRedirecting)send("view");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-track]");if(a)send(a.getAttribute("data-track"))},true);return ct};var CT=babinomTrack("home","fi");
+
+      (function(){
+        "use strict";
+        var HP="M12 21s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 12 8.2 4.5 4.5 0 0 1 19.5 11c0 5.4-7.5 10-7.5 10z";
+        var deck=document.getElementById("deck"),result=document.getElementById("result");
+        var liked=[],queue=[],busy=false;
+
+        (function hearts(){
+          var svg='<svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor"><path d="'+HP+'"/></svg>',h="";
+          for(var i=0;i<14;i++){var s=10+Math.random()*26;
+            h+='<span class="heart" style="left:'+(Math.random()*100).toFixed(2)+'%;width:'+s.toFixed(0)+'px;height:'+s.toFixed(0)+'px;--dur:'
+              +(14+Math.random()*16).toFixed(1)+'s;--delay:-'+(Math.random()*24).toFixed(1)+'s;--drift:'
+              +(Math.random()*120-60).toFixed(0)+'px;--s:'+(0.7+Math.random()*0.6).toFixed(2)+';--o:'
+              +(0.10+Math.random()*0.16).toFixed(2)+'">'+svg+'</span>';}
+          document.getElementById("hearts").innerHTML=h;
+        })();
+
+        // Attribution survives the hop: sessionStorage as well as the query
+        // string, because a share sheet or in-app browser can drop a param and
+        // an unattributed sale is a partner we cannot pay.
+        var qs=new URLSearchParams(location.search);
+        var ref=(qs.get("ref")||"").toLowerCase().replace(/[^a-z0-9-]/g,"").slice(0,40);
+        // partner dashboard: count the visit that ARRIVED with ?ref, not later pages restoring it
+        window.babinomLogVisit=function(s){if(!s)return;try{var k="babinom_visit_"+s;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}try{fetch("https://ivydlnahcnembpjnmntm.supabase.co/rest/v1/rpc/log_affiliate_visit",{method:"POST",keepalive:true,headers:{"apikey":"sb_publishable_PcSALrHel13xq_O4OnqR_w_pPoOlLFV","Content-Type":"application/json"},body:JSON.stringify({p_slug:s})}).catch(function(){})}catch(e){}};babinomLogVisit(ref);
+        try{ if(ref) sessionStorage.setItem("babinom_ref",ref); else ref=sessionStorage.getItem("babinom_ref")||""; }catch(e){}
+        var buy=(PROMO&&Date.now()<PROMO.end)?PROMO.url:(AFF[ref]||GEN);
+        if(ref) buy+=(buy.indexOf("?")<0?"?":"&")+"client_reference_id="+encodeURIComponent(ref);
+        document.getElementById("cta-prem").href=buy;
+        var gq=[];if(ref)gq.push("ref="+encodeURIComponent(ref));if(CT)gq.push("ct="+CT);
+        document.getElementById("cta-free").href=GET+(gq.length?"?"+gq.join("&"):"");
+
+        function shuffled(){var a=NAMES.slice();
+          for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}
+          return a.slice(0,3);}
+
+        function cardHtml(n){
+          return '<span class="stamp stamp--like">'+T.liked+'</span><span class="stamp stamp--pass">'+T.passed+'</span>'
+            +'<div class="pills"><span class="pill pill--'+n.cls+'">'+n.gender+'</span>'
+            +'<span class="pill pill--rank">'+n.rank+'</span></div>'
+            +'<h2 class="nm">'+n.name+'</h2><p class="origin">'+n.origin+'</p><span class="divider"></span>'
+            +'<p class="m-label">'+T.meaning+'</p><p class="m-text">'+n.meaning+'</p>'
+            +'<div class="chips"><span class="chip">'+T.country+'</span><span class="chip">'+T.region+'</span></div>'
+            +'<div class="card-controls">'
+            +'<button class="ctl ctl--pass" aria-label="'+T.passed+'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
+            +'<span class="veeg">'+T.swipe+'</span>'
+            +'<button class="ctl ctl--like" aria-label="'+T.liked+'"><svg width="24" height="24" viewBox="0 0 24 24" fill="#38D39F"><path d="'+HP+'"/></svg></button>'
+            +'</div>';}
+
+        function render(){deck.innerHTML="";
+          for(var i=queue.length-1;i>=0;i--){var el=document.createElement("article");
+            el.className="name-card";
+            el.style.transform="translateY("+(i*10)+"px) scale("+(1-i*0.04)+")";
+            el.innerHTML=cardHtml(queue[i]);
+            if(i===0) wire(el);
+            deck.appendChild(el);}}
+
+        function decide(like){
+          if(busy||!queue.length) return; busy=true;
+          var card=deck.querySelector(".name-card:last-child"),n=queue.shift();
+          if(like) liked.push(n.name);
+          var d=like?1:-1;
+          card.style.transition="transform .42s cubic-bezier(.22,.61,.36,1),opacity .42s ease";
+          card.style.transform="translate("+(d*520)+"px,"+(d*-40)+"px) rotate("+(d*22)+"deg)";
+          card.style.opacity="0";
+          setTimeout(function(){busy=false; if(queue.length) render(); else finish();},380);}
+
+        function wire(el){
+          var sx=0,dx=0,drag=false;
+          var like=el.querySelector(".stamp--like"),pass=el.querySelector(".stamp--pass");
+          // Buttons sit inside the draggable card, so their pointerdown must
+          // not also start a drag - a tap would register as a 0px swipe and
+          // the card would jitter under the finger.
+          el.querySelector(".ctl--like").addEventListener("click",function(e){e.stopPropagation();decide(true);});
+          el.querySelector(".ctl--pass").addEventListener("click",function(e){e.stopPropagation();decide(false);});
+          Array.prototype.forEach.call(el.querySelectorAll(".ctl"),function(b){
+            b.addEventListener("pointerdown",function(e){e.stopPropagation();});});
+          el.addEventListener("pointerdown",function(e){if(busy)return;drag=true;sx=e.clientX;
+            el.setPointerCapture(e.pointerId);el.style.transition="none";});
+          el.addEventListener("pointermove",function(e){if(!drag)return;dx=e.clientX-sx;
+            el.style.transform="translate("+dx+"px,"+(Math.abs(dx)*-0.06)+"px) rotate("+(dx/18)+"deg)";
+            var t=Math.min(Math.abs(dx)/110,1);
+            like.style.opacity=dx>0?t:0; pass.style.opacity=dx<0?t:0;});
+          function rel(){if(!drag)return;drag=false;like.style.opacity=0;pass.style.opacity=0;
+            if(Math.abs(dx)>95) decide(dx>0);
+            else{el.style.transition="transform .3s cubic-bezier(.22,.61,.36,1)";el.style.transform="translateY(0) scale(1)";}
+            dx=0;}
+          el.addEventListener("pointerup",rel); el.addEventListener("pointercancel",rel);}
+
+        function finish(){
+          var span=document.getElementById("r-names"),ti=document.getElementById("r-title"),bo=document.getElementById("r-body");
+          if(!liked.length){ti.textContent=T.nTitle;bo.textContent=T.nBody;}
+          else{span.textContent=liked.length===1?liked[0]:liked.slice(0,-1).join(", ")+" + "+liked[liked.length-1];
+               bo.textContent=T.rBody;}
+          result.classList.add("show");}
+
+        document.getElementById("again").addEventListener("click",function(){
+          liked=[];queue=shuffled();result.classList.remove("show");render();});
+        queue=shuffled(); render();
+      })();
+    </script>
+  </body>
+</html>
