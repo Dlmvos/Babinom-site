@@ -124,6 +124,12 @@
              color:var(--gray);text-decoration:underline}
       .trial{color:var(--body);font-size:.88rem;line-height:1.5;margin:14px auto 0;max-width:22rem}
       @media(min-width:860px){.trial{margin-inline:0}}
+      .offer{background:#FFE4EE;border-radius:20px;padding:16px 20px;margin:0 auto 22px;max-width:22rem}
+      @media(min-width:860px){.offer{margin-inline:0}}
+      .offer strong{display:block;font-size:clamp(1.25rem,4.6vw,1.5rem);line-height:1.25;color:var(--navy)}
+      .offer span{display:block;margin-top:6px;font-size:.92rem;line-height:1.45;color:var(--body)}
+      .vb,.ab-b .va{display:none}
+      .ab-b .vb{display:block}
       .get-shot img{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;
                     filter:drop-shadow(0 24px 44px rgba(30,41,59,.16))}
       .get-grid{display:grid;gap:16px;margin:56px auto 0;text-align:start;max-width:30rem}
@@ -156,7 +162,7 @@
         <div class="get-hero">
           <div>
             <h1>함께 아기 이름을 찾아보세요</h1>
-            <p class="lead">나와 파트너가 각자 자기 휴대폰에서 이름을 넘깁니다. 두 사람 모두 좋아한 이름만 매치가 됩니다.</p>
+            <p class="lead va">나와 파트너가 각자 자기 휴대폰에서 이름을 넘깁니다. 두 사람 모두 좋아한 이름만 매치가 됩니다.</p>
             <div class="store">
               <a class="btn" id="ios" data-track="ios" href="https://apps.apple.com/app/id6764676399">App Store에서 다운로드</a>
               <a class="btn btn--ghost" id="play" data-track="android" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Google Play에서 받기</a>
@@ -164,7 +170,7 @@
             <script>(function(){var u=navigator.userAgent,c=document.documentElement.classList;
               if(/android/i.test(u))c.add("is-android");
               else if(/iphone|ipad|ipod/i.test(u)||(/macintosh/i.test(u)&&navigator.maxTouchPoints>1))c.add("is-ios");})();</script>
-            <p class="trial">무료로 시작하세요. 파트너와 연결하면 두 사람 모두 3일 동안 무제한으로 넘길 수 있어요.</p>
+            <p class="trial va">무료로 시작하세요. 파트너와 연결하면 두 사람 모두 3일 동안 무제한으로 넘길 수 있어요.</p>
           </div>
           <div class="get-shot"><img src="/assets/screens/ko/deck.png?v=fca58132" alt="" width="620" height="1383" decoding="async" /></div>
         </div>

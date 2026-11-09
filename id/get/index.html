@@ -124,6 +124,12 @@
              color:var(--gray);text-decoration:underline}
       .trial{color:var(--body);font-size:.88rem;line-height:1.5;margin:14px auto 0;max-width:22rem}
       @media(min-width:860px){.trial{margin-inline:0}}
+      .offer{background:#FFE4EE;border-radius:20px;padding:16px 20px;margin:0 auto 22px;max-width:22rem}
+      @media(min-width:860px){.offer{margin-inline:0}}
+      .offer strong{display:block;font-size:clamp(1.25rem,4.6vw,1.5rem);line-height:1.25;color:var(--navy)}
+      .offer span{display:block;margin-top:6px;font-size:.92rem;line-height:1.45;color:var(--body)}
+      .vb,.ab-b .va{display:none}
+      .ab-b .vb{display:block}
       .get-shot img{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;
                     filter:drop-shadow(0 24px 44px rgba(30,41,59,.16))}
       .get-grid{display:grid;gap:16px;margin:56px auto 0;text-align:start;max-width:30rem}
@@ -156,7 +162,7 @@
         <div class="get-hero">
           <div>
             <h1>Temukan nama bayi kalian bersama</h1>
-            <p class="lead">Kamu dan pasanganmu geser nama di HP masing-masing. Sebuah nama baru jadi match kalau kalian berdua menyukainya.</p>
+            <p class="lead va">Kamu dan pasanganmu geser nama di HP masing-masing. Sebuah nama baru jadi match kalau kalian berdua menyukainya.</p>
             <div class="store">
               <a class="btn" id="ios" data-track="ios" href="https://apps.apple.com/app/id6764676399">Unduh di App Store</a>
               <a class="btn btn--ghost" id="play" data-track="android" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Dapatkan di Google Play</a>
@@ -164,7 +170,7 @@
             <script>(function(){var u=navigator.userAgent,c=document.documentElement.classList;
               if(/android/i.test(u))c.add("is-android");
               else if(/iphone|ipad|ipod/i.test(u)||(/macintosh/i.test(u)&&navigator.maxTouchPoints>1))c.add("is-ios");})();</script>
-            <p class="trial">Gratis untuk memulai. Hubungkan dengan pasanganmu dan kalian berdua dapat 3 hari geser tanpa batas.</p>
+            <p class="trial va">Gratis untuk memulai. Hubungkan dengan pasanganmu dan kalian berdua dapat 3 hari geser tanpa batas.</p>
           </div>
           <div class="get-shot"><img src="/assets/screens/deck.png?v=c9a540f0" alt="" width="620" height="1383" decoding="async" /></div>
         </div>
