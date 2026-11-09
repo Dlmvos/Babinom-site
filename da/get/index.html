@@ -104,13 +104,29 @@
       .foot-langs a:hover{color:var(--navy)}
       .foot-langs a[aria-current]{color:var(--navy);font-weight:600}
       .foot-langs .flag{font-size:.95rem;line-height:1}
-      .get{max-width:46rem;margin:0 auto;padding:24px 0 56px;text-align:center}
-      .get h1{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
-      .get .lead{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--body);line-height:1.6;margin:0 auto 18px;max-width:36rem}
-      .trial{display:inline-block;background:#FFE4EE;color:var(--navy);border-radius:14px;padding:10px 16px;
-             font-size:.92rem;line-height:1.45;margin:0 0 8px}
-      .get-grid{display:grid;gap:16px;margin-top:24px;text-align:start}
-      @media(min-width:720px){.get-grid{grid-template-columns:1fr 1fr}}
+      /* On a phone the "How it works" link wrapped to two lines and pushed the
+         header; here it is a detour anyway (the footer still links it). */
+      @media(max-width:480px){.bar nav a{display:none}}
+      .get{max-width:56rem;margin:0 auto;padding:8px 0 56px;text-align:center}
+      .get-hero{display:grid;gap:28px;align-items:center}
+      @media(min-width:860px){.get-hero{grid-template-columns:1.1fr .9fr;text-align:start;gap:48px}}
+      .get h1{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+      .get .lead{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--body);line-height:1.6;margin:0 auto 22px;max-width:36rem}
+      /* One big button for the phone in the visitor's hand; the other store
+         shrinks to a text link. Two equal buttons made every visitor stop and
+         pick, at the one tap that matters. Desktop and unknown devices keep
+         both buttons. */
+      .store{display:flex;flex-direction:column;gap:10px;max-width:22rem;margin:0 auto}
+      @media(min-width:860px){.store{margin:0}}
+      .store .btn{text-align:center;padding:17px 28px;font-size:1.02rem}
+      .is-android #play{order:-1;background:var(--navy);color:#fff}
+      .is-ios #play,.is-android #ios{background:none;border:0;padding:4px;font-size:.85rem;font-weight:500;
+             color:var(--gray);text-decoration:underline}
+      .trial{color:var(--body);font-size:.88rem;line-height:1.5;margin:14px auto 0;max-width:22rem}
+      @media(min-width:860px){.trial{margin-inline:0}}
+      .get-shot img{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;
+                    filter:drop-shadow(0 24px 44px rgba(30,41,59,.16))}
+      .get-grid{display:grid;gap:16px;margin:56px auto 0;text-align:start;max-width:30rem}
       .get-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px;display:flex;flex-direction:column}
       .get-card h2{margin:0 0 6px;font-size:1.15rem}
       .get-card>p{margin:0 0 18px;color:var(--body);font-size:.95rem;line-height:1.55}
@@ -121,7 +137,7 @@
       .get-list li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--pnk)}
       .get .note{color:var(--gray);font-size:.85rem;line-height:1.5;margin:14px 0 0}
       .get .note a{color:var(--navy)}
-      .promo{display:block;width:fit-content;margin:10px auto 0;background:var(--navy);color:#fff;border-radius:14px;
+      .get-card .promo{display:block;width:fit-content;margin:0 0 16px;color:#fff;background:var(--navy);color:#fff;border-radius:14px;
              padding:10px 16px;font-size:.92rem;font-weight:600;line-height:1.45}
       .promo[hidden]{display:none}
     </style>
@@ -137,22 +153,26 @@
       </div>
 
       <main class="get">
-        <h1>Find jeres babynavn sammen</h1>
-        <p class="lead">Du og din partner swiper navne på hver jeres telefon. Et navn bliver først et match, når I begge har liket det.</p>
-        <p class="trial">Gratis at starte. Forbind jer med din partner, så får I begge 3 dages ubegrænset swiping.</p>
-        <p class="promo" id="promo">Black Friday: Premium til lanceringspris frem til 1. december.</p>
-
-        <div class="get-grid">
-          <section class="get-card">
-            <h2>Hent appen</h2>
-            <p>Gratis. Begynd at swipe på under et minut.</p>
-            <div class="btns">
+        <div class="get-hero">
+          <div>
+            <h1>Find jeres babynavn sammen</h1>
+            <p class="lead">Du og din partner swiper navne på hver jeres telefon. Et navn bliver først et match, når I begge har liket det.</p>
+            <div class="store">
               <a class="btn" id="ios" data-track="ios" href="https://apps.apple.com/app/id6764676399">Hent i App Store</a>
               <a class="btn btn--ghost" id="play" data-track="android" href="https://play.google.com/store/apps/details?id=com.daanvos.namenest">Hent på Google Play</a>
             </div>
-          </section>
+            <script>(function(){var u=navigator.userAgent,c=document.documentElement.classList;
+              if(/android/i.test(u))c.add("is-android");
+              else if(/iphone|ipad|ipod/i.test(u)||(/macintosh/i.test(u)&&navigator.maxTouchPoints>1))c.add("is-ios");})();</script>
+            <p class="trial">Gratis at starte. Forbind jer med din partner, så får I begge 3 dages ubegrænset swiping.</p>
+          </div>
+          <div class="get-shot"><img src="/assets/screens/deck.png?v=c9a540f0" alt="" width="620" height="1383" decoding="async" /></div>
+        </div>
 
+        <div class="get-grid">
           <section class="get-card">
+            <p class="promo" id="promo">Black Friday: Premium til lanceringspris frem til 1. december.</p>
+
             <h2>Lås op for Premium</h2>
             <p>Én betaling, delt med din partner. Intet abonnement – du ser prisen i din egen valuta ved betalingen.</p>
             <ul class="get-list">
