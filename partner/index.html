@@ -70,7 +70,7 @@
                 noamt: "{n} eerdere aankoop/aankopen hebben nog geen bedrag en worden later meegeteld.",
                 refunds: "{n} terugbetaald.", updated: "Bijgewerkt {when}.",
                 bad: "Deze link is niet geldig. Vraag Babinom om een nieuwe." },
-          pt: { brand: "· Painel do parceiro", loading: "Carregando…", hello: "Oi, {name}",
+          "pt-BR": { brand: "· Painel do parceiro", loading: "Carregando…", hello: "Oi, {name}",
                 sub: "Sua parceria com a Babinom em um só lugar.", visits: "Visitas pelo seu link", sales: "Compras",
                 codes: "Cadastros com seu código", codesSplit: "{manual} digitado(s) no app · {link} pelo seu link",
                 salesSplit: "{app} App Store/Play · {web} site",
@@ -80,12 +80,43 @@
                 notes: "Uma compra conta quando alguém compra o Premium no site pelo seu link (o botão “Desbloquear Premium”) ou no app (App Store / Google Play) depois de inserir seu código de criador ou abrir o app pelo seu link. Os cadastros com seu código são as pessoas que têm seu código ativo; o código não dá desconto. A receita líquida é o valor da compra menos impostos e reembolsos e, nas compras no app, também menos a taxa da loja. O pagamento é mensal.",
                 noamt: "{n} compra(s) anterior(es) ainda sem valor registrado; entram na conta depois.",
                 refunds: "{n} reembolsada(s).", updated: "Atualizado {when}.",
-                bad: "Este link não é válido. Peça um novo à Babinom." }
+                bad: "Este link não é válido. Peça um novo à Babinom." },
+          "pt-PT": { brand: "· Painel do parceiro", loading: "A carregar…", hello: "Olá, {name}",
+                sub: "A sua parceria com a Babinom num relance.", visits: "Visitas através do seu link", sales: "Compras",
+                codes: "Registos com o seu código", codesSplit: "{manual} introduzido(s) na app · {link} através do seu link",
+                salesSplit: "{app} App Store/Play · {web} site",
+                net: "Receita líquida", earn: "Os seus ganhos ({pct}%)", weekly: "Por semana",
+                lv: "Visitas", ls: "Compras", period: "Período de comissão: {from} – {to}.",
+                open: "sem data de fim", start: "desde o início",
+                notes: "Uma compra conta quando alguém compra o Premium no site através do seu link (o botão “Desbloquear Premium”) ou na app (App Store / Google Play) depois de introduzir o seu código de criador ou de abrir a app através do seu link. Os registos com o seu código são as pessoas que têm o seu código ativo; o código não lhes dá desconto. A receita líquida é o valor da compra menos o IVA e os reembolsos e, nas compras na app, também menos a comissão da loja. O pagamento é mensal.",
+                noamt: "{n} compra(s) anterior(es) ainda sem valor registado; serão contabilizadas depois de liquidadas.",
+                refunds: "{n} reembolsada(s).", updated: "Atualizado {when}.",
+                bad: "Este link não é válido. Peça um novo à Babinom." },
+          es: { brand: "· Panel de colaborador", loading: "Cargando…", hello: "Hola, {name}",
+                sub: "Tu colaboración con Babinom de un vistazo.", visits: "Visitas desde tu enlace", sales: "Compras",
+                codes: "Registros con tu código", codesSplit: "{manual} escrito(s) en la app · {link} desde tu enlace",
+                salesSplit: "{app} App Store/Play · {web} web",
+                net: "Ingresos netos", earn: "Tus ganancias ({pct} %)", weekly: "Por semana",
+                lv: "Visitas", ls: "Compras", period: "Periodo de comisión: {from} – {to}.",
+                open: "sin fecha de fin", start: "desde el inicio",
+                notes: "Una compra cuenta cuando alguien compra Premium en la web a través de tu enlace (el botón “Desbloquear Premium”) o en la app (App Store / Google Play) después de introducir tu código de creador o de abrir la app desde tu enlace. Los registros con tu código son las personas que tienen tu código activo; el código no les da descuento. Los ingresos netos son el importe de la compra menos el IVA y los reembolsos y, en las compras en la app, también menos la comisión de la tienda. Los pagos son mensuales.",
+                noamt: "{n} compra(s) anterior(es) aún no tienen importe registrado; se contarán cuando se liquiden.",
+                refunds: "{n} reembolsada(s).", updated: "Actualizado: {when}.",
+                bad: "Este enlace no es válido. Pide uno nuevo a Babinom." }
         };
         var nav = (navigator.language || "en").toLowerCase();
         var q = new URLSearchParams(location.search).get("lang");
-        var lang = q && S[q] ? q : nav.indexOf("nl") === 0 ? "nl" : nav.indexOf("pt") === 0 ? "pt" : "en";
-        var L = S[lang], locale = lang === "pt" ? "pt-BR" : lang === "nl" ? "nl-NL" : "en-GB";
+        // Portuguese: Portugal gets pt-PT, every other pt (Brazil first) gets pt-BR.
+        function pick(tag) {
+          tag = (tag || "").toLowerCase();
+          if (tag.indexOf("pt") === 0) return tag.indexOf("pt-pt") === 0 ? "pt-PT" : "pt-BR";
+          if (tag.indexOf("es") === 0) return "es";
+          if (tag.indexOf("nl") === 0) return "nl";
+          if (tag.indexOf("en") === 0) return "en";
+          return null;
+        }
+        var lang = pick(q) || pick(nav) || "en";
+        var L = S[lang], locale = { "pt-BR": "pt-BR", "pt-PT": "pt-PT", es: "es-ES", nl: "nl-NL", en: "en-GB" }[lang];
         document.documentElement.lang = locale;
         document.getElementById("t-brand").textContent = L.brand;
         document.getElementById("t-loading").textContent = L.loading;
