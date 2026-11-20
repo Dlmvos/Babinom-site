@@ -19,7 +19,9 @@
       .pd h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 18px 0 4px; }
       .pd-sub { color: #6f6886; margin: 0 0 24px; }
       .pd-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-      @media (min-width: 640px) { .pd-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      @media (min-width: 640px) { .pd-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .pd-card--hero { grid-column: span 2; }
+      .pd-split { font-size: 0.78rem; color: #6f6886; margin: 8px 0 0; line-height: 1.35; }
       .pd-card { background: #fff; border: 1px solid #ece7f5; border-radius: 16px; padding: 16px; }
       .pd-card--hero { background: linear-gradient(160deg, #5b4a87, #382a54); color: #fff; border: 0; }
       .pd-label { font-size: 0.8rem; color: #8a7fa6; margin: 0 0 6px; }
@@ -48,28 +50,34 @@
         var S = {
           en: { brand: "· Partner dashboard", loading: "Loading…", hello: "Hi {name}",
                 sub: "Your Babinom partnership at a glance.", visits: "Link visits", sales: "Purchases",
+                codes: "Code sign-ups", codesSplit: "{manual} typed in the app · {link} via your link",
+                salesSplit: "{app} App Store/Play · {web} web",
                 net: "Net revenue", earn: "Your earnings ({pct}%)", weekly: "Per week",
                 lv: "Visits", ls: "Purchases", period: "Commission period: {from} – {to}.",
                 open: "open-ended", start: "from the start",
-                notes: "Purchases count when someone buys Premium on the website through your link (the “Unlock Premium” button). Net revenue is the purchase amount minus VAT, minus refunds. Payouts are monthly.",
+                notes: "Purchases count when someone buys Premium on the website through your link (the “Unlock Premium” button), or in the app (App Store / Google Play) after entering your creator code or opening the app through your link. Code sign-ups are the people who have your code set; the code gives them no discount. Net revenue is the purchase amount minus VAT and refunds, and for app purchases also minus the store’s fee. Payouts are monthly.",
                 noamt: "{n} earlier purchase(s) have no amount recorded yet and are counted once settled.",
                 refunds: "{n} refunded.", updated: "Updated {when}.",
                 bad: "This link is not valid. Ask Babinom for a new one." },
           nl: { brand: "· Partnerdashboard", loading: "Laden…", hello: "Hoi {name}",
                 sub: "Je samenwerking met Babinom in één oogopslag.", visits: "Bezoeken via je link", sales: "Aankopen",
+                codes: "Aanmeldingen met je code", codesSplit: "{manual} ingevuld in de app · {link} via je link",
+                salesSplit: "{app} App Store/Play · {web} web",
                 net: "Netto-opbrengst", earn: "Jouw verdiensten ({pct}%)", weekly: "Per week",
                 lv: "Bezoeken", ls: "Aankopen", period: "Commissieperiode: {from} – {to}.",
                 open: "doorlopend", start: "vanaf het begin",
-                notes: "Een aankoop telt als iemand via jouw link Premium koopt op de website (de knop “Premium ontgrendelen”). Netto-opbrengst is het aankoopbedrag min btw, min terugbetalingen. Uitbetaling gebeurt maandelijks.",
+                notes: "Een aankoop telt als iemand via jouw link Premium koopt op de website (de knop “Premium ontgrendelen”), of in de app (App Store / Google Play) nadat diegene jouw creatorcode heeft ingevuld of de app via jouw link heeft geopend. Aanmeldingen met je code zijn de mensen bij wie jouw code is ingesteld; de code geeft geen korting. Netto-opbrengst is het aankoopbedrag min btw en terugbetalingen, en bij aankopen in de app ook min de commissie van de store. Uitbetaling gebeurt maandelijks.",
                 noamt: "{n} eerdere aankoop/aankopen hebben nog geen bedrag en worden later meegeteld.",
                 refunds: "{n} terugbetaald.", updated: "Bijgewerkt {when}.",
                 bad: "Deze link is niet geldig. Vraag Babinom om een nieuwe." },
           pt: { brand: "· Painel do parceiro", loading: "Carregando…", hello: "Oi, {name}",
                 sub: "Sua parceria com a Babinom em um só lugar.", visits: "Visitas pelo seu link", sales: "Compras",
+                codes: "Cadastros com seu código", codesSplit: "{manual} digitado(s) no app · {link} pelo seu link",
+                salesSplit: "{app} App Store/Play · {web} site",
                 net: "Receita líquida", earn: "Seus ganhos ({pct}%)", weekly: "Por semana",
                 lv: "Visitas", ls: "Compras", period: "Período de comissão: {from} – {to}.",
                 open: "sem data de término", start: "desde o início",
-                notes: "Uma compra conta quando alguém compra o Premium no site pelo seu link (o botão “Desbloquear Premium”). A receita líquida é o valor da compra menos impostos e reembolsos. O pagamento é mensal.",
+                notes: "Uma compra conta quando alguém compra o Premium no site pelo seu link (o botão “Desbloquear Premium”) ou no app (App Store / Google Play) depois de inserir seu código de criador ou abrir o app pelo seu link. Os cadastros com seu código são as pessoas que têm seu código ativo; o código não dá desconto. A receita líquida é o valor da compra menos impostos e reembolsos e, nas compras no app, também menos a taxa da loja. O pagamento é mensal.",
                 noamt: "{n} compra(s) anterior(es) ainda sem valor registrado; entram na conta depois.",
                 refunds: "{n} reembolsada(s).", updated: "Atualizado {when}.",
                 bad: "Este link não é válido. Peça um novo à Babinom." }
@@ -119,8 +127,11 @@
           h += "<h1>" + esc(f(L.hello, { name: d.partner_name })) + "</h1>";
           h += '<p class="pd-sub">' + esc(L.sub) + "</p>";
           h += '<div class="pd-grid">' +
-               card(L.visits, Number(d.visits_total).toLocaleString(locale)) +
-               card(L.sales, Number(d.sales).toLocaleString(locale)) +
+               card(L.visits, num(d.visits_total)) +
+               card(L.codes, num(d.code_claims_total), false,
+                    f(L.codesSplit, { manual: num(d.code_claims_manual), link: num(d.code_claims_link) })) +
+               card(L.sales, num(d.sales), false,
+                    f(L.salesSplit, { app: num(d.sales_app), web: num(d.sales_web) })) +
                card(L.net, money(d.net_cents, cur)) +
                card(f(L.earn, { pct: Number(d.commission_pct).toLocaleString(locale) }), money(d.earnings_cents, cur), true) +
                "</div>";
@@ -135,9 +146,11 @@
           h += '<div class="pd-panel">' + notes.map(function (t) { return '<p class="pd-note">' + esc(t) + "</p>"; }).join("") + "</div>";
           document.getElementById("out").innerHTML = h;
         }
-        function card(label, value, hero) {
+        function num(n) { return Number(n || 0).toLocaleString(locale); }
+        function card(label, value, hero, split) {
           return '<div class="pd-card' + (hero ? " pd-card--hero" : "") + '"><p class="pd-label">' + esc(label) +
-                 '</p><p class="pd-value">' + esc(value) + "</p></div>";
+                 '</p><p class="pd-value">' + esc(value) + "</p>" +
+                 (split ? '<p class="pd-split">' + esc(split) + "</p>" : "") + "</div>";
         }
       })();
     </script>
