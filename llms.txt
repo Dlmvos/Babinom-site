@@ -11,7 +11,11 @@ Babinom is a mobile app for iOS and Android. It is not a website tool.
 - Each partner swipes privately. A name is revealed as a match only when both said yes.
 - 115,117 names, all available on the free tier. Paying never unlocks names.
 - Names come from national birth-registration data, country by country.
-- Meanings and origins in 11 languages: English, Dutch, German, French, Spanish, Italian, Portuguese, Chinese, Japanese, Korean, Arabic.
+- App interface in 23 languages: English, Dutch, German, French, Spanish, Italian, Portuguese, Brazilian Portuguese, Chinese, Traditional Chinese, Japanese, Korean, Arabic, Hungarian, Polish, Norwegian Bokmål, Turkish, Finnish, Swedish, Indonesian, Malay, Danish, Filipino.
+- Meanings and origins are written in 22 of those; Brazilian Portuguese readers
+  are shown the Portuguese meanings.
+- Meaning coverage is not identical across those languages. Where a name has no
+  meaning in the reader's language, the app shows the English one rather than nothing.
 - Country and name-length filters are free. Paying removes the daily swipe limit and opens the remaining filters.
 - One purchase covers both partners, though each person needs their own account.
 - No advertising in the app at any price.
